@@ -1,15 +1,18 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const FileManagerPlugin = require('filemanager-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: "./src/index.jsx",
   devServer: {
+    watchFiles: path.join(__dirname, 'src'),
     port: 9090
   },
   output: {
     path: path.join(__dirname, "/dist"),
-    filename: "index_bundle.js"
+    filename: 'index.[contenthash].js',
   },
   module: {
     rules: [
@@ -21,15 +24,27 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"]
+        test: /\.(scss|css)$/,
+        use: [MiniCssExtractPlugin.loader, {
+          loader: "css-loader",
+          options: { modules: true }
+        }],
       }
     ]
   },
+
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html"
     }),
+    new FileManagerPlugin({
+      events: {
+        onStart: {
+          delete: ['dist'],
+        },
+      },
+    }),
     new ESLintPlugin({ fix: true }),
+    new MiniCssExtractPlugin()
   ]
 };
