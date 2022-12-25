@@ -2,7 +2,6 @@
   "name": "cars",
   "version": "1.0.0",
   "description": "amazing and powerful app for best car showroom practises",
-  "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development --open --hot",
     "build": "webpack --mode production"
@@ -27,8 +26,10 @@
     "eslint": "^8.30.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-loader": "^4.0.2",
+    "eslint-plugin-css-modules": "^2.11.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-mobx": "^0.0.9",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.31.11",
     "eslint-plugin-react-hooks": "^4.6.0",
@@ -43,11 +44,15 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
+    "formik": "^2.2.9",
+    "ky": "^0.33.0",
+    "mobx": "^6.7.0",
+    "mobx-react-lite": "^3.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-redux": "^8.0.0-beta.1",
     "react-router-dom": "^6.6.1",
     "semantic-ui-css": "^2.5.0",
-    "semantic-ui-react": "^2.1.4"
+    "semantic-ui-react": "^2.1.4",
+    "yup": "^0.32.11"
   }
 }

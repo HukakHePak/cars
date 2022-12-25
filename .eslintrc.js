@@ -4,8 +4,10 @@ module.exports = {
     es2021: true,
   },
   extends: [
-    'plugin:react/recommended',
     'airbnb',
+    'plugin:react/recommended',
+    // 'plugin:mobx/recommended',
+    'plugin:css-modules/recommended',
   ],
   overrides: [
   ],
@@ -13,10 +15,23 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
+    ecmaFeatures: {
+      'jsx': true
+    }
   },
   plugins: [
     'react',
+    // 'mobx',
+    'css-modules'
   ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"]
+      }
+    }
+  },
   rules: {
+    'import/extensions': 'off'
   },
 };

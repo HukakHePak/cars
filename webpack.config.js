@@ -14,6 +14,12 @@ module.exports = {
     path: path.join(__dirname, "/dist"),
     filename: 'index.[contenthash].js',
   },
+  resolve: {
+    alias: {
+      components: path.resolve(__dirname, 'src/components/'),
+    },
+    extensions: ['.js', '.jsx', '.json', '.wasm']
+  },
   module: {
     rules: [
       {
@@ -44,7 +50,7 @@ module.exports = {
         },
       },
     }),
-    new ESLintPlugin({ fix: true }),
-    new MiniCssExtractPlugin()
+    new MiniCssExtractPlugin(),
+    new ESLintPlugin({ fix: true, extensions: ['js', 'jsx', 'css', 'sass']})
   ]
 };
