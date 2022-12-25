@@ -6,7 +6,7 @@ module.exports = {
   extends: [
     'airbnb',
     'plugin:react/recommended',
-    // 'plugin:mobx/recommended',
+    'plugin:mobx/recommended',
     'plugin:css-modules/recommended',
   ],
   overrides: [
@@ -21,7 +21,7 @@ module.exports = {
   },
   plugins: [
     'react',
-    // 'mobx',
+    'mobx',
     'css-modules'
   ],
   "settings": {
@@ -32,6 +32,8 @@ module.exports = {
     }
   },
   rules: {
-    'import/extensions': 'off'
+    'mobx/missing-observer': 'off',
+    'react/prop-types': 'off',
+    'no-console': 'off'
   },
 };

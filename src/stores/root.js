@@ -1,9 +1,9 @@
-// import { makeAutoObservable } from 'mobx';
+import { makeAutoObservable } from 'mobx';
 
-// export default class RootStoreModel {
-//   user = {};
+export default class RootStoreModel {
+  user = {};
 
-//   constructor() {
-//     makeAutoObservable(this);
-//   }
-// }
+  constructor() {
+    makeAutoObservable(this);
+  }
+}
