@@ -8,6 +8,7 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:mobx/recommended',
     'plugin:css-modules/recommended',
+    'plugin:prettier/recommended'
   ],
   overrides: [
   ],
@@ -22,7 +23,8 @@ module.exports = {
   plugins: [
     'react',
     'mobx',
-    'css-modules'
+    'css-modules',
+    'prettier',
   ],
   "settings": {
     "import/resolver": {
