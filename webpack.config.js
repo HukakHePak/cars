@@ -8,11 +8,13 @@ module.exports = {
   entry: "./src/index.jsx",
   devServer: {
     watchFiles: path.join(__dirname, 'src'),
+    historyApiFallback: true,
     port: 9090
   },
   output: {
     path: path.join(__dirname, "/dist"),
     filename: 'index.[contenthash].js',
+    publicPath: '/'
   },
   resolve: {
     alias: {
@@ -22,8 +24,9 @@ module.exports = {
       hooks: path.resolve(__dirname, 'src/hooks/'),
       pages: path.resolve(__dirname, 'src/pages/'),
       stores: path.resolve(__dirname, 'src/stores/'),
+      scss: path.resolve(__dirname, 'src/scss/'),
     },
-    extensions: ['.js', '.jsx', '.json', '.wasm']
+    extensions: ['.js', '.jsx', '.json', '.wasm', '.scss', '.css']
   },
   module: {
     rules: [
@@ -35,11 +38,22 @@ module.exports = {
         },
       },
       {
-        test: /\.(scss|css)$/,
-        use: [MiniCssExtractPlugin.loader, {
-          loader: "css-loader",
-          options: { modules: true }
-        }],
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: { modules: true }
+          },
+          "sass-loader"
+        ]
+      },
+      {
+
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader, "css-loader"
+        ]
       }
     ]
   },
@@ -56,6 +70,6 @@ module.exports = {
       },
     }),
     new MiniCssExtractPlugin(),
-    new ESLintPlugin({ fix: true, extensions: ['js', 'jsx', 'css', 'sass']})
+    new ESLintPlugin({ fix: true, extensions: ['js', 'jsx', 'css'] })
   ]
 };

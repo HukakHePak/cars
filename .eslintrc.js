@@ -26,16 +26,17 @@ module.exports = {
     'css-modules',
     'prettier',
   ],
-  "settings": {
+  settings: {
     "import/resolver": {
       "node": {
         "paths": ["src"]
-      }
-    }
+      },
+    },
   },
   rules: {
     'mobx/missing-observer': 'off',
     'react/prop-types': 'off',
-    'no-console': 'off'
+    'no-console': 'off',
+    'css-modules/no-undef-class': 'off',
   },
 };

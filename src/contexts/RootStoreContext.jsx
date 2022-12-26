@@ -4,15 +4,17 @@ import RootStoreModel from "../stores/root";
 
 export const RootStoreContext = createContext();
 
-const RootStore = new RootStoreModel();
+export const RootStore = new RootStoreModel();
 
 export const useStore = () => useContext(RootStoreContext);
 
-export const StoreProvider = observer(({ store = RootStore, children }) => (
-  <RootStoreContext.Provider value={store}>
-    {children}
-  </RootStoreContext.Provider>
-));
+export function StoreProvider({ store, children }) {
+  return (
+    <RootStoreContext.Provider value={store}>
+      {children}
+    </RootStoreContext.Provider>
+  );
+}
 
 /* eslint-disable react/jsx-props-no-spreading */
 
