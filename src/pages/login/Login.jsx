@@ -1,22 +1,22 @@
 import React from "react";
-import { Form } from "react-router-dom";
-import { Button, Input, Container, Content, FlexboxGrid } from "rsuite";
-import box from "scss/box.scss";
+import Img from "assets/img/backgrounds/anume_car.jpg";
+import Background from "components/Background/Background";
+import AuthForm from "./AuthForm";
 
 function Login() {
-  console.log(box);
   return (
-    <Container className={box.full}>
-      <Content>
-        <FlexboxGrid justify="center" align="middle">
-          <Form>
-            <Input />
-            <Input />
-            <Button> Submit </Button>
-          </Form>
-        </FlexboxGrid>
-      </Content>
-    </Container>
+    <div className="uk-margin-auto uk-margin-auto-vertical">
+      <Background url={Img} />
+      <div className="uk-hidden@m width-1-1">
+        <AuthForm />
+      </div>
+      <div
+        className="uk-card uk-card-default uk-visible@m"
+        style={{ width: 500, borderRadius: 10 }}
+      >
+        <AuthForm />
+      </div>
+    </div>
   );
 }
 
