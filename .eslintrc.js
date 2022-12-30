@@ -35,9 +35,9 @@ module.exports = {
     "prettier/prettier": [
       "error",
       {
-        tabWidth: 2,
+        tabWidth: 4,
       },
     ],
-    indent: ["error", 2],
+    indent: ["error", 4],
   },
 };
