@@ -1,6 +1,33 @@
 @import 'scss/responsive.scss';
 
 .form {
-    gap: 20px;
+    display: flex;
+    flex-direction: column;
     padding: 40px;
+    padding-top: 80px;
+}
+
+.card {
+    margin: auto;
+    border-radius: 10px;
+    position: relative;
+
+    @include for-tablet-landscape-up {
+        width: 500px;
+        background-color: white;
+        box-shadow: 0 5px 10px 0px #00000059;
+    }
+}
+
+.link {
+    background-color: white;
+    text-align: center;
+    width: fit-content;
+    align-self: center;
+}
+
+.error {
+    height: 20px;
+    text-indent: 10px;
+    color: red;
 }

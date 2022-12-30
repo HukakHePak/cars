@@ -1,33 +1,39 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Button, Form, Schema } from "rsuite";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { Button, Form } from "rsuite";
+import style from "./style.scss";
 
-const model = Schema.Model({
-  login: Schema.Types.StringType().isRequired("Неверный логин"),
-  password: Schema.Types.StringType().isRequired("Неверный пароль"),
-});
+const defaultForm = {
+  login: "",
+  password: "",
+};
 
 function AuthForm() {
-  const navigate = useNavigate();
+  const [form, setForm] = useState(defaultForm);
+
+  const onSubmit = (valid) => {
+    if (valid) console.log(form);
+  };
 
   return (
     <Form
       fluid
-      model={model}
-      className="uk-flex uk-flex-column"
-      style={{ gap: 20, padding: 40, paddingTop: 80 }}
-      onCheck={(err) => !err && navigate("/")}
+      formValue={form}
+      className={style.form}
+      onChange={setForm}
+      onSubmit={onSubmit}
     >
       <Form.Control name="login" placeholder="Логин" />
-      <Form.ErrorMessage>Неверный логин</Form.ErrorMessage>
-      <Form.Control name="password" placeholder="Пароль" />
-      <Form.ErrorMessage>Неверный пароль</Form.ErrorMessage>
-      <Button appearance="primary" type="submit">
+      <div className={style.error}> </div>
+      <Form.Control name="password" type="password" placeholder="Пароль" />
+      <div className={style.error}> error </div>
+
+      <Button appearance="primary" type="submit" style={{ marginBottom: 10 }}>
         Войти
       </Button>
-      <Link to="/" className="uk-text-center">
+      <Button type="submit" as={Link} to="/" className={style.link}>
         Забыли пароль?
-      </Link>
+      </Button>
     </Form>
   );
 }
