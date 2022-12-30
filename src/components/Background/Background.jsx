@@ -1,11 +1,11 @@
 import React from "react";
-import style from "./style.scss";
+import scss from "./style.scss";
 
-function Background({ url }) {
+function Background({ url, className, style }) {
   return (
     <div
-      className={style.background}
-      style={{ backgroundImage: `url(${url})` }}
+      className={`${scss.background} ${className}`}
+      style={{ backgroundImage: `url(${url})`, ...style }}
     />
   );
 }
