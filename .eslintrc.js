@@ -32,5 +32,12 @@ module.exports = {
     "react/prop-types": "off",
     "no-console": "off",
     "css-modules/no-undef-class": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        tabWidth: 2,
+      },
+    ],
+    indent: ["error", 2],
   },
 };
