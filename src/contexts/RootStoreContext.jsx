@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import React, { createContext, useContext } from "react";
-import RootStoreModel from "../stores/root";
+import RootStoreModel from "stores/root";
 
 export const RootStoreContext = createContext();
 
