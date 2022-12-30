@@ -32,6 +32,7 @@ module.exports = {
     "react/prop-types": "off",
     "no-console": "off",
     "css-modules/no-undef-class": "off",
+    "css-modules/no-unused-class": "off",
     "prettier/prettier": [
       "error",
       {
