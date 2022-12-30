@@ -6,8 +6,11 @@ export default class RootStoreModel {
   constructor() {
     makeAutoObservable(this);
   }
+ 
 
+
+  @action.bound
   setName(name) {
     this.user.name = name;
   }
-}
+};
