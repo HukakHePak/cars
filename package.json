@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "amazing and powerful app for best car showroom practises",
   "scripts": {
-    "start": "webpack-dev-server --mode development --open --hot",
+    "start": "webpack-dev-server --mode development --hot",
     "build": "webpack --mode production"
   },
   "keywords": [

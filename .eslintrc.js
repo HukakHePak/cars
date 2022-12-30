@@ -4,39 +4,33 @@ module.exports = {
     es2021: true,
   },
   extends: [
-    'airbnb',
-    'plugin:react/recommended',
-    'plugin:mobx/recommended',
-    'plugin:css-modules/recommended',
-    'plugin:prettier/recommended'
+    "airbnb",
+    "plugin:react/recommended",
+    "plugin:mobx/recommended",
+    "plugin:css-modules/recommended",
+    "plugin:prettier/recommended",
   ],
-  overrides: [
-  ],
+  overrides: [],
   parser: "@babel/eslint-parser",
   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
+    ecmaVersion: "latest",
+    sourceType: "module",
     ecmaFeatures: {
-      'jsx': true
-    }
+      jsx: true,
+    },
   },
-  plugins: [
-    'react',
-    'mobx',
-    'css-modules',
-    'prettier',
-  ],
+  plugins: ["react", "mobx", "css-modules", "prettier"],
   settings: {
     "import/resolver": {
-      "node": {
-        "paths": ["src"]
+      node: {
+        paths: ["src"],
       },
     },
   },
   rules: {
-    'mobx/missing-observer': 'off',
-    'react/prop-types': 'off',
-    'no-console': 'off',
-    'css-modules/no-undef-class': 'off',
+    "mobx/missing-observer": "off",
+    "react/prop-types": "off",
+    "no-console": "off",
+    "css-modules/no-undef-class": "off",
   },
 };

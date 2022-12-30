@@ -1,32 +1,32 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const FileManagerPlugin = require('filemanager-webpack-plugin');
-const ESLintPlugin = require('eslint-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const FileManagerPlugin = require("filemanager-webpack-plugin");
+const ESLintPlugin = require("eslint-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: "./src/index.jsx",
   devServer: {
-    watchFiles: path.join(__dirname, 'src'),
+    watchFiles: path.join(__dirname, "src"),
     historyApiFallback: true,
-    port: 9090
+    port: 9090,
   },
   output: {
     path: path.join(__dirname, "/dist"),
-    filename: 'index.[contenthash].js',
-    publicPath: '/'
+    filename: "index.[contenthash].js",
+    publicPath: "/",
   },
   resolve: {
     alias: {
-      assets: path.resolve(__dirname, 'src/assets/'),
-      components: path.resolve(__dirname, 'src/components/'),
-      contexts: path.resolve(__dirname, 'src/contexts/'),
-      hooks: path.resolve(__dirname, 'src/hooks/'),
-      pages: path.resolve(__dirname, 'src/pages/'),
-      stores: path.resolve(__dirname, 'src/stores/'),
-      scss: path.resolve(__dirname, 'src/scss/'),
+      assets: path.resolve(__dirname, "src/assets/"),
+      components: path.resolve(__dirname, "src/components/"),
+      contexts: path.resolve(__dirname, "src/contexts/"),
+      hooks: path.resolve(__dirname, "src/hooks/"),
+      pages: path.resolve(__dirname, "src/pages/"),
+      stores: path.resolve(__dirname, "src/stores/"),
+      scss: path.resolve(__dirname, "src/scss/"),
     },
-    extensions: ['.js', '.jsx', '.json', '.wasm', '.scss', '.css']
+    extensions: [".js", ".jsx", ".json", ".wasm", ".scss", ".css"],
   },
   module: {
     rules: [
@@ -34,7 +34,7 @@ module.exports = {
         test: [/\.js$/, /\.jsx$/],
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
+          loader: "babel-loader",
         },
       },
       {
@@ -43,37 +43,34 @@ module.exports = {
           MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
-            options: { modules: true }
+            options: { modules: true },
           },
-          "sass-loader"
-        ]
+          "sass-loader",
+        ],
       },
       {
-
         test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader, "css-loader"
-        ]
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
+        type: "asset/resource",
       },
-    ]
+    ],
   },
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html"
+      template: "./src/index.html",
     }),
     new FileManagerPlugin({
       events: {
         onStart: {
-          delete: ['dist'],
+          delete: ["dist"],
         },
       },
     }),
     new MiniCssExtractPlugin(),
-    new ESLintPlugin({ fix: true, extensions: ['js', 'jsx', 'css'] })
-  ]
+    new ESLintPlugin({ fix: true, extensions: ["js", "jsx", "css"] }),
+  ],
 };
