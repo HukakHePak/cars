@@ -1,22 +1,33 @@
-import React from "react";
-import { Link, useNavigate, Form } from "react-router-dom";
-import { Button, Input } from "rsuite";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { Button, Form } from "rsuite";
 import style from "./style.scss";
 
+const defaultForm = {
+  login: "",
+  password: "",
+};
+
 function AuthForm() {
-  const navigate = useNavigate();
+  const [form, setForm] = useState(defaultForm);
+
+  const onSubmit = (valid) => {
+    if (valid) console.log(form);
+  };
 
   return (
     <Form
+      fluid
+      formValue={form}
       className={style.form}
-      onSubmit={(isValid) => isValid && navigate("/")}
+      onChange={setForm}
+      onSubmit={onSubmit}
     >
-      <div>
-        <Input name="login" placeholder="Логин" />
-        <div className={style.error}> </div>
-        <Input name="password" type="password" placeholder="Пароль" />
-        <div className={style.error}> error </div>
-      </div>
+      <Form.Control name="login" placeholder="Логин" />
+      <div className={style.error}> </div>
+      <Form.Control name="password" type="password" placeholder="Пароль" />
+      <div className={style.error}> error </div>
+
       <Button appearance="primary" type="submit" style={{ marginBottom: 10 }}>
         Войти
       </Button>
