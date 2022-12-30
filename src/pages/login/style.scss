@@ -3,7 +3,6 @@
 .form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
     padding: 40px;
     padding-top: 80px;
 }
@@ -25,4 +24,10 @@
     text-align: center;
     width: fit-content;
     align-self: center;
+}
+
+.error {
+    height: 20px;
+    text-indent: 10px;
+    color: red;
 }
