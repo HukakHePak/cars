@@ -1,16 +1,14 @@
-import { makeAutoObservable } from "mobx";
+import { makeObservable, action } from "mobx";
 
 export default class RootStoreModel {
   user = {};
 
   constructor() {
-    makeAutoObservable(this);
+    makeObservable(this);
   }
- 
-
 
   @action.bound
   setName(name) {
     this.user.name = name;
   }
-};
+}
