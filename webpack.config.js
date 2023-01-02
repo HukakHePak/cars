@@ -14,7 +14,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, "/dist"),
     filename: "index.[contenthash].js",
-    publicPath: "/",
+    publicPath: "auto",
   },
   resolve: {
     alias: {
@@ -32,14 +32,7 @@ module.exports = {
     
     rules: [
       {
-        test: [/\.js$/, /\.jsx$/],
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-        },
-      },
-      {
-        test: [/\.ts$/, /\.tsx$/],
+        test: [/\.ts$/, /\.tsx$/, /\.js$/, /\.jsx$/],
         exclude: /node_modules/,
         use: {
           loader: "ts-loader",

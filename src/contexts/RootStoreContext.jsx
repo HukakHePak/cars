@@ -1,12 +1,9 @@
-import { observer } from "mobx-react-lite";
-import React, { createContext, useContext } from "react";
+import React from "react";
 import RootStoreModel from "stores/root";
 
-export const RootStoreContext = createContext();
+export const RootStoreContext = React.createContext();
 
 export const RootStore = new RootStoreModel();
-
-export const useStore = () => useContext(RootStoreContext);
 
 export function StoreProvider({ store, children }) {
   return (
@@ -15,15 +12,3 @@ export function StoreProvider({ store, children }) {
     </RootStoreContext.Provider>
   );
 }
-
-/* eslint-disable react/jsx-props-no-spreading */
-
-export const withStore = (Component) => {
-  return function Stored(props) {
-    const store = useStore();
-
-    const Observed = observer(Component);
-
-    return <Observed {...props} store={store} />;
-  };
-};

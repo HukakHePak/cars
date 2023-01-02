@@ -1,8 +1,11 @@
 .app {
-    background-color: rgb(176, 66, 176);
+    z-index: 1;
+
+    main {
+        min-height: 2000px;
+    }
 }
 
-.btn {
-    color:rgb(176, 66, 176);
-    height: 100px;
+.background {
+    // position: fixed;
 }
