@@ -26,15 +26,23 @@ module.exports = {
       stores: path.resolve(__dirname, "src/stores/"),
       scss: path.resolve(__dirname, "src/scss/"),
     },
-    extensions: [".js", ".jsx", ".json", ".wasm", ".scss", ".css"],
+    extensions: [".js", ".jsx", ".ts", ".tsx", ".json", ".wasm", ".scss", ".css"],
   },
   module: {
+    
     rules: [
       {
         test: [/\.js$/, /\.jsx$/],
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
+        },
+      },
+      {
+        test: [/\.ts$/, /\.tsx$/],
+        exclude: /node_modules/,
+        use: {
+          loader: "ts-loader",
         },
       },
       {
@@ -71,6 +79,6 @@ module.exports = {
       },
     }),
     new MiniCssExtractPlugin(),
-    new ESLintPlugin({ fix: true, extensions: ["js", "jsx", "css"] }),
+    new ESLintPlugin({ fix: true, extensions: ["js", "jsx", "ts", "tsx", "css"] }),
   ],
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import scss from "./style.scss";
+import scss from "./style";
 
 function Background({ url, className, style }) {
   return (
