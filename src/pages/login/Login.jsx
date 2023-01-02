@@ -2,7 +2,7 @@ import React from "react";
 import Img from "assets/img/backgrounds/anume_car.jpg";
 import Background from "components/Background/Background";
 import AuthForm from "./AuthForm";
-import style from "./style.scss";
+import style from "./style";
 
 function Login() {
   return (

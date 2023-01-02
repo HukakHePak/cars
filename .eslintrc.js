@@ -9,8 +9,28 @@ module.exports = {
     "plugin:mobx/recommended",
     "plugin:css-modules/recommended",
     "plugin:prettier/recommended",
+    "plugin:import/typescript",
   ],
-  overrides: [],
+  overrides: [
+    {
+      "files": ["**/*.ts", "**/*.tsx"],
+      "extends": [
+        "airbnb-typescript",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:import/typescript",
+      ],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      },
+      "plugins": ["@typescript-eslint"],
+      "rules": {
+        "@typescript-eslint/quotes": ["error", "double"]
+      }
+    }
+  ],
   parser: "@babel/eslint-parser",
   parserOptions: {
     ecmaVersion: "latest",
@@ -24,6 +44,7 @@ module.exports = {
     "import/resolver": {
       node: {
         paths: ["src"],
+        "extensions": [".js", ".jsx", ".ts", ".tsx", ".scss"]
       },
     },
   },
@@ -39,6 +60,17 @@ module.exports = {
         tabWidth: 2,
       },
     ],
+    quotes: ["error", "double"],
     indent: ["error", 2],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never",
+        "scss": "never"
+      }]
   },
 };

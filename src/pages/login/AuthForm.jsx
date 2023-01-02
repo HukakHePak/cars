@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Form } from "rsuite";
-import style from "./style.scss";
+import style from "./style";
 
 const defaultForm = {
   login: "",

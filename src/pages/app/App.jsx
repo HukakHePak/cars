@@ -2,11 +2,9 @@ import React from "react";
 import { withStore } from "contexts/RootStoreContext";
 import { Link, Outlet } from "react-router-dom";
 import { Button } from "rsuite";
-import style from "./style.scss";
+import style from "./style";
 
 function App({ store }) {
-  console.log(store);
-
   return (
     <div className={style.app}>
       <h1>My React App!</h1>
