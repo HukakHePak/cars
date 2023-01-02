@@ -12,7 +12,7 @@ module.exports = {
     port: 9090,
   },
   output: {
-    path: path.join(__dirname, "/dist"),
+    path: path.join(__dirname, "/build"),
     filename: "index.[contenthash].js",
     publicPath: "auto",
   },
@@ -67,7 +67,7 @@ module.exports = {
     new FileManagerPlugin({
       events: {
         onStart: {
-          delete: ["dist"],
+          delete: ["build"],
         },
       },
     }),

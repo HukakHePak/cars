@@ -4,21 +4,24 @@ import App from "pages/app/App";
 import Profile from "pages/profile/Profile";
 import Login from "pages/login/Login";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-    children: [
-      {
-        path: "profile",
-        element: <Profile />,
-      },
-    ],
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-]);
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <App />,
+      children: [
+        {
+          path: "profile",
+          element: <Profile />,
+        },
+      ],
+    },
+    {
+      path: "/login",
+      element: <Login />,
+    },
+  ],
+  { basename: "/cars" }
+);
 
 export default router;
