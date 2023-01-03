@@ -10,6 +10,7 @@ module.exports = {
     "plugin:css-modules/recommended",
     "plugin:prettier/recommended",
     "plugin:import/typescript",
+
   ],
   overrides: [
     {
@@ -21,25 +22,23 @@ module.exports = {
         "plugin:@typescript-eslint/recommended",
         "plugin:import/typescript",
       ],
-      "parser": "@typescript-eslint/parser",
-      "parserOptions": {
-        "project": "./tsconfig.json"
-      },
-      "plugins": ["@typescript-eslint"],
       "rules": {
-        "@typescript-eslint/quotes": ["error", "double"]
+        "@typescript-eslint/quotes": ["error", "double"],
+        "@typescript-eslint/comma-dangle": "off",
+        "@typescript-eslint/indent": "off"
       }
     }
   ],
-  parser: "@babel/eslint-parser",
+  parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaVersion: "latest",
     sourceType: "module",
     ecmaFeatures: {
       jsx: true,
     },
+    project: "./tsconfig.json"
   },
-  plugins: ["react", "mobx", "css-modules", "prettier"],
+  plugins: ["react", "mobx", "css-modules", "@typescript-eslint", "prettier"],
   settings: {
     "import/resolver": {
       node: {

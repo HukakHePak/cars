@@ -1,12 +1,14 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/",
+    "baseUrl": "./src",
+    "outDir": "./build/",
     "noImplicitAny": true,
-    "module": "es6",
-    "target": "es5",
+    "module": "commonjs",
+    "esModuleInterop": true,
     "jsx": "react",
     "allowJs": true,
     "moduleResolution": "node",
     "experimentalDecorators": true,
-  }
+  },
+  "exclude": ["node_modules"]
 }

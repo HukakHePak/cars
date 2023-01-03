@@ -12,9 +12,9 @@ module.exports = {
     port: 9090,
   },
   output: {
-    path: path.join(__dirname, "/dist"),
+    path: path.join(__dirname, "/build"),
     filename: "index.[contenthash].js",
-    publicPath: "/",
+    publicPath: "auto",
   },
   resolve: {
     alias: {
@@ -32,14 +32,7 @@ module.exports = {
     
     rules: [
       {
-        test: [/\.js$/, /\.jsx$/],
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-        },
-      },
-      {
-        test: [/\.ts$/, /\.tsx$/],
+        test: [/\.ts$/, /\.tsx$/, /\.js$/, /\.jsx$/],
         exclude: /node_modules/,
         use: {
           loader: "ts-loader",
@@ -74,7 +67,7 @@ module.exports = {
     new FileManagerPlugin({
       events: {
         onStart: {
-          delete: ["dist"],
+          delete: ["build"],
         },
       },
     }),
