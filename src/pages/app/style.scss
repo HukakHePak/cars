@@ -1,27 +1,26 @@
 .app {
     z-index: 1;
-    overflow: auto;
-
-    main {
-        min-height: 2000px;
-    }
-}
-
-.sidebar {
-    z-index: 2;
-    // position: fixed;
-    // right: 0;
-    // top: 100px;
-    background-color: aqua;
+    align-items: flex-end;
 }
 
 .background {
-    // position: fixed;
+    background-position: right;
+}
+
+.header {
+}
+
+.main {
+    height: 100%;
+}
+
+.wrap {
+    overflow: auto;
+    height: 100%;
+    width: 90%;
+    background-color: white;
 }
 
 .footer {
-    background: url("assets/img/backgrounds/black_car.jpg") no-repeat;
-    background-position-y: -720px;
-    background-position-x: center;
-    height: 200px;
+    height: 100px;
 }
