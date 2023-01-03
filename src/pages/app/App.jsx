@@ -5,7 +5,6 @@ import Background from "components/Background/Background";
 import { observer } from "mobx-react-lite";
 import useStore from "hooks/useStore";
 import style from "./style";
-// import RootStoreModel from "stores/root";
 
 const url =
   "https://kartinkin.net/uploads/posts/2021-07/1626959849_12-kartinkin-com-p-anime-vozle-mashini-anime-krasivo-12.jpg";
@@ -20,23 +19,23 @@ function App() {
         <Header>
           <h1>My React App!</h1>
         </Header>
-
         <Content>
-          <div>{store.user.name}</div> <Outlet />
+          <div>{store.user.name}</div>
+          <Outlet />
         </Content>
-        <Footer>
-          <button type="button" onClick={() => store.setName("Vitaliy")}>
-            magic button
-          </button>
-          <button type="button" className={style.btn}>
-            <Link to="/profile">Profile</Link>
-          </button>
-          <Button type="button" className={style.btn}>
-            <Link to="/login">Login</Link>
-          </Button>
-        </Footer>
+        <Footer className={style.footer}>content</Footer>
       </Container>
-      <Sidebar />
+      <Sidebar className={style.sidebar}>
+        <button type="button" onClick={() => store.setName("Vitaliy")}>
+          magic button
+        </button>
+        <button type="button" className={style.btn}>
+          <Link to="/profile">Profile</Link>
+        </button>
+        <Button type="button" className={style.btn}>
+          <Link to="/login">Login</Link>
+        </Button>{" "}
+      </Sidebar>
     </>
   );
 }

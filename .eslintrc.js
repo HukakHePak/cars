@@ -24,7 +24,8 @@ module.exports = {
       ],
       "rules": {
         "@typescript-eslint/quotes": ["error", "double"],
-        "@typescript-eslint/comma-dangle": "off"
+        "@typescript-eslint/comma-dangle": "off",
+        "@typescript-eslint/indent": "off"
       }
     }
   ],
