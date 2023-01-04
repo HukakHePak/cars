@@ -24,8 +24,6 @@ function AuthForm() {
     if (valid) auth.login(form);
   };
 
-  console.log(auth.error);
-
   return (
     <Form
       fluid

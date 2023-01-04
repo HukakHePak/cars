@@ -1,5 +1,5 @@
 import { makeObservable } from "mobx";
-import { api } from "../api";
+import { pipi } from "../api";
 import UserStore from "./user";
 
 export interface IAuthForm {
@@ -25,10 +25,7 @@ class AuthStore {
   }
 
   load() {
-    api
-      .get("me")
-      .json()
-      .then((user) => this.createUser(<UserStore>user));
+    pipi.get("me").then((user) => this.createUser(<UserStore>user));
   }
 
   login({ login, password }: { login: string; password: string }) {
@@ -41,11 +38,8 @@ class AuthStore {
       return;
     }
 
-    api
-      .post("login", {
-        json: { login, password },
-      })
-      .json()
+    pipi
+      .post("login", { login, password })
       .then((user) => this.createUser(<UserStore>user))
       .catch(() => {
         this.error.login = "Пользователь с таким именем не найден";
@@ -54,12 +48,12 @@ class AuthStore {
 
   createUser(user: UserStore) {
     this.user = new UserStore(user);
-    this.error = <IAuthForm>{ }
+    this.error = <IAuthForm>{};
   }
 
   logout() {
     this.user = undefined;
-    api.get("logout");
+    pipi.get("logout");
   }
 }
 
