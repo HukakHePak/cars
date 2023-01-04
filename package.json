@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "amazing and powerful app for best car showroom practises",
   "scripts": {
-    "start": "webpack-dev-server --mode development --hot",
-    "build": "webpack --mode production"
+    "start": "webpack-dev-server --hot --mode development --env api=",
+    "debug": "webpack-dev-server --hot --mode development --env api=http://localhost:5000",
+    "build": "npx eslint 'src' && webpack --mode production --env basename=/cars api=https://localhost:5000",
+    "format": "npx eslint 'src' --fix"
   },
   "keywords": [
     "cars",
@@ -19,6 +21,7 @@
     "@typescript-eslint/parser": "^5.47.1",
     "css-loader": "^6.7.3",
     "eslint": "^8.30.0",
+    "eslint-cli": "^1.1.1",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-prettier": "^8.5.0",

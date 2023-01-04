@@ -1,3 +1,5 @@
+import useStore from "hooks/useStore";
+import { observer } from "mobx-react-lite";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Form } from "rsuite";
@@ -9,10 +11,20 @@ const defaultForm = {
 };
 
 function AuthForm() {
+  const store = useStore();
+
+  // const navigate = useNavigate();
+
+  // console.log(store.auth.user);
+
+  // useEffect(() => {
+  //   if (store.auth.user) navigate("/");
+  // }, [store.auth.user]);
+
   const [form, setForm] = useState(defaultForm);
 
   const onSubmit = (valid) => {
-    if (valid) console.log(form);
+    if (valid) store.auth.login(form);
   };
 
   return (
@@ -38,4 +50,4 @@ function AuthForm() {
   );
 }
 
-export default AuthForm;
+export default observer(AuthForm);

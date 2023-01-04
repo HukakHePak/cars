@@ -4,9 +4,9 @@ import React from "react";
 // import style from "./style.scss";
 
 function Profile() {
-  const store = useStore();
+  const { auth } = useStore();
 
-  return <div>{store.user.name}, hello</div>;
+  return <div>{auth.user?.name}, hello</div>;
 }
 
 export default observer(Profile);

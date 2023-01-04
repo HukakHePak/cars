@@ -1,24 +1,9 @@
-import { makeObservable, action, observable } from "mobx";
-
-interface IUser {
-  name: string;
-}
+import AuthStore from "./auth";
 
 export default class RootStoreModel {
-  @observable
-  user = { name: "" } as IUser;
-
-  @observable
-  surname = "";
+  auth: AuthStore;
 
   constructor() {
-    makeObservable(this);
-  }
-
-  @action.bound
-  setName(name: string) {
-    // console.log(name);
-    this.user.name = name;
-    // this.surname = name;
+    this.auth = new AuthStore();
   }
 }

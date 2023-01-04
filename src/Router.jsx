@@ -21,7 +21,7 @@ const router = createBrowserRouter(
       element: <Login />,
     },
   ],
-  { basename: "/cars" }
+  { basename: process.env.basename }
 );
 
 export default router;
