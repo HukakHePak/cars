@@ -5,10 +5,14 @@ import { Link } from "react-router-dom";
 import { Nav } from "rsuite";
 import style from "./style";
 
-const selectHandler = console.log;
+// const selectHandler = console.log;
 
 function Sidebar() {
   const { auth } = useStore();
+
+  // const selectHandler = (eventName) => {
+  //   if (eventName === "logout") auth.logout();
+  // };
 
   return (
     <aside className={style.sidebar}>
@@ -17,7 +21,7 @@ function Sidebar() {
         appearance="subtle"
         vertical
         reversed
-        onSelect={selectHandler}
+        // onSelect={selectHandler}
       >
         <Nav.Item eventKey="profile" as={Link} to="/profile">
           Профиль
@@ -25,12 +29,7 @@ function Sidebar() {
         <Nav.Item eventKey="cars" as={Link} to="/">
           Автомобили
         </Nav.Item>
-        <Nav.Item
-          eventKey="login"
-          as={Link}
-          to="/login"
-          onClick={auth.logout()}
-        >
+        <Nav.Item eventKey="logout" onClick={() => auth.logout()}>
           Выход
         </Nav.Item>
       </Nav>

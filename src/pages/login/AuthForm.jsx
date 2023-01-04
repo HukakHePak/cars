@@ -1,7 +1,7 @@
 import useStore from "hooks/useStore";
 import { observer } from "mobx-react-lite";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Button, Form } from "rsuite";
 import style from "./style";
 
@@ -11,21 +11,20 @@ const defaultForm = {
 };
 
 function AuthForm() {
-  const store = useStore();
+  const { auth } = useStore();
+  const navigate = useNavigate();
 
-  // const navigate = useNavigate();
-
-  // console.log(store.auth.user);
-
-  // useEffect(() => {
-  //   if (store.auth.user) navigate("/");
-  // }, [store.auth.user]);
+  useEffect(() => {
+    if (auth.user) navigate("/");
+  }, [auth.user]);
 
   const [form, setForm] = useState(defaultForm);
 
   const onSubmit = (valid) => {
-    if (valid) store.auth.login(form);
+    if (valid) auth.login(form);
   };
+
+  console.log(auth.error);
 
   return (
     <Form
@@ -36,14 +35,14 @@ function AuthForm() {
       onSubmit={onSubmit}
     >
       <Form.Control name="login" placeholder="Логин" />
-      <div className={style.error}> </div>
+      <div className={style.error}> {auth.error.login} </div>
       <Form.Control name="password" type="password" placeholder="Пароль" />
-      <div className={style.error}> error </div>
+      <div className={style.error}> {auth.error.password} </div>
 
       <Button appearance="primary" type="submit" style={{ marginBottom: 10 }}>
         Войти
       </Button>
-      <Button type="submit" as={Link} to="/" className={style.link}>
+      <Button type="submit" as={Link} to="/forgot" className={style.link}>
         Забыли пароль?
       </Button>
     </Form>
