@@ -2,7 +2,6 @@ import Logo from "components/Logo/Logo";
 import useStore from "hooks/useStore";
 import { observer } from "mobx-react-lite";
 import React from "react";
-import { Link } from "react-router-dom";
 import { Nav } from "rsuite";
 import Side from "./Side";
 import style from "./style";
@@ -31,13 +30,13 @@ function Sidebar() {
         {/* <Nav.Item eventKey="profile" as={Link} to="/profile">
           Профиль
         </Nav.Item> */}
-        <Side eventKey="cars" as={Link} to="/">
+        <Side name="cars" to="/">
           Автомобили
         </Side>
-        <Side eventKey="complects" as={Link} to="/complects">
+        <Side name="complects" to="/complects">
           Комплекты
         </Side>
-        <Side eventKey="details" as={Link} to="/details">
+        <Side name="details" to="/details">
           Запчасти
         </Side>
         <Side name="history" acesss={[]} to="/history">
@@ -46,7 +45,7 @@ function Sidebar() {
         <Side name="statistic" acesss={[]} to="/statistic">
           Управление
         </Side>
-        <Side name="logout" to="/login" onClick={() => auth.logout()}>
+        <Side name="logout" onClick={() => auth.logout()}>
           Выход
         </Side>
       </Nav>

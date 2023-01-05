@@ -6,8 +6,10 @@
     color: white;
     padding: 20px;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
+    gap: 80px;
+   
     @include bordertoping;
 
     a {

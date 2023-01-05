@@ -1,0 +1,31 @@
+.app {
+    z-index: 1;
+    display: flex;
+    width: 100%;
+}
+
+.background {
+    background-position-x: right;
+    background-position-y: top;
+}
+
+.content {
+    height: 100%;
+}
+
+.wrap {
+    position: relative;
+    overflow: auto;
+    height: 100%;
+    background-color: white;
+    padding: 30px 60px;
+}
+
+.wrapLand {
+    height: 100%;
+    max-width: 1600px;
+    padding: 30px 60px;
+    padding-left: 10%;
+    margin: auto;
+    width: 100%;
+}

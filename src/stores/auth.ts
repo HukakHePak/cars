@@ -1,5 +1,5 @@
 import { makeObservable } from "mobx";
-import { pipi } from "../api";
+import { pipi } from "utils/api";
 import UserStore from "./user";
 
 export interface IAuthForm {
