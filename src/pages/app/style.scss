@@ -1,16 +1,19 @@
+@import "scss/ui.scss";
+
 .app {
     z-index: 1;
     align-items: flex-end;
 }
 
 .background {
-    background-position: right;
+    background-position-x: right;
+    background-position-y: top;
 }
 
 .header {
 }
 
-.main {
+.content {
     height: 100%;
 }
 
@@ -23,4 +26,11 @@
 
 .footer {
     height: 100px;
+    @include bordertoping;
+    background-color: rgba(163, 0, 0, 0.863);
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
 }

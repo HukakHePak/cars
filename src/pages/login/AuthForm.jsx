@@ -37,7 +37,7 @@ function AuthForm() {
       <Form.Control name="password" type="password" placeholder="Пароль" />
       <div className={style.error}> {auth.error.password} </div>
 
-      <Button appearance="primary" type="submit" style={{ marginBottom: 10 }}>
+      <Button type="submit" className={style.button}>
         Войти
       </Button>
       <Button type="submit" as={Link} to="/forgot" className={style.link}>

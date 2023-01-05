@@ -1,7 +1,7 @@
 import { makeObservable } from "mobx";
 
 class UserStore {
-  id = "";
+  iduser = "";
 
   name = "";
 
@@ -14,7 +14,7 @@ class UserStore {
   constructor(user: UserStore) {
     makeObservable(this, {
       setUser: true,
-      id: true,
+      iduser: true,
       name: true,
       surname: true,
       email: true,
@@ -30,9 +30,9 @@ class UserStore {
 
   //   @action.bound
   setUser(user: UserStore) {
-    const { id, name, surname, email, code } = user;
+    const { iduser, name, surname, email, code } = user;
 
-    this.id = id;
+    this.iduser = iduser;
     this.name = name;
     this.surname = surname;
     this.email = email;

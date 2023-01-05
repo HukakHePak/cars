@@ -7,7 +7,12 @@ import style from "./style";
 function Login() {
   return (
     <div style={{ margin: "auto" }}>
-      <Background url={Img} className="uk-background-center-right" />
+      <Background
+        url={Img}
+        className="uk-background-center-right"
+        overlayColor="rgba(255, 255, 255, 0.386)"
+        blur="2"
+      />
       <div className={style.card}>
         <AuthForm />
       </div>

@@ -1,3 +1,4 @@
+import Logo from "components/Logo/Logo";
 import useStore from "hooks/useStore";
 import { observer } from "mobx-react-lite";
 import React from "react";
@@ -16,6 +17,9 @@ function Sidebar() {
 
   return (
     <aside className={style.sidebar}>
+      <div className={style.logoWrap}>
+        <Logo className={style.logo} />
+      </div>
       <Nav
         className={style.nav}
         appearance="subtle"
