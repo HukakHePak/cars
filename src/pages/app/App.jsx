@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import { Container, Content, Footer } from "rsuite";
+import { Container, Content } from "rsuite";
 import Background from "components/Background/Background";
 import Sidebar from "components/Sidebar/Sidebar";
 import Img from "assets/img/backgrounds/sidebar_car.jpg";
@@ -8,6 +8,7 @@ import { observer } from "mobx-react-lite";
 import useStore from "hooks/useStore";
 import clsx from "clsx";
 import ui from "scss/ui";
+import Footer from "components/Footer/Footer";
 import style from "./style";
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
           <Content className={style.content}>
             <Outlet />
           </Content>
-          <Footer className={style.footer}>content</Footer>
+          <Footer />
         </div>
       </Container>
       <Sidebar />

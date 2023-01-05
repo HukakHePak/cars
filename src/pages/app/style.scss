@@ -1,5 +1,3 @@
-@import "scss/ui.scss";
-
 .app {
     z-index: 1;
     align-items: flex-end;
@@ -8,9 +6,6 @@
 .background {
     background-position-x: right;
     background-position-y: top;
-}
-
-.header {
 }
 
 .content {
@@ -22,15 +17,4 @@
     height: 100%;
     width: 90%;
     background-color: white;
-}
-
-.footer {
-    height: 100px;
-    @include bordertoping;
-    background-color: rgba(163, 0, 0, 0.863);
-    color: white;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-content: center;
 }

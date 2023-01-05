@@ -4,6 +4,7 @@ import { observer } from "mobx-react-lite";
 import React from "react";
 import { Link } from "react-router-dom";
 import { Nav } from "rsuite";
+import Side from "./Side";
 import style from "./style";
 
 // const selectHandler = console.log;
@@ -27,15 +28,27 @@ function Sidebar() {
         reversed
         // onSelect={selectHandler}
       >
-        <Nav.Item eventKey="profile" as={Link} to="/profile">
+        {/* <Nav.Item eventKey="profile" as={Link} to="/profile">
           Профиль
-        </Nav.Item>
-        <Nav.Item eventKey="cars" as={Link} to="/">
+        </Nav.Item> */}
+        <Side eventKey="cars" as={Link} to="/">
           Автомобили
-        </Nav.Item>
-        <Nav.Item eventKey="logout" onClick={() => auth.logout()}>
+        </Side>
+        <Side eventKey="complects" as={Link} to="/complects">
+          Комплекты
+        </Side>
+        <Side eventKey="details" as={Link} to="/details">
+          Запчасти
+        </Side>
+        <Side name="history" acesss={[]} to="/history">
+          История
+        </Side>
+        <Side name="statistic" acesss={[]} to="/statistic">
+          Управление
+        </Side>
+        <Side name="logout" onClick={() => auth.logout()}>
           Выход
-        </Nav.Item>
+        </Side>
       </Nav>
     </aside>
   );

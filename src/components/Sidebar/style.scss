@@ -36,23 +36,23 @@
     width: 100%;
     font-size: 20px;
 
-    [class="rs-nav-item"] {
-        color: black;
-        transition: ease all 0.3s;
-        border-bottom: 3px solid transparent;
-        @include bordering;
-
-        &:hover,
-        &:focus {
-            color: rgb(163, 0, 0);
-            background-color: rgba(255, 255, 255, 0.386);
-            background: linear-gradient(0deg, rgba(255,255,255,0.386) 60%, transparent 100%);
-            border-bottom: 3px solid rgb(163, 0, 0);
-        }
-    }
-
     [class="rs-nav-bar"] {
         display: none;
 
+    }
+}
+
+.sideItem {
+    color: black;
+    transition: ease all 0.3s;
+    border-bottom: 3px solid transparent;
+    @include bordering;
+
+    &:hover,
+    &:focus {
+        color: rgb(163, 0, 0) !important;
+        background-color: rgba(255, 255, 255, 0.386);
+        background: linear-gradient(0deg, rgba(255, 255, 255, 0.386) 60%, transparent 100%);
+        border-bottom: 3px solid rgb(163, 0, 0);
     }
 }

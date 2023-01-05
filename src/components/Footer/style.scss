@@ -1,0 +1,16 @@
+@import "scss/ui";
+
+.footer {
+    height: 100px;
+    background-color: rgba(163, 0, 0, 0.863);
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    @include bordertoping;
+
+    a {
+        color: white;
+    }
+}
