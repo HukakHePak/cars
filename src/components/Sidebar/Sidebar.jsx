@@ -46,7 +46,7 @@ function Sidebar() {
         <Side name="statistic" acesss={[]} to="/statistic">
           Управление
         </Side>
-        <Side name="logout" onClick={() => auth.logout()}>
+        <Side name="logout" to="/login" onClick={() => auth.logout()}>
           Выход
         </Side>
       </Nav>

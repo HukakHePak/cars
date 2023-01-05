@@ -1,7 +1,7 @@
 import useStore from "hooks/useStore";
 import { observer } from "mobx-react-lite";
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Navigate } from "react-router-dom";
 import { Button, Form } from "rsuite";
 import style from "./style";
 
@@ -12,11 +12,6 @@ const defaultForm = {
 
 function AuthForm() {
   const { auth } = useStore();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (auth.user) navigate("/");
-  }, [auth.user]);
 
   const [form, setForm] = useState(defaultForm);
 
@@ -32,6 +27,7 @@ function AuthForm() {
       onChange={setForm}
       onSubmit={onSubmit}
     >
+      {auth.user && <Navigate to="/" />}
       <Form.Control name="login" placeholder="Логин" />
       <div className={style.error}> {auth.error.login} </div>
       <Form.Control name="password" type="password" placeholder="Пароль" />
