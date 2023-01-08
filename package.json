@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "amazing and powerful app for best car showroom practises",
   "scripts": {
-    "start": "webpack-dev-server --hot --mode development",
-    "debug": "webpack-dev-server --hot --mode development --env api=http://localhost:5000",
-    "build": "npx eslint 'src' && webpack --mode production --env basename=/cars api=https://localhost:5000",
+    "start": "webpack-dev-server --hot --mode development --env api=https://note-lawn.ru",
+    "debug": "webpack-dev-server --hot --mode development",
+    "build": "npx eslint 'src' && webpack --mode production --env basename=/cars api=https://note-lawn.ru",
     "format": "npx eslint 'src' --fix"
   },
   "keywords": [
