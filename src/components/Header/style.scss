@@ -1,0 +1,39 @@
+@import "scss/ui";
+
+.header {
+    height: 70px;
+    background-color: rgba(163, 0, 0, 0.863);
+    color: white;
+    padding: 20px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include bordering;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.463);
+    z-index: 2;
+    gap: 40px;
+
+    a {
+        color: white;
+    }
+}
+
+.logo {
+    height: 50px;
+}
+
+.panel {
+    display: flex;
+    gap: 50px;
+}
+
+.button {
+    background-color: transparent;
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.301);
+    }
+    &:focus {
+        color: white;
+    }
+}

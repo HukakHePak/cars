@@ -1,4 +1,5 @@
 module.exports = {
+  root: true,
   env: {
     browser: true,
     es2021: true,
@@ -8,8 +9,8 @@ module.exports = {
     "plugin:react/recommended",
     "plugin:mobx/recommended",
     "plugin:css-modules/recommended",
-    "plugin:prettier/recommended",
     "plugin:import/typescript",
+    "plugin:prettier/recommended",
 
   ],
   overrides: [
@@ -19,13 +20,14 @@ module.exports = {
         "airbnb-typescript",
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended-requiring-type-checking",
-        "plugin:@typescript-eslint/recommended",
         "plugin:import/typescript",
+        "plugin:@typescript-eslint/recommended",
       ],
       "rules": {
         "@typescript-eslint/quotes": ["error", "double"],
         "@typescript-eslint/comma-dangle": "off",
-        "@typescript-eslint/indent": "off"
+        "@typescript-eslint/indent": "off",
+        "@typescript-eslint/no-floating-promises": "off"
       }
     }
   ],
@@ -43,7 +45,7 @@ module.exports = {
     "import/resolver": {
       node: {
         paths: ["src"],
-        "extensions": [".js", ".jsx", ".ts", ".tsx", ".scss"]
+        "extensions": [".js", ".jsx", ".ts", ".tsx", ".scss", ".json"]
       },
     },
   },
@@ -60,7 +62,7 @@ module.exports = {
       },
     ],
     quotes: ["error", "double"],
-    indent: ["error", 2],
+    indent: ["error", 2, { "SwitchCase": 2 }],
     "import/extensions": [
       "error",
       "ignorePackages",
@@ -69,7 +71,8 @@ module.exports = {
         "jsx": "never",
         "ts": "never",
         "tsx": "never",
-        "scss": "never"
+        "scss": "never",
+        "json": "never"
       }]
   },
 };

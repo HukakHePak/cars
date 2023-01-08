@@ -1,5 +1,7 @@
+import useStore from "hooks/useStore";
+import { observer } from "mobx-react-lite";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { Button, Form } from "rsuite";
 import style from "./style";
 
@@ -9,10 +11,12 @@ const defaultForm = {
 };
 
 function AuthForm() {
+  const { auth } = useStore();
+
   const [form, setForm] = useState(defaultForm);
 
   const onSubmit = (valid) => {
-    if (valid) console.log(form);
+    if (valid) auth.login(form);
   };
 
   return (
@@ -23,19 +27,20 @@ function AuthForm() {
       onChange={setForm}
       onSubmit={onSubmit}
     >
+      {auth.user && <Navigate to="/" />}
       <Form.Control name="login" placeholder="Логин" />
-      <div className={style.error}> </div>
+      <div className={style.error}> {auth.error.login} </div>
       <Form.Control name="password" type="password" placeholder="Пароль" />
-      <div className={style.error}> error </div>
+      <div className={style.error}> {auth.error.password} </div>
 
-      <Button appearance="primary" type="submit" style={{ marginBottom: 10 }}>
+      <Button type="submit" className={style.button}>
         Войти
       </Button>
-      <Button type="submit" as={Link} to="/" className={style.link}>
+      <Button type="submit" as={Link} to="/forgot" className={style.link}>
         Забыли пароль?
       </Button>
     </Form>
   );
 }
 
-export default AuthForm;
+export default observer(AuthForm);
