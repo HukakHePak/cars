@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "amazing and powerful app for best car showroom practises",
   "scripts": {
-    "start": "webpack-dev-server --hot --mode development",
+    "start": "webpack-dev-server --hot --mode development --env api=https://176.119.159.114",
     "debug": "webpack-dev-server --hot --mode development --env api=http://localhost:5000",
     "build": "npx eslint 'src' && webpack --mode production --env basename=/cars api=https://localhost:5000",
     "format": "npx eslint 'src' --fix"

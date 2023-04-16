@@ -2,7 +2,10 @@ import ky from "ky";
 
 const url = process.env.api || "";
 
-export const api = ky.create({ prefixUrl: `${url}/api/cars` });
+export const api = ky.create({
+  prefixUrl: `${url}/api/cars`,
+  credentials: "include",
+});
 
 export const pipi = {
   get(path: string) {
