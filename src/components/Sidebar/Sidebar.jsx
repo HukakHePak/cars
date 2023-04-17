@@ -3,6 +3,8 @@ import useStore from "hooks/useStore";
 import { observer } from "mobx-react-lite";
 import React from "react";
 import { Nav } from "rsuite";
+import { isAccessed } from "utils/helpers";
+import routes from "utils/routes";
 import Side from "./Side";
 import style from "./style";
 
@@ -30,7 +32,15 @@ function Sidebar() {
         {/* <Nav.Item eventKey="profile" as={Link} to="/profile">
           Профиль
         </Nav.Item> */}
-        <Side name="cars" to="/">
+        {routes.map(
+          ({ path, label, access }) =>
+            isAccessed(access, auth.user || {}) && (
+              <Side key={path} name={path} to={path}>
+                {label}
+              </Side>
+            )
+        )}
+        {/* <Side name="cars" to="/">
           Автомобили
         </Side>
         <Side name="complects" to="/complects">
@@ -47,7 +57,7 @@ function Sidebar() {
         </Side>
         <Side name="logout" onClick={() => auth.logout()}>
           Выход
-        </Side>
+        </Side> */}
       </Nav>
     </aside>
   );
