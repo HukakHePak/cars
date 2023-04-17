@@ -74,6 +74,7 @@ module.exports = {
         "tsx": "never",
         "scss": "never",
         "json": "never"
-      }]
+    }],
+    "import/prefer-default-export": "off",
   },
 };
