@@ -1,6 +1,6 @@
-import { makeObservable } from "mobx";
+import { makeAutoObservable } from "mobx";
+import User from "models/user";
 import { pipi } from "utils/api";
-import UserStore from "./user";
 
 export interface IAuthForm {
   login: string;
@@ -8,51 +8,56 @@ export interface IAuthForm {
 }
 
 class AuthStore {
-  user: UserStore = null;
+  user: User = null;
 
-  error: IAuthForm = { login: null, password: null };
+  error = <IAuthForm>{};
 
   constructor() {
-    makeObservable(this, {
-      error: true,
-      user: true,
-      load: true,
-      login: true,
-      createUser: true,
-      logout: true,
-    });
+    makeAutoObservable(this);
     this.load();
   }
 
   load() {
-    pipi.get("me").then((user) => this.createUser(<UserStore>user));
+    pipi.get("me").then((u: User) => this.createUser(u));
   }
 
   login({ login, password }: { login: string; password: string }) {
     if (!login) {
-      this.error.login = "Поле не может быть пустым";
+      this.setLoginError("Поле не может быть пустым");
       return;
     }
     if (!password) {
-      this.error.password = "Поле не может быть пустым";
+      this.setPasswordError("Поле не может быть пустым");
       return;
     }
 
     pipi
       .post("login", { login, password })
-      .then((user) => this.createUser(<UserStore>user))
+      .then((u: User) => this.createUser(u))
       .catch(() => {
-        this.error.login = "Пользователь с таким именем не найден";
+        this.setLoginError("Пользователь с таким именем не найден");
       });
   }
 
-  createUser(user: UserStore) {
-    this.user = new UserStore(user);
+  setLoginError(message: string) {
+    this.error.login = message;
+  }
+
+  setPasswordError(message: string) {
+    this.error.password = message;
+  }
+
+  clearError() {
     this.error = <IAuthForm>{};
   }
 
+  createUser(user: User) {
+    this.user = user;
+    this.clearError();
+  }
+
   logout() {
-    this.user = undefined;
+    this.user = null;
     pipi.get("logout");
   }
 }
