@@ -6,12 +6,12 @@ module.exports = {
   },
   extends: [
     "airbnb",
+    "prettier",
     "plugin:react/recommended",
     "plugin:mobx/recommended",
     "plugin:css-modules/recommended",
     "plugin:import/typescript",
-    "plugin:prettier/recommended",
-
+    "plugin:@typescript-eslint/recommended"
   ],
   overrides: [
     {
@@ -50,6 +50,7 @@ module.exports = {
     },
   },
   rules: {
+    "@typescript-eslint/no-empty-function": "off",
     "mobx/missing-observer": "off",
     "react/prop-types": "off",
     "no-console": "off",
