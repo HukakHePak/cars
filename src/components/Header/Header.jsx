@@ -8,7 +8,9 @@ import style from "./style";
 function Header() {
   return (
     <Wrap className={style.header}>
-      <Logo className={style.logo} />
+      <Button as={Link} to="/" className={style.button}>
+        <Logo as={Link} to="/" className={style.logo} />
+      </Button>
 
       <div className={style.panel}>
         <Button as={Link} to="/login" className={style.button}>
