@@ -42,12 +42,27 @@
 
 // export default UserStore;
 
+const director = "D";
+const admin = "A";
+const manager = "M";
+const stuff = "S";
+const unauth = "U";
+
+export const roles = {
+  director,
+  admin,
+  manager,
+  stuff,
+  unauth,
+};
+
 type User = {
   iduser: number;
   name: string;
   surname: string;
   email: string;
   code: string;
+  type: string;
 };
 
 export default User;

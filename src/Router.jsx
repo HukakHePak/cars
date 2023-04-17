@@ -1,14 +1,12 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import Profile from "pages/profile/Profile";
+// import Profile from "pages/profile/Profile";
 import Login from "pages/login/Login";
-import Cars from "pages/cars/Cars";
+// import Cars from "pages/cars/Cars";
 import Fallback from "pages/fallback/Fallback";
-import { secure, roles } from "components/Secure/secure";
+import secure from "components/Secure/secure";
 import Switcher from "components/Interface/Switcher";
-
-const { director, admin, manager, stuff } = roles;
-// const { director, admin, manager, stuff, unauth } = roles;
+import routes from "utils/routes";
 
 const router = createBrowserRouter(
   [
@@ -16,16 +14,10 @@ const router = createBrowserRouter(
       path: "/",
       element: <Switcher />,
       errorElement: <Fallback />,
-      children: [
-        {
-          path: "/",
-          element: <Cars />,
-        },
-        {
-          path: "profile",
-          element: secure(<Profile />, [director, admin, manager, stuff]),
-        },
-      ],
+      children: routes.map(({ path, component, access }) => ({
+        path,
+        element: secure(component, access),
+      })),
     },
     {
       path: "login",
