@@ -5,8 +5,8 @@
   "scripts": {
     "start": "webpack-dev-server --hot --mode development --env api=https://176.119.159.114",
     "debug": "webpack-dev-server --hot --mode development --env api=http://localhost:5000",
-    "build": "npx eslint 'src' && webpack --mode production --env basename=/cars api=https://note-lawn.ru",
-    "format": "npx eslint 'src' --fix"
+    "build": "npx eslint src && webpack --mode production --env basename=/cars api=https://note-lawn.ru",
+    "format": "npx eslint src --fix"
   },
   "keywords": [
     "cars",
@@ -20,12 +20,11 @@
     "@typescript-eslint/eslint-plugin": "^5.47.1",
     "@typescript-eslint/parser": "^5.47.1",
     "css-loader": "^6.7.3",
-    "eslint": "^8.30.0",
+    "eslint": "^8.38.0",
     "eslint-cli": "^1.1.1",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-loader": "^4.0.2",
     "eslint-plugin-css-modules": "^2.11.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.6.1",
