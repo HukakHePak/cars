@@ -1,9 +1,7 @@
-import { roles } from "components/Secure/secure"
-
-export const routes = {
-    "profile": {
-        label: "Профиль",
-        path: "profile",
-        access: []
-    }
-}
+export default {
+  profile: {
+    label: "Профиль",
+    path: "profile",
+    access: [],
+  },
+};

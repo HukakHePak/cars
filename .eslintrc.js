@@ -59,7 +59,7 @@ module.exports = {
       "error",
       {
         tabWidth: 2,
-        eol: "lf"
+        eol: "crlf"
       },
     ],
     quotes: ["error", "double"],
