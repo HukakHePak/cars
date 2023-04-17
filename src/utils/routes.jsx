@@ -50,9 +50,5 @@ const routes = [
     component: <Logout />,
   },
 ];
-// .filter(
-//   ({ access }) =>
-//     !access || (access[0] === unauth && !user) || access.includes(user.type)
-// );
 
 export default routes;
