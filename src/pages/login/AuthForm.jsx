@@ -3,6 +3,7 @@ import { observer } from "mobx-react-lite";
 import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { Button, Form } from "rsuite";
+import { path } from "utils/Routes";
 import style from "./style";
 
 const defaultForm = {
@@ -27,7 +28,7 @@ function AuthForm() {
       onChange={setForm}
       onSubmit={onSubmit}
     >
-      {auth.user && <Navigate to="/" />}
+      {auth.user && <Navigate to={path.root} />}
       <Form.Control name="login" placeholder="Логин" />
       <div className={style.error}> {auth.error.login} </div>
       <Form.Control name="password" type="password" placeholder="Пароль" />
@@ -36,7 +37,7 @@ function AuthForm() {
       <Button type="submit" className={style.button}>
         Войти
       </Button>
-      <Button type="submit" as={Link} to="/forgot" className={style.link}>
+      <Button type="submit" as={Link} to={path.forgot} className={style.link}>
         Забыли пароль?
       </Button>
     </Form>
