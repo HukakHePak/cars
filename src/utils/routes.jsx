@@ -6,22 +6,35 @@ import Logout from "pages/logout/Logout";
 
 const { director, admin, manager, stuff } = roles;
 
+export const path = {
+  root: "/",
+  complects: "complects",
+  details: "details",
+  fallback: "fallback",
+  forgot: "forgot",
+  history: "history",
+  login: "login",
+  logout: "logout",
+  profile: "profile",
+  statistic: "statistic",
+};
+
 const routes = [
   {
     label: "Автомобили",
-    path: "/",
+    path: path.root,
     access: [],
     component: <Cars />,
   },
   {
     label: "Комплекты",
-    path: "complects",
+    path: path.complects,
     access: [director, admin, manager, stuff],
     component: <Profile />,
   },
   {
     label: "Запчасти",
-    path: "details",
+    path: path.details,
     access: [],
     component: <Profile />,
   },

@@ -3,6 +3,7 @@ import useStore from "hooks/useStore";
 import { observer } from "mobx-react-lite";
 import { Navigate } from "react-router-dom";
 import { isAccessed } from "utils/helpers";
+import { path } from "utils/Routes";
 
 function Accessor({ children, roles = [] }) {
   const { auth } = useStore();
@@ -10,7 +11,7 @@ function Accessor({ children, roles = [] }) {
   return isAccessed(roles, auth.user || {}) ? (
     children
   ) : (
-    <Navigate to="/fallback" />
+    <Navigate to={path.fallback} />
   );
 }
 
