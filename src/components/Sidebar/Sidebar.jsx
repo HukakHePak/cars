@@ -4,7 +4,7 @@ import { observer } from "mobx-react-lite";
 import React from "react";
 import { Nav } from "rsuite";
 import { isAccessed } from "utils/helpers";
-import routes from "utils/Routes";
+import routes from "utils/routes";
 import Side from "./Side";
 import style from "./style";
 

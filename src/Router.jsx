@@ -6,7 +6,7 @@ import Login from "pages/login/Login";
 import Fallback from "pages/fallback/Fallback";
 import secure from "components/Secure/secure";
 import Switcher from "components/Interface/Switcher";
-import routes, { path } from "utils/Routes";
+import routes, { path } from "utils/routes";
 
 const router = createBrowserRouter(
   [
@@ -14,10 +14,16 @@ const router = createBrowserRouter(
       path: "/",
       element: <Switcher />,
       errorElement: <Fallback />,
-      children: routes.map(({ path: p, component, access }) => ({
-        path: p,
-        element: secure(component, access),
-      })),
+      children: [
+        ...routes.map(({ path: p, component, access }) => ({
+          path: p,
+          element: secure(component, access),
+        })),
+        {
+          path: `${path.cars}/:id`,
+          element: <CarD />,
+        },
+      ],
     },
     {
       path: path.login,

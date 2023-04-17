@@ -2,7 +2,7 @@ import Logo from "components/Logo/Logo";
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button, Header as Wrap } from "rsuite";
-import { path } from "utils/Routes";
+import { path } from "utils/routes";
 
 import style from "./style";
 

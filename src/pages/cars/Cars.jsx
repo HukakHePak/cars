@@ -1,23 +1,11 @@
 import React from "react";
 import { FlexboxGrid } from "rsuite";
-import Car from "./Car";
+import CarD from "./CarD";
 
 function Cars() {
   return (
     <FlexboxGrid justify="space-between">
-      <Car />
-      <Car />
-      <Car />
-      <Car />
-      <Car />
-      <Car />
-      <Car />
-      <Car />
-      <Car />
-      <Car />
-      <Car />
-      <Car />
-      <Car />
+      <CarD car />
     </FlexboxGrid>
   );
 }

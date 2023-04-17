@@ -3,7 +3,7 @@ import { observer } from "mobx-react-lite";
 import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { Button, Form } from "rsuite";
-import { path } from "utils/Routes";
+import { path } from "utils/routes";
 import style from "./style";
 
 const defaultForm = {
