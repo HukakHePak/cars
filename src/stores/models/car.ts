@@ -11,7 +11,7 @@
 
 // }
 
-export type Car = {
+type Car = {
     id: number;
     brand: string;
     name: string;

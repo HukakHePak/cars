@@ -1,7 +1,15 @@
+import useUI from "hooks/useUI";
+import { observer } from "mobx-react-lite";
 import React from "react";
+import { Link } from "react-router-dom";
 import { Button } from "rsuite";
+import style from "./style";
 
 function CarD({ car }) {
+  const { card } = useUI();
+
+  const selectCar = () => card.setCar(car);
+
   return (
     <div className={style.card}>
       <h3>
@@ -15,7 +23,9 @@ function CarD({ car }) {
           <li> {car.price} </li>
           <li>
             {" "}
-            <Button> Больше </Button>{" "}
+            <Button onClick={selectCar}>
+              <Link to={`cars/${car.id}`}> Больше </Link>
+            </Button>{" "}
           </li>
         </ul>
       </div>
@@ -23,4 +33,4 @@ function CarD({ car }) {
   );
 }
 
-export default CarD;
+export default observer(CarD);

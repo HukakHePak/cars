@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import useStore from "hooks/useStore";
 import { Navigate } from "react-router-dom";
-import { path } from "utils/routes";
+import path from "utils/path";
 
 function Logout() {
   const { auth } = useStore();
@@ -11,7 +11,7 @@ function Logout() {
     auth.logout();
   }, []);
 
-  return <Navigate to={path.logout} />;
+  return <Navigate to={`/${path.login}`} />;
 }
 
 export default observer(Logout);

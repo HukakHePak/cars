@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import User from "models/user";
+import User from "stores/models/user";
 import { pipi } from "utils/api";
 
 export interface IAuthForm {
