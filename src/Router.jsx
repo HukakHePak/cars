@@ -8,7 +8,7 @@ import secure from "components/Secure/secure";
 import Switcher from "components/Interface/Switcher";
 import routes from "utils/routes";
 import path from "utils/path";
-import Car from "pages/cars/Car";
+import Car from "pages/car/Car";
 
 const router = createBrowserRouter(
   [

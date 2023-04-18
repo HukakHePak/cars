@@ -3,11 +3,12 @@ import { observer } from "mobx-react-lite";
 import React from "react";
 import { FlexboxGrid } from "rsuite";
 import CarD from "./CarD";
+import style from "./style";
 
 function Cars() {
   const { cars } = useStore();
   return (
-    <FlexboxGrid justify="space-between">
+    <FlexboxGrid justify="space-between" className={style.cars}>
       {cars.list.map((car) => (
         <CarD key={car.id} car={car} />
       ))}
