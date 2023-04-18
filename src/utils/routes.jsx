@@ -1,23 +1,11 @@
 import React from "react";
-import { roles } from "models/user";
+import { roles } from "stores/models/user";
 import Cars from "pages/cars/Cars";
 import Profile from "pages/profile/Profile";
 import Logout from "pages/logout/Logout";
+import path from "./path";
 
 const { director, admin, manager, stuff } = roles;
-
-export const path = {
-  root: "/",
-  complects: "complects",
-  details: "details",
-  fallback: "fallback",
-  forgot: "forgot",
-  history: "history",
-  login: "login",
-  logout: "logout",
-  profile: "profile",
-  statistic: "statistic",
-};
 
 const routes = [
   {
@@ -40,25 +28,25 @@ const routes = [
   },
   {
     label: "История",
-    path: "history",
+    path: path.history,
     access: [],
     component: <Profile />,
   },
   {
     label: "Управление",
-    path: "statistic",
+    path: path.statistic,
     access: [],
     component: <Profile />,
   },
   {
     label: "Профиль",
-    path: "profile",
+    path: path.profile,
     access: [],
     component: <Profile />,
   },
   {
     label: "Выход",
-    path: "logout",
+    path: path.logout,
     access: [],
     component: <Logout />,
   },

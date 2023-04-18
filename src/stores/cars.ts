@@ -1,14 +1,12 @@
-import Car from "models/car";
+import Car from "stores/models/car";
+// import { Backend } from "./be";
 
+class CarsStore {
+  list: Car[] = [<Car>{ id: 3, brand: "porche" }, <Car>{ id: 4 }];
 
-class Cars {
-    list: Car[];
-
-    load() {
-
-    }
-
-    
+  //   load() {
+  //     // Backend.
+  //   }
 }
 
-export default Cars;
+export default CarsStore;
