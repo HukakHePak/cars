@@ -19,7 +19,9 @@ function Application() {
       />
       <Content className={clsx(style.wrap, ui.redScroll)}>
         <div className={style.layout}>
-          <Outlet />
+          <div className={style.container}>
+            <Outlet />
+          </div>
         </div>
       </Content>
       <Sidebar />

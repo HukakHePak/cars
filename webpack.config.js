@@ -7,6 +7,7 @@ const webpack = require("webpack");
 
 module.exports = (env) => ({
   entry: "./src/index.jsx",
+  devtool: 'source-map',
   devServer: {
     watchFiles: path.join(__dirname, "src"),
     historyApiFallback: true,
