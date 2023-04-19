@@ -1,3 +1,4 @@
+import { makeAutoObservable } from "mobx";
 import Car from "stores/models/car";
 // import { Backend } from "./be";
 
@@ -17,6 +18,16 @@ class CarsStore {
     <Car>{ id: 9 },
     <Car>{ id: 10 },
   ];
+
+  selected: Car;
+
+  constructor() {
+    makeAutoObservable(this);
+  }
+
+  select(car: Car = null) {
+    this.selected = car;
+  }
 
   //   load() {
   //     // Backend.

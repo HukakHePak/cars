@@ -1,5 +1,6 @@
 import { makeObservable } from "mobx";
 import { pipi } from "utils/api";
+import Option from "./models/option";
 
 export class Backend {
   constructor() {
@@ -34,10 +35,12 @@ export class Backend {
 
   // static createEngine(engine: Engine): void {}
 
-  // static createOption(option: Option): void {}
+  static async createOption(option: Option): Promise<unknown> {
+    return pipi.execute("create_option", [option.name]);
+  }
 
-  static createOptionArrive(id: number, amount: number): void {
-    pipi.execute("create_option_arrive", [id, amount]);
+  static createOptionArrive(id: number, amount: number): Promise<unknown> {
+    return pipi.execute("create_option_arrive", [id, amount]);
   }
 
   static createOrderOption(idOrder: number, idOption: number): void {
@@ -110,7 +113,9 @@ export class Backend {
 
   // static getOptionTypes(): OptionType[] {}
 
-  // static getOptionsByFilter(params: Partial<Option>): Option[] {}
+  static getOptionsByFilter(): Promise<Option[]> {
+    return <Promise<Option[]>>pipi.execute('get_options_by_filter', [false, null, null]);
+  }
 
   // static getOrderComplectation(id: number): Complectation {}
 
