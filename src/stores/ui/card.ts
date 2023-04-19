@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import Car from "stores/models/car";
+import { Car } from "stores/models/car";
 
 class CarDState {
   car: Car;

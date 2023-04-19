@@ -1,5 +1,5 @@
 import { makeObservable } from "mobx";
-import { Car, CarFilter, CarPublic, CarPublicFilter } from "models/car";
+import { Car, CarFilter, CarPublic, CarPublicFilter } from "./models/car";
 import { pipi } from "utils/api";
 import Option from "./models/option";
 
