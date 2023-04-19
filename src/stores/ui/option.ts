@@ -1,20 +1,20 @@
 import { makeAutoObservable } from "mobx";
-import Car from "stores/models/car";
+import { Car } from "stores/models/car";
 
 class CarDState {
-  car: Car;
+    car: Car;
 
-  constructor() {
-    makeAutoObservable(this);
-  }
+    constructor() {
+        makeAutoObservable(this);
+    }
 
-  setCar(car: Car) {
-    this.car = car;
-  }
+    setCar(car: Car) {
+        this.car = car;
+    }
 
-  clear() {
-    this.car = null;
-  }
+    clear() {
+        this.car = null;
+    }
 }
 
 export default CarDState;
