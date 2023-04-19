@@ -1,6 +1,11 @@
-.Car {
+@import "scss/colors";
+
+.card {
   width: 400px;
   height: 250px;
-  margin-top: 10px;
-  background: rgba(174, 48, 48, 0.651);
+  background: $trans-red;
+}
+
+.cars {
+  gap: 20px;
 }

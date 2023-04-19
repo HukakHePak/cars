@@ -1,25 +1,19 @@
+import useStore from "hooks/useStore";
+import { observer } from "mobx-react-lite";
 import React from "react";
 import { FlexboxGrid } from "rsuite";
-import Car from "./Car";
+import CarD from "./CarD";
+import style from "./style";
 
 function Cars() {
+  const { cars } = useStore();
   return (
-    <FlexboxGrid justify="space-between">
-      <Car />
-      <Car />
-      <Car />
-      <Car />
-      <Car />
-      <Car />
-      <Car />
-      <Car />
-      <Car />
-      <Car />
-      <Car />
-      <Car />
-      <Car />
+    <FlexboxGrid justify="space-between" className={style.cars}>
+      {cars.list.map((car) => (
+        <CarD key={car.id} car={car} />
+      ))}
     </FlexboxGrid>
   );
 }
 
-export default Cars;
+export default observer(Cars);

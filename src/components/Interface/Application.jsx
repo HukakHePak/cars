@@ -18,7 +18,11 @@ function Application() {
         blur={2}
       />
       <Content className={clsx(style.wrap, ui.redScroll)}>
-        <Outlet />
+        <div className={style.layout}>
+          <div className={style.container}>
+            <Outlet />
+          </div>
+        </div>
       </Content>
       <Sidebar />
     </div>
