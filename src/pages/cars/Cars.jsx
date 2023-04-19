@@ -8,7 +8,10 @@ import style from "./style";
 function Cars() {
   const { cars } = useStore();
   return (
-    <FlexboxGrid justify="space-between" className={style.cars}>
+    <FlexboxGrid
+      justify={cars.list.length < 2 ? "flex-start" : "center"}
+      className={style.cars}
+    >
       {cars.list.map((car) => (
         <CarD key={car.id} car={car} />
       ))}

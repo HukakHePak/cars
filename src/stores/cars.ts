@@ -3,7 +3,12 @@ import Car from "stores/models/car";
 
 class CarsStore {
   list: Car[] = [
-    <Car>{ id: 3, brand: "porche" },
+    <Car>{
+      id: 3,
+      brand: "porche",
+      complectation: "ultra luxury",
+      price: 100204,
+    },
     <Car>{ id: 4 },
     <Car>{ id: 5 },
     <Car>{ id: 6 },

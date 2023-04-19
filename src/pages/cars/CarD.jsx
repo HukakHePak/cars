@@ -1,35 +1,34 @@
 import useUI from "hooks/useUI";
 import { observer } from "mobx-react-lite";
 import React from "react";
-import { Link } from "react-router-dom";
-import { Button } from "rsuite";
+import { useNavigate } from "react-router-dom";
+import { FlexboxGrid } from "rsuite";
+import path from "utils/path";
 import style from "./style";
 
 function CarD({ car }) {
   const { card } = useUI();
 
-  const selectCar = () => card.setCar(car);
+  const nav = useNavigate();
+
+  const selectCar = () => {
+    card.setCar(car);
+    nav(`${path.cars}/${car.id}`);
+  };
 
   return (
-    <div className={style.card}>
-      <h3>
-        {" "}
-        {car.brand} {car.model} {car.engine} {car.kpp}{" "}
-      </h3>
-      <div className={style.info}>
+    <FlexboxGrid.Item className={style.card} onClick={selectCar}>
+      <div className={style.header}>
+        {car.brand} {car.model} {car.engine} {car.kpp}
+      </div>
+      <FlexboxGrid justify="space-between">
         <img className={style.img} src={car.photo} alt="" />
-        <ul>
+        <ul className={style.options}>
           <li> {car.complectation} </li>
           <li> {car.price} </li>
-          <li>
-            {" "}
-            <Button onClick={selectCar}>
-              <Link to={`cars/${car.id}`}> Больше </Link>
-            </Button>{" "}
-          </li>
         </ul>
-      </div>
-    </div>
+      </FlexboxGrid>
+    </FlexboxGrid.Item>
   );
 }
 
