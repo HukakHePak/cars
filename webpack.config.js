@@ -12,7 +12,6 @@ module.exports = (env) => ({
     watchFiles: path.join(__dirname, "src"),
     historyApiFallback: true,
     port: 9090,
-    https: true,
     proxy: {
       "/api": {
         target: "http://localhost:9090",
