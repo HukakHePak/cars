@@ -17,6 +17,8 @@
   "author": "HukakHePak",
   "license": "ISC",
   "devDependencies": {
+    "@types/react-dom": "^18.0.11",
+    "@types/uikit": "^3.14.0",
     "@typescript-eslint/eslint-plugin": "^5.47.1",
     "@typescript-eslint/parser": "^5.47.1",
     "css-loader": "^6.7.3",

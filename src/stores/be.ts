@@ -1,4 +1,5 @@
 import { makeObservable } from "mobx";
+import { Car, CarFilter, CarPublic, CarPublicFilter } from "models/car";
 import { pipi } from "utils/api";
 import Option from "./models/option";
 
@@ -91,9 +92,34 @@ export class Backend {
 
   // static getCarComplectOptions(idCar: number): CarComplectOptions[] {}
 
-  // static getCarInfo(id: number): Car {}
+  static getCarInfo(id: number): Promise<Car> {
+    return pipi.execute("get_car_info", [id]) as Promise<Car>;
+  }
 
-  // static getCarsByFilter(params: Partial<Car>): Car[] {}
+  static getCarsByFilter(
+    params: CarFilter = {}
+  ): Promise<CarPublic & { vin: string }[]> {
+    const {
+      id = null,
+      sold = null,
+      brand = null,
+      model = null,
+      fuel = null,
+      kpp = null,
+      drive = null,
+      complectation = null,
+    } = params;
+    return pipi.execute("get_cars_by_filter", [
+      id,
+      sold,
+      brand,
+      model,
+      fuel,
+      kpp,
+      drive,
+      complectation,
+    ]) as Promise<CarPublic & { vin: string }[]>;
+  }
 
   // static getComplectationsByModel(idModel: number): Complectation[] {}
 
@@ -123,7 +149,40 @@ export class Backend {
 
   // static getOrderPayments(id: number): Payment[] {}
 
-  // static getPublicCars(params: Partial<Car>): Car<public>[] {}
+  static getPublicCars(params: CarPublicFilter = {}): Promise<CarPublic[]> {
+    const {
+      id = null,
+      brand = null,
+      model = null,
+      complectation = null,
+      priceMin = null,
+      priceMax = null,
+      color = null,
+      kpp = null,
+      drive = null,
+      performanceMin = null,
+      performanceMax = null,
+      volumeMin = null,
+      volumeMax = null,
+      fuel = null,
+    } = params;
+    return pipi.execute("get_public_cars", [
+      id,
+      brand,
+      model,
+      complectation,
+      color,
+      fuel,
+      priceMin,
+      priceMax,
+      kpp,
+      drive,
+      performanceMin,
+      performanceMax,
+      volumeMin,
+      volumeMax,
+    ]) as Promise<CarPublic[]>;
+  }
 
   // static getUsers(id: number): User
   // static getUsers(): User[] {}

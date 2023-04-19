@@ -6,7 +6,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require("webpack");
 
 module.exports = (env) => ({
-  entry: "./src/index.jsx",
+  entry: "./src/index.tsx",
   devtool: 'source-map',
   devServer: {
     watchFiles: path.join(__dirname, "src"),
