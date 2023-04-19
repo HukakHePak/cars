@@ -1,6 +1,5 @@
 import { makeAutoObservable } from "mobx";
 import { Backend } from "stores/be";
-import Type from "./type";
 
 class Option {
     id: number;
@@ -15,17 +14,9 @@ class Option {
     constructor() {
         makeAutoObservable(this);
     }
-
-    save() {
-        Backend.createOption(this);
-    }
-
-    delete() {
-        Backend.deleteOption(this.id);
-    }
     
     arrive(amount: number) {
-        Backend.createOptionArrive(this.id, amount);
+        Backend.createOptionArrive(this.id, amount).then(() => this.count += amount);
     }
 }
 

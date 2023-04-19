@@ -1,7 +1,8 @@
 import { makeObservable } from "mobx";
-import { Car, CarFilter, CarPublic, CarPublicFilter } from "./models/car";
 import { pipi } from "utils/api";
+import { Car, CarFilter, CarPublic, CarPublicFilter } from "./models/car";
 import Option from "./models/option";
+import Type from "./models/type";
 
 export class Backend {
   constructor() {
@@ -68,8 +69,8 @@ export class Backend {
     pipi.execute("delete_model", [id]);
   }
 
-  static deleteOption(id: number) {
-    pipi.execute("delete_option", [id]);
+  static deleteOption(id: number): Promise<unknown> {
+    return pipi.execute("delete_option", [id]);
   }
 
   static deleteOrder(id: number) {
@@ -88,7 +89,16 @@ export class Backend {
 
   // static editUser(user: User): void {}
 
-  // static getBrands(): Brand[] {}
+  static getBrands(): Promise<Type[]> {
+    return <Promise<Type[]>>(
+      pipi.execute("get_brands", []).then((list: unknown[]) =>
+        list.map((item: { idcar_brand: number; name: string }) => ({
+          id: item.idcar_brand,
+          name: item.name,
+        }))
+      )
+    );
+  }
 
   // static getCarComplectOptions(idCar: number): CarComplectOptions[] {}
 
@@ -123,24 +133,64 @@ export class Backend {
 
   // static getComplectationsByModel(idModel: number): Complectation[] {}
 
-  // static getCompressTypes(): CompressTypes { }
+  static getCompressTypes(): Promise<Type[]> {
+    return <Promise<Type[]>>(
+      pipi.execute("get_compress_types", []).then((list: unknown[]) =>
+        list.map((item: { idcompress_type: number; name: string }) => ({
+          id: item.idcompress_type,
+          name: item.name,
+        }))
+      )
+    );
+  }
 
   // static getCustomersByFilter(params: Partial<Customer>): Customer[] {}
 
-  // static getDriveTypes(): DriveTypes {}
+  static getDriveTypes(): Promise<Type[]> {
+    return <Promise<Type[]>>(
+      pipi.execute("get_drive_types", []).then((list: unknown[]) =>
+        list.map((item: { iddrive_type: number; name: string }) => ({
+          id: item.iddrive_type,
+          name: item.name,
+        }))
+      )
+    );
+  }
 
   // static getEnginesByFilter(params: Partial<Engine>): Engine[] {}
 
-  // static getFuelTypes(): FuelType[] {}
+  static getFuelTypes(): Promise<Type[]> {
+    return <Promise<Type[]>>(
+      pipi.execute("get_fuel_types", []).then((list: unknown[]) =>
+        list.map((item: { idfuel_type: number; name: string }) => ({
+          id: item.idfuel_type,
+          name: item.name,
+        }))
+      )
+    );
+  }
 
-  // static getKppTypes(): KppType[] {}
+  static getKppTypes(): Promise<Type[]> {
+    return <Promise<Type[]>>(
+      pipi.execute("get_kpp_types", []).then((list: unknown[]) =>
+        list.map((item: { idkpp_type: number; name: string }) => ({
+          id: item.idkpp_type,
+          name: item.name,
+        }))
+      )
+    );
+  }
 
-  // static getModelsByBrand(idBrand: number): Model[] {}
+  static getModelsByBrand(idBrand: number): Promise<Model[]> {
+    return <Promise<Model[]>>pipi.execute("get_models_by_brand", [idBrand]);
+  }
 
   // static getOptionTypes(): OptionType[] {}
 
   static getOptionsByFilter(): Promise<Option[]> {
-    return <Promise<Option[]>>pipi.execute('get_options_by_filter', [false, null, null]);
+    return <Promise<Option[]>>(
+      pipi.execute("get_options_by_filter", [false, null, null])
+    );
   }
 
   // static getOrderComplectation(id: number): Complectation {}
