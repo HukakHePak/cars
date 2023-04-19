@@ -8,13 +8,13 @@ export const api = ky.create({
 });
 
 export const pipi = {
-  get(path: string) {
+  get(path: string): Promise<unknown> {
     return api.get(path).json();
   },
-  post(path: string, body: unknown) {
+  post(path: string, body: unknown): Promise<unknown> {
     return api.post(path, { json: body }).json();
   },
-  execute(name: string, args: unknown[]): unknown {
+  execute(name: string, args: unknown[]): Promise<unknown> {
     return api.post(`execute/${name}`, { json: args }).json();
   },
 };

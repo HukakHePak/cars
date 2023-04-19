@@ -56,6 +56,8 @@ module.exports = {
     "no-console": "off",
     "css-modules/no-undef-class": "off",
     "css-modules/no-unused-class": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
     "prettier/prettier": [
       "error",
       {

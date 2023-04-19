@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "rsuite";
+import { Container, InputPicker } from "rsuite";
 import styles from "./style";
 
 function Car() {
@@ -17,6 +17,7 @@ function Car() {
           <div className={styles.Price}>
             <span>2200</span> ₽
           </div>
+          <InputPicker />
         </div>
       </div>
     </Container>
