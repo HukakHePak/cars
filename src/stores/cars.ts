@@ -4,9 +4,7 @@ import { Car } from "./models/car";
 // import { Backend } from "./be";
 
 class CarStore {
-  list: Car[] = [
-    new Car() {id: 1}
-  ];
+  list: Car[] = [];
 
   selected: Car;
 
