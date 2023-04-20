@@ -1,6 +1,8 @@
 import { Backend } from "stores/be";
+import CarView from "stores/view/car";
 import Complectation from "./complectation";
 import Engine from "./engine";
+import Model from "./model";
 import Name from "./name";
 
 export type CarPublicFilter = Partial<{
@@ -54,11 +56,43 @@ export class Car {
 
   distance: number;
 
+  constructor(car: Car | null) {
+    this.id = car.id;
+  }
+
   load() {
-    // this.engine.load()
-    // this.complectation.load();
+    // view.engine.load()
+    // view.complectation.load();
     Backend.getCarInfo(this.id);
   }
 
-  //   save() {}
+  static fromView(view: CarView) {
+    return new Car(<Car>{
+      id: view.id,
+      engine: <Engine>{
+        id: view.idengine,
+        fuel: <Name>{ id: view.idfuel, name: view.fuel },
+        compress: <Name>{ id: view.idcompress, name: view.compress },
+        perfomance: view.perfomance,
+        volume: view.volume,
+      },
+      kpp: <Name>{ id: view.idkpp, name: view.kpp_name },
+      drive: <Name>{ id: view.iddrive, name: view.drive_name },
+      complectation: new Complectation(<Complectation>{
+        id: view.idcomplectation,
+        name: <Name>{ id: view.idname, name: view.complectation_name },
+        model: <Model>{
+          id: view.idmodel,
+          name: view.model,
+          photo: view.photo,
+          description: view.description,
+          brand: <Name>{ id: view.idbrand, name: view.brand },
+        },
+      }),
+      vin: view.vin,
+      prodDate: view.prod_date,
+      arrivalDate: view.arrival_date,
+      distance: view.distance,
+    });
+  }
 }
