@@ -52,6 +52,7 @@ module.exports = {
   rules: {
     "@typescript-eslint/no-empty-function": "off",
     "mobx/missing-observer": "off",
+    "import/no-cycle": "off",
     "react/prop-types": "off",
     "no-console": "off",
     "css-modules/no-undef-class": "off",
