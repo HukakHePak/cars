@@ -1,19 +1,13 @@
 import { action, makeObservable, observable } from "mobx";
 import { Backend } from "stores/be";
 
-const director = "D";
-const admin = "A";
-const manager = "M";
-const stuff = "S";
-const unauth = "U";
-
-export const roles = {
-  director,
-  admin,
-  manager,
-  stuff,
-  unauth,
-};
+export enum UserType {
+  director = "D",
+  admin = "A",
+  manager = "M",
+  stuff = "S",
+  unauth = "U",
+}
 
 export type UserInfo<PropName extends "id" | "iduser" = "id"> = {
   name: string;
