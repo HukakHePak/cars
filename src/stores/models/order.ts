@@ -1,5 +1,5 @@
 import { Car } from "./car";
-import {Option} from "./option";
+import Option from "./option";
 import User from "./user";
 
 class Order {

@@ -4,7 +4,7 @@ import Complectation from "./models/complectation";
 class ComplectationStore {
     list: Complectation[];
 
-    // load() {
-    //     Backend.
-    // }
+    load() {
+        Backend.getCarInfo(2); //TODO: get complectations
+    }
 }

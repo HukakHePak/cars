@@ -27,7 +27,7 @@ module.exports = {
         "@typescript-eslint/quotes": ["error", "double"],
         "@typescript-eslint/comma-dangle": "off",
         "@typescript-eslint/indent": "off",
-        "@typescript-eslint/no-floating-promises": "off"
+        "@typescript-eslint/no-floating-promises": "off",
       }
     }
   ],
@@ -58,6 +58,7 @@ module.exports = {
     "css-modules/no-unused-class": "off",
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/no-static-element-interactions": "off",
+    "import/no-cycle": "off",
     "prettier/prettier": [
       "error",
       {

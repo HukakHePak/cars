@@ -2,7 +2,7 @@ import { makeAutoObservable } from "mobx";
 import { Backend } from "stores/be";
 import Name from "./name";
 
-export class Option {
+class Option {
     id: number;
     type: Name;
     name: string;
@@ -20,14 +20,4 @@ export class Option {
     }
 }
 
-export class OptionView extends Option {
-    idtype: number;
-    type_name: string;
-
-    cast(): Option {
-        return <Option> {
-            ...this,
-            type: <Name> { id: this.idtype, name: this.type_name }
-        }
-    }
-}
+export default Option;

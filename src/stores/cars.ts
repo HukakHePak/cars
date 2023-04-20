@@ -5,15 +5,7 @@ import { Car } from "./models/car";
 
 class CarStore {
   list: Car[] = [
-    <Car>{ id: 1 },
-    <Car>{ id: 2 },
-    <Car>{ id: 3 },
-    <Car>{ id: 4 },
-    <Car>{ id: 5 },
-    <Car>{ id: 6 },
-    <Car>{ id: 7 },
-    <Car>{ id: 8 },
-    <Car>{ id: 9 },
+    new Car() {id: 1}
   ];
 
   selected: Car;
@@ -31,7 +23,7 @@ class CarStore {
 
   select(car: Car = null) {
     this.selected = car;
-    car.complectation.load();
+    // car.load();
   }
 
   create(car: Car) {

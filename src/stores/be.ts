@@ -1,11 +1,13 @@
 import { makeObservable } from "mobx";
 import { pipi } from "utils/api";
 import { castMap } from "utils/helpers";
-import { Car, CarFilter, CarView } from "./models/car";
+import { Car, CarFilter } from "./models/car";
 import Engine from "./models/engine";
-import { Option, OptionView } from "./models/option";
+import Option from "./models/option";
 import Model from "./models/model";
 import Name from "./models/name";
+import OptionView from "./view/option";
+import CarView from "./view/car";
 
 export class Backend {
   constructor() {
@@ -114,8 +116,10 @@ export class Backend {
       .then(castMap<OptionView, Option>);
   }
 
-  static getCarInfo(id: number): Promise<CarView[]> {
-    return <Promise<CarView[]>>pipi.execute("get_car_info", [id]);
+  static async getCarInfo(id: number): Promise<Car> {
+    return pipi
+      .execute("get_car_info", [id])
+      .then((list: CarView[]) => list[0].cast());
   }
 
   static async getCarsByFilter(params: CarFilter = {}): Promise<Car[]> {

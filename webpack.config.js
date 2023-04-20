@@ -103,7 +103,7 @@ module.exports = (env) => ({
     new MiniCssExtractPlugin(),
     new ESLintPlugin({
       fix: true,
-      extensions: ["js", "jsx", "ts", "tsx", "css"],
+      extensions: ["js", "jsx", "ts", "tsx", "css", "scss"],
     }),
   ],
 });

@@ -1,7 +1,7 @@
 import { Backend } from "stores/be";
 import Model from "./model";
 import Name from "./name";
-import {Option} from "./option";
+import Option from "./option";
 
 class Complectation {
     id: number;
