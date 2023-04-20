@@ -27,7 +27,8 @@ module.exports = {
         "@typescript-eslint/quotes": ["error", "double"],
         "@typescript-eslint/comma-dangle": "off",
         "@typescript-eslint/indent": "off",
-        "@typescript-eslint/no-floating-promises": "off"
+        "@typescript-eslint/no-floating-promises": "off",
+        "@typescript-eslint/ban-ts-comment": "off"
       }
     }
   ],
@@ -54,6 +55,8 @@ module.exports = {
     "mobx/missing-observer": "off",
     "import/no-cycle": "off",
     "react/prop-types": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/display-name": "off",
     "no-console": "off",
     "css-modules/no-undef-class": "off",
     "css-modules/no-unused-class": "off",
