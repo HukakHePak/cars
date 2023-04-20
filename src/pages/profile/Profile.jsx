@@ -62,10 +62,6 @@ function Profile() {
         <Form.ControlLabel>Login</Form.ControlLabel>
         <Form.Control name="login" defaultValue={login} maxLength={8} />
       </Form.Group>
-      <Form.Group controlId="password-1">
-        <Form.ControlLabel>Password</Form.ControlLabel>
-        <Form.Control name="password" />
-      </Form.Group>
       <Form.Group>
         <ButtonToolbar>
           <Button appearance="primary" type="submit">
