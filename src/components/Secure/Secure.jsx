@@ -5,7 +5,7 @@ import { Navigate } from "react-router-dom";
 import { isAccessed } from "utils/helpers";
 import path from "utils/path";
 
-function Accessor({ children, roles = [] }) {
+function Access({ children, roles = [] }) {
   const { auth } = useStore();
 
   return isAccessed(roles, auth.user || {}) ? (
@@ -15,4 +15,8 @@ function Accessor({ children, roles = [] }) {
   );
 }
 
-export default observer(Accessor);
+export const Secure = observer(Access);
+
+export function secure(component, roles = []) {
+  return <Access roles={roles}>{component}</Access>;
+}

@@ -62,6 +62,7 @@ module.exports = {
     "css-modules/no-unused-class": "off",
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/no-static-element-interactions": "off",
+    "import/no-cycle": "off",
     "prettier/prettier": [
       "error",
       {

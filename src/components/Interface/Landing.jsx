@@ -10,7 +10,7 @@ import style from "./style";
 function Landing() {
   return (
     <div className={clsx(ui.redScroll, style.containLand)}>
-      <Container>
+      <Container className="uk-height-1-1">
         <Header />
         <Content className={style.wrapLand}>
           <Outlet />

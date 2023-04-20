@@ -1,7 +1,13 @@
 import { makeObservable } from "mobx";
 import { pipi } from "utils/api";
-import { Car, CarFilter, CarPublic, CarPublicFilter } from "./models/car";
+import { castMap } from "utils/helpers";
+import { Car, CarFilter } from "./models/car";
+import Engine from "./models/engine";
 import Option from "./models/option";
+import Model from "./models/model";
+import Name from "./models/name";
+import OptionView from "./view/option";
+import CarView from "./view/car";
 import { UserInfo } from "./models/user";
 
 export class Backend {
@@ -21,16 +27,28 @@ export class Backend {
     pipi.execute("create_brand", [name]);
   }
 
-  //   static createCar(staffLogin: string, newPassword: string): void {
-  //     pipi.execute("cancel_payment", [staffLogin, newPassword]);
-  //   }
+  static createCar(car: Car): Promise<unknown> {
+    const { complectation, engine, kpp, drive, vin, price, color, prodDate } =
+      car;
+
+    return pipi.execute("create_car", [
+      complectation.id,
+      engine.id,
+      kpp.id,
+      drive.id,
+      vin,
+      price,
+      color,
+      prodDate,
+    ]);
+  }
 
   static createComplectation(
     idName: number,
     idModel: number,
     price: number
   ): void {
-    pipi.execute("cancel_payment", [idName, price, idModel]);
+    pipi.execute("create_complectation", [idName, price, idModel]);
   }
 
   // static createCustomer(customer: Customer): void {}
@@ -69,8 +87,8 @@ export class Backend {
     pipi.execute("delete_model", [id]);
   }
 
-  static deleteOption(id: number) {
-    pipi.execute("delete_option", [id]);
+  static deleteOption(id: number): Promise<unknown> {
+    return pipi.execute("delete_option", [id]);
   }
 
   static deleteOrder(id: number) {
@@ -101,17 +119,23 @@ export class Backend {
     ]) as Promise<void>;
   }
 
-  // static getBrands(): Brand[] {}
-
-  // static getCarComplectOptions(idCar: number): CarComplectOptions[] {}
-
-  static getCarInfo(id: number): Promise<Car> {
-    return pipi.execute("get_car_info", [id]) as Promise<Car>;
+  static getBrands(): Promise<Name[]> {
+    return <Promise<Name[]>>pipi.execute("get_brands", []);
   }
 
-  static getCarsByFilter(
-    params: CarFilter = {}
-  ): Promise<CarPublic & { vin: string }[]> {
+  static async getCarComplectOptions(idComplect: number): Promise<Option[]> {
+    return pipi
+      .execute("get_car_complect_options", [idComplect])
+      .then(castMap<OptionView, Option>);
+  }
+
+  static async getCarInfo(id: number): Promise<Car> {
+    return pipi
+      .execute("get_car_info", [id])
+      .then((list: CarView[]) => list[0].cast());
+  }
+
+  static async getCarsByFilter(params: CarFilter = {}): Promise<Car[]> {
     const {
       id = null,
       sold = null,
@@ -122,39 +146,66 @@ export class Backend {
       drive = null,
       complectation = null,
     } = params;
-    return pipi.execute("get_cars_by_filter", [
-      id,
-      sold,
-      brand,
-      model,
-      fuel,
-      kpp,
-      drive,
-      complectation,
-    ]) as Promise<CarPublic & { vin: string }[]>;
+    return pipi
+      .execute("get_cars_by_filter", [
+        id,
+        sold,
+        brand,
+        model,
+        fuel,
+        kpp,
+        drive,
+        complectation,
+      ])
+      .then(castMap<CarView, Car>);
   }
 
   // static getComplectationsByModel(idModel: number): Complectation[] {}
 
-  // static getCompressTypes(): CompressTypes { }
+  static getCompressTypes(): Promise<Name[]> {
+    return <Promise<Name[]>>pipi.execute("get_compress_types", []);
+  }
 
   // static getCustomersByFilter(params: Partial<Customer>): Customer[] {}
 
-  // static getDriveTypes(): DriveTypes {}
+  static getDriveTypes(): Promise<Name[]> {
+    return <Promise<Name[]>>pipi.execute("get_drive_types", []);
+  }
 
-  // static getEnginesByFilter(params: Partial<Engine>): Engine[] {}
+  static getEnginesByFilter(): Promise<Engine[]> {
+    return <Promise<Engine[]>>(
+      pipi.execute("get_engines_by_filter", [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+      ])
+    );
+  }
 
-  // static getFuelTypes(): FuelType[] {}
+  static getFuelTypes(): Promise<Name[]> {
+    return <Promise<Name[]>>pipi.execute("get_fuel_types", []);
+  }
 
-  // static getKppTypes(): KppType[] {}
+  static getKppTypes(): Promise<Name[]> {
+    return <Promise<Name[]>>pipi.execute("get_kpp_types", []);
+  }
 
-  // static getModelsByBrand(idBrand: number): Model[] {}
+  static getModelsByBrand(idBrand: number): Promise<Model[]> {
+    return <Promise<Model[]>>pipi.execute("get_models_by_brand", [idBrand]);
+  }
 
   // static getOptionTypes(): OptionType[] {}
 
   static getOptionsByFilter(): Promise<Option[]> {
-    return <Promise<Option[]>>(
-      pipi.execute("get_options_by_filter", [false, null, null])
+    return <Promise<OptionView[]>>(
+      pipi
+        .execute("get_options_by_filter", [false, null, null])
+        .then(castMap<OptionView, Option>)
     );
   }
 
@@ -163,41 +214,6 @@ export class Backend {
   // static getOrderOptions(id: number): Option[] {}
 
   // static getOrderPayments(id: number): Payment[] {}
-
-  static getPublicCars(params: CarPublicFilter = {}): Promise<CarPublic[]> {
-    const {
-      id = null,
-      brand = null,
-      model = null,
-      complectation = null,
-      priceMin = null,
-      priceMax = null,
-      color = null,
-      kpp = null,
-      drive = null,
-      performanceMin = null,
-      performanceMax = null,
-      volumeMin = null,
-      volumeMax = null,
-      fuel = null,
-    } = params;
-    return pipi.execute("get_public_cars", [
-      id,
-      brand,
-      model,
-      complectation,
-      color,
-      fuel,
-      priceMin,
-      priceMax,
-      kpp,
-      drive,
-      performanceMin,
-      performanceMax,
-      volumeMin,
-      volumeMax,
-    ]) as Promise<CarPublic[]>;
-  }
 
   // getUsers(id: number): Promise<User>
   // getUsers(): Promise<User[]>
