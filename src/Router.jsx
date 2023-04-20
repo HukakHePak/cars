@@ -4,7 +4,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Login from "pages/login/Login";
 // import Cars from "pages/cars/Cars";
 import Fallback from "pages/fallback/Fallback";
-import secure from "components/Secure/secure";
+import { secure } from "components/Secure/Secure";
 import Switcher from "components/Interface/Switcher";
 import routes from "utils/routes";
 import path from "utils/path";

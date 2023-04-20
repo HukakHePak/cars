@@ -1,66 +1,64 @@
-// import { makeObservable, observable } from "mobx";
-
-
-// class Car {
-//     id: number;
-
-// constructor(car: Car) {
-//     makeObservable(this);
-// }
-
-
-// }
-
-export type CarPublic = {
-  id: number,
-  brand: string,
-  model: string,
-  complectation: string,
-  price: number,
-  photo: string | null,
-  description: string,
-  color: string,
-  kpp: string,
-  drive: string,
-  perfomance: number,
-  volume: number,
-  fuel: string,
-}
+import { Backend } from "stores/be";
+import Complectation from "./complectation";
+import Engine from "./engine";
+import Name from "./name";
 
 export type CarPublicFilter = Partial<{
-  id: number,
-  brand: string,
-  model: string,
-  complectation: string,
-  color: string,
-  fuel: string,
-  priceMin: number,
-  priceMax: number,
-  kpp: string,
-  drive: string,
-  performanceMin: number,
-  performanceMax: number,
-  volumeMin: number,
-  volumeMax: number,
-}>
+  id: number;
+  brand: string;
+  model: string;
+  complectation: string;
+  color: string;
+  fuel: string;
+  priceMin: number;
+  priceMax: number;
+  kpp: string;
+  drive: string;
+  performanceMin: number;
+  performanceMax: number;
+  volumeMin: number;
+  volumeMax: number;
+}>;
 
 export type CarFilter = Partial<{
-  id: number,
-  sold: boolean,
-  brand: string,
-  model: string,
-  fuel: string,
-  kpp: string,
-  drive: string,
-  complectation: string,
-}>
+  id: number;
+  sold: boolean;
+  brand: string;
+  model: string;
+  fuel: string;
+  kpp: string;
+  drive: string;
+  complectation: string;
+}>;
 
-export type Car = {
-  color_code: string,
-  compress: string,
-  code: string,
-  vin: string,
-  prod_date: string | Date,
-  arrival_date: null | string | Date,
-  distance: null | number,
-} & CarPublic
+export class Car {
+  id: number;
+
+  engine: Engine;
+
+  vin: string;
+
+  complectation: Complectation;
+
+  kpp: Name;
+
+  drive: Name;
+
+  color: string;
+
+  price: number;
+
+  prodDate: Date;
+
+  arrivalDate: Date;
+
+  distance: number;
+
+  load() {
+    // this.engine.load()
+    // this.complectation.load();
+    Backend.getCarInfo(this.id);
+  }
+
+  //   save() {}
+}
