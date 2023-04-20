@@ -1,4 +1,4 @@
-import User from "stores/models/user";
+import { User } from "stores/models/user";
 
 
 class UsersStore {

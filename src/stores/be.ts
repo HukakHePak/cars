@@ -8,6 +8,7 @@ import Model from "./models/model";
 import Name from "./models/name";
 import OptionView from "./view/option";
 import CarView from "./view/car";
+import { UserInfo } from "./models/user";
 
 export class Backend {
   constructor() {
@@ -104,7 +105,19 @@ export class Backend {
 
   // static editOrder(order: Order): void {}
 
-  // static editUser(user: User): void {}
+  static editUser(user: UserInfo): Promise<void> {
+    return pipi.execute("edit_user", [
+      user.id,
+      user.name,
+      user.surname,
+      user.patronymic,
+      user.phone,
+      user.email,
+      user.login,
+      user.photo,
+      user.type,
+    ]) as Promise<void>;
+  }
 
   static getBrands(): Promise<Name[]> {
     return <Promise<Name[]>>pipi.execute("get_brands", []);
@@ -201,6 +214,18 @@ export class Backend {
   // static getOrderOptions(id: number): Option[] {}
 
   // static getOrderPayments(id: number): Payment[] {}
+
+  // getUsers(id: number): Promise<User>
+  // getUsers(): Promise<User[]>
+  static getUsers(
+    id?: number
+  ): Promise<UserInfo<"iduser">> | Promise<UserInfo<"iduser">[]> {
+    if (id !== undefined) {
+      return pipi.execute("get_users", [id]) as Promise<UserInfo<"iduser">>;
+    }
+
+    return pipi.execute("get_users", []) as Promise<UserInfo<"iduser">[]>;
+  }
 
   static makeOrderReserved(id: number): void {
     pipi.execute("make_order_reserved", [id]);
