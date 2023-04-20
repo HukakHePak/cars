@@ -1,66 +1,105 @@
-// import { makeObservable, observable } from "mobx";
+import Complectation from "./complectation";
+import Engine from "./engine";
+import Model from "./model";
+import Name from "./name";
 
-
-// class Car {
-//     id: number;
-
-// constructor(car: Car) {
-//     makeObservable(this);
-// }
-
-
-// }
-
-export type CarPublic = {
-  id: number,
-  brand: string,
-  model: string,
-  complectation: string,
-  price: number,
-  photo: string | null,
-  description: string,
-  color: string,
-  kpp: string,
-  drive: string,
-  perfomance: number,
-  volume: number,
-  fuel: string,
-}
 
 export type CarPublicFilter = Partial<{
-  id: number,
-  brand: string,
-  model: string,
-  complectation: string,
-  color: string,
-  fuel: string,
-  priceMin: number,
-  priceMax: number,
-  kpp: string,
-  drive: string,
-  performanceMin: number,
-  performanceMax: number,
-  volumeMin: number,
-  volumeMax: number,
+    id: number,
+    brand: string,
+    model: string,
+    complectation: string,
+    color: string,
+    fuel: string,
+    priceMin: number,
+    priceMax: number,
+    kpp: string,
+    drive: string,
+    performanceMin: number,
+    performanceMax: number,
+    volumeMin: number,
+    volumeMax: number,
 }>
 
 export type CarFilter = Partial<{
-  id: number,
-  sold: boolean,
-  brand: string,
-  model: string,
-  fuel: string,
-  kpp: string,
-  drive: string,
-  complectation: string,
+    id: number,
+    sold: boolean,
+    brand: string,
+    model: string,
+    fuel: string,
+    kpp: string,
+    drive: string,
+    complectation: string,
 }>
 
-export type Car = {
-  color_code: string,
-  compress: string,
-  code: string,
-  vin: string,
-  prod_date: string | Date,
-  arrival_date: null | string | Date,
-  distance: null | number,
-} & CarPublic
+export class Car {
+    id: number;
+    engine: Engine;
+    vin: string;
+    complectation: Complectation;
+    kpp: Name;
+    drive: Name;
+    color: string;
+    price: number;
+    prodDate: Date;
+    arrivalDate: Date;
+    distance: number;
+}
+
+export class CarView extends Car {
+    idbrand: number;
+    brand: string;
+    idmodel: number;
+    model: string;
+    description: string;
+    photo: string;
+    idcomplectation: number;
+    complectation_name: string;
+    idname: number;
+    idkpp: number;
+    kpp_name: string;
+    idengine: number;
+    idcompress: number;
+    compress: string;
+    idfuel: number;
+    fuel: string;
+    perfomance: number;
+    volume: number;
+    iddrive: number;
+    drive_name: string;
+    prod_date: Date;
+    arrival_date: Date;
+
+
+    cast(): Car {
+        return <Car>{
+            id: this.id,
+            engine: <Engine>{
+                id: this.idengine,
+                fuel: <Name>{ id: this.idfuel, name: this.fuel },
+                compress: <Name>{ id: this.idcompress, name: this.compress },
+                perfomance: this.perfomance,
+                volume: this.volume,
+            },
+            kpp: <Name>{ id: this.idkpp, name: this.kpp_name },
+            drive: <Name>{ id: this.iddrive, name: this.drive_name },
+            complectation: <Complectation>{
+                id: this.idcomplectation,
+                name: <Name>{ id: this.idname, name: this.complectation_name },
+                model: <Model>{
+                    id: this.idmodel,
+                    name: this.model,
+                    photo: this.photo,
+                    description: this.description,
+                    brand: <Name>{ id: this.idbrand, name: this.brand },
+                },
+            },
+            vin: this.vin,
+            prodDate: this.prod_date,
+            arrivalDate: this.arrival_date,
+            distance: this.distance,
+        }
+
+
+    }
+};

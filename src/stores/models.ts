@@ -1,4 +1,5 @@
 import { Backend } from "./be";
+import Model from "./models/model";
 import Type from "./models/name";
 
 class ModelStore {

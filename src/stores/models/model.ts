@@ -1,7 +1,11 @@
+import Name from "./name";
+
 type Model = {
     id: number;
     name: string;
     description: string;
     photo: string;
-    idcar_brand: number;
+    brand: Name;
 }
+
+export default Model;

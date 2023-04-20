@@ -2,7 +2,10 @@ import Name from "./name";
 
 class Engine {
     id: number;
-    kpp: Name; 
+    fuel: Name; 
+    compress: Name;
+    volume: number;
+    perfomance: number;
 }
 
 export default Engine

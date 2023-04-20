@@ -1,6 +1,6 @@
 import AuthStore from "./auth";
 import BrandStore from "./brands";
-import CarsStore from "./cars";
+import CarStore from "./cars";
 import CompressStore from "./compress";
 import DriveStore from "./drives";
 import FuelStore from "./fuels";
@@ -16,7 +16,7 @@ export default class RootStoreModel {
 
   brands = new BrandStore();
 
-  cars = new CarsStore();
+  cars = new CarStore();
 
   compresses = new CompressStore();
 

@@ -1,13 +1,17 @@
 import { Backend } from "stores/be";
-import Option from "./option";
+import Model from "./model";
+import Name from "./name";
+import {Option} from "./option";
 
 class Complectation {
     id: number;
-    name: string;
+    name: Name;
     options: Option[];
+    model: Model;
+    price: number;
 
     load() {
-        Backend.getOptionsByFilter();   // TODO: взять опции комплектации
+        Backend.getCarComplectOptions(this.id);   // TODO: взять опции комплектации
     }
 
     delete(option: Option) {

@@ -1,9 +1,11 @@
 import { makeObservable } from "mobx";
 import { pipi } from "utils/api";
-import { Car, CarFilter, CarPublic, CarPublicFilter } from "./models/car";
+import { castMap } from "utils/helpers";
+import { Car, CarFilter, CarView } from "./models/car";
 import Engine from "./models/engine";
-import Option from "./models/option";
-import Type from "./models/name";
+import { Option, OptionView } from "./models/option";
+import Model from "./models/model";
+import Name from "./models/name";
 
 export class Backend {
   constructor() {
@@ -22,16 +24,28 @@ export class Backend {
     pipi.execute("create_brand", [name]);
   }
 
-  //   static createCar(staffLogin: string, newPassword: string): void {
-  //     pipi.execute("cancel_payment", [staffLogin, newPassword]);
-  //   }
+  static createCar(car: Car): Promise<unknown> {
+    const { complectation, engine, kpp, drive, vin, price, color, prodDate } =
+      car;
+
+    return pipi.execute("create_car", [
+      complectation.id,
+      engine.id,
+      kpp.id,
+      drive.id,
+      vin,
+      price,
+      color,
+      prodDate,
+    ]);
+  }
 
   static createComplectation(
     idName: number,
     idModel: number,
     price: number
   ): void {
-    pipi.execute("cancel_payment", [idName, price, idModel]);
+    pipi.execute("create_complectation", [idName, price, idModel]);
   }
 
   // static createCustomer(customer: Customer): void {}
@@ -90,19 +104,21 @@ export class Backend {
 
   // static editUser(user: User): void {}
 
-  static getBrands(): Promise<unknown> {
-    return pipi.execute("get_brands", []);
+  static getBrands(): Promise<Name[]> {
+    return <Promise<Name[]>>pipi.execute("get_brands", []);
   }
 
-  // static getCarComplectOptions(idCar: number): CarComplectOptions[] {}
-
-  static getCarInfo(id: number): Promise<Car> {
-    return pipi.execute("get_car_info", [id]) as Promise<Car>;
+  static async getCarComplectOptions(idComplect: number): Promise<Option[]> {
+    return pipi
+      .execute("get_car_complect_options", [idComplect])
+      .then(castMap<OptionView, Option>);
   }
 
-  static getCarsByFilter(
-    params: CarFilter = {}
-  ): Promise<CarPublic & { vin: string }[]> {
+  static getCarInfo(id: number): Promise<CarView[]> {
+    return <Promise<CarView[]>>pipi.execute("get_car_info", [id]);
+  }
+
+  static async getCarsByFilter(params: CarFilter = {}): Promise<Car[]> {
     const {
       id = null,
       sold = null,
@@ -113,35 +129,30 @@ export class Backend {
       drive = null,
       complectation = null,
     } = params;
-    return pipi.execute("get_cars_by_filter", [
-      id,
-      sold,
-      brand,
-      model,
-      fuel,
-      kpp,
-      drive,
-      complectation,
-    ]) as Promise<CarPublic & { vin: string }[]>;
+    return pipi
+      .execute("get_cars_by_filter", [
+        id,
+        sold,
+        brand,
+        model,
+        fuel,
+        kpp,
+        drive,
+        complectation,
+      ])
+      .then(castMap<CarView, Car>);
   }
 
   // static getComplectationsByModel(idModel: number): Complectation[] {}
 
-  static getCompressTypes(): Promise<Type[]> {
-    return <Promise<Type[]>>(
-      pipi.execute("get_compress_types", []).then((list: unknown[]) =>
-        list.map((item: { idcompress_type: number; name: string }) => ({
-          id: item.idcompress_type,
-          name: item.name,
-        }))
-      )
-    );
+  static getCompressTypes(): Promise<Name[]> {
+    return <Promise<Name[]>>pipi.execute("get_compress_types", []);
   }
 
   // static getCustomersByFilter(params: Partial<Customer>): Customer[] {}
 
-  static getDriveTypes(): Promise<unknown> {
-    return pipi.execute("get_drive_types", []);
+  static getDriveTypes(): Promise<Name[]> {
+    return <Promise<Name[]>>pipi.execute("get_drive_types", []);
   }
 
   static getEnginesByFilter(): Promise<Engine[]> {
@@ -159,26 +170,12 @@ export class Backend {
     );
   }
 
-  static getFuelTypes(): Promise<Type[]> {
-    return <Promise<Type[]>>(
-      pipi.execute("get_fuel_types", []).then((list: unknown[]) =>
-        list.map((item: { idfuel_type: number; name: string }) => ({
-          id: item.idfuel_type,
-          name: item.name,
-        }))
-      )
-    );
+  static getFuelTypes(): Promise<Name[]> {
+    return <Promise<Name[]>>pipi.execute("get_fuel_types", []);
   }
 
-  static getKppTypes(): Promise<Type[]> {
-    return <Promise<Type[]>>(
-      pipi.execute("get_kpp_types", []).then((list: unknown[]) =>
-        list.map((item: { idkpp_type: number; name: string }) => ({
-          id: item.idkpp_type,
-          name: item.name,
-        }))
-      )
-    );
+  static getKppTypes(): Promise<Name[]> {
+    return <Promise<Name[]>>pipi.execute("get_kpp_types", []);
   }
 
   static getModelsByBrand(idBrand: number): Promise<Model[]> {
@@ -188,8 +185,10 @@ export class Backend {
   // static getOptionTypes(): OptionType[] {}
 
   static getOptionsByFilter(): Promise<Option[]> {
-    return <Promise<Option[]>>(
-      pipi.execute("get_options_by_filter", [false, null, null])
+    return <Promise<OptionView[]>>(
+      pipi
+        .execute("get_options_by_filter", [false, null, null])
+        .then(castMap<OptionView, Option>)
     );
   }
 
@@ -198,51 +197,6 @@ export class Backend {
   // static getOrderOptions(id: number): Option[] {}
 
   // static getOrderPayments(id: number): Payment[] {}
-
-  static getPublicCars(params: CarPublicFilter = {}): Promise<CarPublic[]> {
-    const {
-      id = null,
-      brand = null,
-      model = null,
-      complectation = null,
-      priceMin = null,
-      priceMax = null,
-      color = null,
-      kpp = null,
-      drive = null,
-      performanceMin = null,
-      performanceMax = null,
-      volumeMin = null,
-      volumeMax = null,
-      fuel = null,
-    } = params;
-    return pipi.execute("get_public_cars", [
-      id,
-      brand,
-      model,
-      complectation,
-      color,
-      fuel,
-      priceMin,
-      priceMax,
-      kpp,
-      drive,
-      performanceMin,
-      performanceMax,
-      volumeMin,
-      volumeMax,
-    ]) as Promise<CarPublic[]>;
-  }
-
-  // static getUsers(id: number): User
-  // static getUsers(): User[] {}
-  // static getUsers(id?: number): User | User[] {
-  //   if (id) {
-  //
-  //   } else {
-  //
-  //   }
-  // }
 
   static makeOrderReserved(id: number): void {
     pipi.execute("make_order_reserved", [id]);

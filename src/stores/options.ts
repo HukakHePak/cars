@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import { Backend } from "./be";
-import Option from "./models/option";
+import { Option } from "./models/option";
 
 class OptionsStore {
   list: Option[];
