@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import User from "stores/models/user";
+import { User, UserInfo } from "stores/models/user";
 import { pipi } from "utils/api";
 
 export interface IAuthForm {
@@ -8,7 +8,7 @@ export interface IAuthForm {
 }
 
 class AuthStore {
-  user: User = null;
+  user = new User();
 
   error = <IAuthForm>{};
 
@@ -18,7 +18,7 @@ class AuthStore {
   }
 
   load() {
-    pipi.get("me").then((u: User) => this.createUser(u));
+    pipi.get("me").then((u: UserInfo<"iduser">) => this.createUser(u));
   }
 
   login({ login, password }: { login: string; password: string }) {
@@ -33,7 +33,7 @@ class AuthStore {
 
     pipi
       .post("login", { login, password })
-      .then((u: User) => this.createUser(u))
+      .then((u: UserInfo<"iduser">) => this.createUser(u))
       .catch(() => {
         this.setLoginError("Пользователь с таким именем не найден");
       });
@@ -51,8 +51,9 @@ class AuthStore {
     this.error = <IAuthForm>{};
   }
 
-  createUser(user: User) {
-    this.user = user;
+  createUser(user: UserInfo<"iduser">) {
+    console.log(user);
+    this.user = new User(user);
     this.clearError();
   }
 

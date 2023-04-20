@@ -1,7 +1,8 @@
 import { makeObservable } from "mobx";
-import { Car, CarFilter, CarPublic, CarPublicFilter } from "./models/car";
 import { pipi } from "utils/api";
+import { Car, CarFilter, CarPublic, CarPublicFilter } from "./models/car";
 import Option from "./models/option";
+import { UserInfo } from "./models/user";
 
 export class Backend {
   constructor() {
@@ -86,7 +87,19 @@ export class Backend {
 
   // static editOrder(order: Order): void {}
 
-  // static editUser(user: User): void {}
+  static editUser(user: UserInfo): Promise<void> {
+    return pipi.execute("edit_user", [
+      user.id,
+      user.name,
+      user.surname,
+      user.patronymic,
+      user.phone,
+      user.email,
+      user.login,
+      user.photo,
+      user.type,
+    ]) as Promise<void>;
+  }
 
   // static getBrands(): Brand[] {}
 
@@ -140,7 +153,9 @@ export class Backend {
   // static getOptionTypes(): OptionType[] {}
 
   static getOptionsByFilter(): Promise<Option[]> {
-    return <Promise<Option[]>>pipi.execute('get_options_by_filter', [false, null, null]);
+    return <Promise<Option[]>>(
+      pipi.execute("get_options_by_filter", [false, null, null])
+    );
   }
 
   // static getOrderComplectation(id: number): Complectation {}
@@ -184,15 +199,17 @@ export class Backend {
     ]) as Promise<CarPublic[]>;
   }
 
-  // static getUsers(id: number): User
-  // static getUsers(): User[] {}
-  // static getUsers(id?: number): User | User[] {
-  //   if (id) {
-  //
-  //   } else {
-  //
-  //   }
-  // }
+  // getUsers(id: number): Promise<User>
+  // getUsers(): Promise<User[]>
+  static getUsers(
+    id?: number
+  ): Promise<UserInfo<"iduser">> | Promise<UserInfo<"iduser">[]> {
+    if (id !== undefined) {
+      return pipi.execute("get_users", [id]) as Promise<UserInfo<"iduser">>;
+    }
+
+    return pipi.execute("get_users", []) as Promise<UserInfo<"iduser">[]>;
+  }
 
   static makeOrderReserved(id: number): void {
     pipi.execute("make_order_reserved", [id]);
