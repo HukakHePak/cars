@@ -14,7 +14,7 @@ export default class RootStoreModel {
 
   auth = new AuthStore();
 
-  brands = new BrandStore()
+  brands = new BrandStore();
 
   cars = new CarsStore();
 

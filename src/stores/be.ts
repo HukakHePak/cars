@@ -1,8 +1,9 @@
 import { makeObservable } from "mobx";
 import { pipi } from "utils/api";
 import { Car, CarFilter, CarPublic, CarPublicFilter } from "./models/car";
+import Engine from "./models/engine";
 import Option from "./models/option";
-import Type from "./models/type";
+import Type from "./models/name";
 
 export class Backend {
   constructor() {
@@ -89,15 +90,8 @@ export class Backend {
 
   // static editUser(user: User): void {}
 
-  static getBrands(): Promise<Type[]> {
-    return <Promise<Type[]>>(
-      pipi.execute("get_brands", []).then((list: unknown[]) =>
-        list.map((item: { idcar_brand: number; name: string }) => ({
-          id: item.idcar_brand,
-          name: item.name,
-        }))
-      )
-    );
+  static getBrands(): Promise<unknown> {
+    return pipi.execute("get_brands", []);
   }
 
   // static getCarComplectOptions(idCar: number): CarComplectOptions[] {}
@@ -146,18 +140,24 @@ export class Backend {
 
   // static getCustomersByFilter(params: Partial<Customer>): Customer[] {}
 
-  static getDriveTypes(): Promise<Type[]> {
-    return <Promise<Type[]>>(
-      pipi.execute("get_drive_types", []).then((list: unknown[]) =>
-        list.map((item: { iddrive_type: number; name: string }) => ({
-          id: item.iddrive_type,
-          name: item.name,
-        }))
-      )
-    );
+  static getDriveTypes(): Promise<unknown> {
+    return pipi.execute("get_drive_types", []);
   }
 
-  // static getEnginesByFilter(params: Partial<Engine>): Engine[] {}
+  static getEnginesByFilter(): Promise<Engine[]> {
+    return <Promise<Engine[]>>(
+      pipi.execute("get_engines_by_filter", [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+      ])
+    );
+  }
 
   static getFuelTypes(): Promise<Type[]> {
     return <Promise<Type[]>>(

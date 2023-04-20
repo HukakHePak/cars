@@ -1,11 +1,13 @@
 import { Backend } from "./be";
-import Type from "./models/type";
+import Type from "./models/name";
 
 class FuelStore {
   list: Type[];
 
   load() {
-    Backend.getFuelTypes().then((list: Type[]) => (this.list = list));
+    Backend.getFuelTypes().then((list: Type[]) => {
+      this.list = list;
+    });
   }
 }
 

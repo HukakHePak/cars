@@ -1,11 +1,16 @@
 import { Backend } from "./be";
-import Type from "./models/type";
+import Name from "./models/name";
 
 class DriveStore {
-  list: Type[];
+  list: Name[];
 
   load() {
-    Backend.getDriveTypes().then((list: Type[]) => (this.list = list));
+    Backend.getDriveTypes().then((list: unknown[]) => {
+      this.list = list.map((item: { iddrive_type: number; name: string }) => ({
+        id: item.iddrive_type,
+        name: item.name,
+      }));
+    });
   }
 }
 

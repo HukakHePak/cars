@@ -1,6 +1,6 @@
-type Type = {
+type Name = {
     id: number;
     name: string;
 }
 
-export default Type;
+export default Name;

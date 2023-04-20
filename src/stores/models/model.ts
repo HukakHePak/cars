@@ -1,5 +1,5 @@
 type Model = {
-    idcar_model: number;
+    id: number;
     name: string;
     description: string;
     photo: string;

@@ -1,10 +1,10 @@
 import { makeAutoObservable } from "mobx";
 import { Backend } from "stores/be";
+import Name from "./name";
 
 class Option {
     id: number;
-    idtype: number;
-    type: string;
+    type: Name;
     name: string;
     description: string;
     photo: string;

@@ -1,11 +1,16 @@
 import { Backend } from "./be";
-import Type from "./models/type";
+import Name from "./models/name";
 
 class BrandStore {
-  list: Type[];
+  list: Name[];
 
   load() {
-    Backend.getBrands().then((list: Type[]) => (this.list = list));
+    Backend.getBrands().then((list: unknown[]) => {
+      this.list = list.map((item: { idcar_brand: number; name: string }) => ({
+        id: item.idcar_brand,
+        name: item.name,
+      }));
+    });
   }
 }
 
