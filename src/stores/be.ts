@@ -8,6 +8,8 @@ import Name from "./models/name";
 import OptionView from "./view/option";
 import CarView from "./view/car";
 import { UserInfo } from "./models/user";
+import Complectation from "./models/complectation";
+import ComplectationView from "./view/complectation";
 
 export class Backend {
   constructor() {
@@ -163,15 +165,27 @@ export class Backend {
       );
   }
 
-  // static getComplectationsByModel(idModel: number): Complectation[] {}
+  static async getComplectationsByModel(
+    idModel: number
+  ): Promise<Complectation[]> {
+    return pipi
+      .execute("get_complectations_by_model", [idModel])
+      .then((list: ComplectationView[]) =>
+        list.map((item: ComplectationView) => Complectation.fromView(item))
+      );
+  }
 
-  static getCompressTypes(): Promise<Name[]> {
+  static async getComplectationNames(): Promise<Name[]> {
+    return <Promise<Name[]>>pipi.execute("get_complectation_names", []);
+  }
+
+  static async getCompressTypes(): Promise<Name[]> {
     return <Promise<Name[]>>pipi.execute("get_compress_types", []);
   }
 
   // static getCustomersByFilter(params: Partial<Customer>): Customer[] {}
 
-  static getDriveTypes(): Promise<Name[]> {
+  static async getDriveTypes(): Promise<Name[]> {
     return <Promise<Name[]>>pipi.execute("get_drive_types", []);
   }
 

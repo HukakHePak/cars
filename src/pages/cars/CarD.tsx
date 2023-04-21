@@ -24,8 +24,7 @@ function CarD(props: { car: Car }) {
     <FlexboxGrid.Item className={style.card} onClick={selectCar}>
       <div className={style.header}>
         {car?.complectation?.model?.brand?.name}{" "}
-        {car?.complectation?.model?.name} {car?.engine?.perfomance}{" "}
-        {car?.kpp?.name}
+        {car?.complectation?.model?.name} 
       </div>
       <FlexboxGrid justify="space-between">
         <img
@@ -33,8 +32,11 @@ function CarD(props: { car: Car }) {
           src={car.complectation?.model?.photo}
           alt=""
         />
+        
         <ul className={style.options}>
           <li> {car?.complectation?.name?.name} </li>
+          <li>{car?.engine?.perfomance}</li>
+          <li>{car?.kpp?.name}</li>
           <li> {car?.price} </li>
         </ul>
       </FlexboxGrid>

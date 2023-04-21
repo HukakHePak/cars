@@ -1,14 +1,29 @@
+import { makeAutoObservable } from "mobx";
 import { Backend } from "./be";
 import Model from "./models/model";
-import Type from "./models/name";
 
 class ModelStore {
-  list: Model[];
+  list: Model[] = [];
 
-  load(brand: Type) {
-    Backend.getModelsByBrand(brand.id).then((list: Model[]) => {
+  selected: Model;
+
+  constructor() {
+    makeAutoObservable(this);
+    this.load();
+  }
+
+  load(brandId: number = null) {
+    Backend.getModelsByBrand(brandId).then((list: Model[]) => {
       this.list = list;
     });
+  }
+
+  select(model: Model) {
+    this.selected = model;
+  }
+
+  clear() {
+    this.selected = null;
   }
 }
 

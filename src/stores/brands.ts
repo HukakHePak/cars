@@ -5,6 +5,8 @@ import Name from "./models/name";
 class BrandStore {
   list: Name[] = [];
 
+  selected: Name;
+
   constructor() {
     makeAutoObservable(this);
     this.load();
@@ -13,7 +15,16 @@ class BrandStore {
   load() {
     Backend.getBrands().then((list: Name[]) => {
       this.list = list;
+      this.clear();
     });
+  }
+
+  select(brand: Name) {
+    this.selected = brand;
+  }
+
+  clear() {
+    this.selected = null;
   }
 }
 

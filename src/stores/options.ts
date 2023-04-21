@@ -3,7 +3,7 @@ import { Backend } from "./be";
 import Option from "./models/option";
 
 class OptionsStore {
-  list: Option[];
+  list: Option[] = [];
 
   constructor() {
     makeAutoObservable(this);
