@@ -1,11 +1,11 @@
 import React from "react";
-import { roles } from "stores/models/user";
+import { UserType } from "stores/models/user";
 import Cars from "pages/cars/Cars";
 import Profile from "pages/profile/Profile";
 import Logout from "pages/logout/Logout";
 import path from "./path";
 
-const { director, admin, manager, stuff } = roles;
+const { director, admin, manager, stuff } = UserType;
 
 const routes = [
   {

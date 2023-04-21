@@ -1,7 +1,9 @@
-import { roles as role, User } from "stores/models/user";
+import { User, UserType } from "stores/models/user";
 
 export const isAccessed = (roles: string[], user: User): boolean =>
-  roles.includes(user.type) || roles.length === 0 || roles[0] === role.unauth;
+  roles.includes(user.type) ||
+  roles.length === 0 ||
+  roles[0] === UserType.unauth;
 
 class Castion {
   /* eslint-disable class-methods-use-this */

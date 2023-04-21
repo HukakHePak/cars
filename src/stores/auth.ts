@@ -8,7 +8,7 @@ export interface IAuthForm {
 }
 
 class AuthStore {
-  user = new User();
+  user: User | undefined = undefined;
 
   error = <IAuthForm>{};
 
@@ -56,7 +56,6 @@ class AuthStore {
   }
 
   createUser(user: UserInfo<"iduser">) {
-    console.log(user);
     this.user = new User(user);
     this.clearError();
   }
