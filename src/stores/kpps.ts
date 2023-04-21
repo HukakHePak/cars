@@ -2,7 +2,7 @@ import { Backend } from "./be";
 import Type from "./models/name";
 
 class KppStore {
-  list: Type[];
+  list: Type[] = [];
 
   load() {
     Backend.getKppTypes().then((list: Type[]) => {

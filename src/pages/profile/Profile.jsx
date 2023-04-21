@@ -3,7 +3,7 @@ import { observer } from "mobx-react-lite";
 import React, { useState } from "react";
 import { Button, ButtonToolbar, Form } from "rsuite";
 import { User } from "stores/models/user";
-// import style from "./style.scss";
+import style from "./style";
 
 function Profile() {
   const { auth } = useStore();
@@ -30,6 +30,7 @@ function Profile() {
       onSubmit={handleFormSubmit}
       onChange={handleFormValueChange}
       formError={error}
+      className={style.form}
     >
       <Form.Group controlId="name-1">
         <Form.ControlLabel>Name</Form.ControlLabel>

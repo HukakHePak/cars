@@ -13,8 +13,14 @@
   padding: 20px;
   background: $red8;
   color: $white;
+  cursor: pointer;
   @include bordering;
   @include bordertoping;
+  
+  &:hover {
+    transform: scale(1.01);
+    box-shadow: 0 0 5px 0 $gray6;
+  }
 }
 
 .header {
@@ -26,6 +32,7 @@
 .img {
   height: 170px;
   width: 170px;
+  background-color: $white;
 }
 
 .options {
