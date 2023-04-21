@@ -2,13 +2,15 @@ import useStore from "hooks/useStore";
 import { observer } from "mobx-react-lite";
 import React, { useState } from "react";
 import { Button, ButtonToolbar, Form } from "rsuite";
+import { User } from "stores/models/user";
 // import style from "./style.scss";
 
 function Profile() {
   const { auth } = useStore();
-  const { name, surname, patronymic, phone, email, login } = auth.user;
+  const user = auth.user ?? new User();
+  const { name, surname, patronymic, phone, email, login } = user;
 
-  const [formValue, setFormValue] = useState(auth.user.info);
+  const [formValue, setFormValue] = useState(user.info);
   const [error, setError] = useState();
   const handleFormSubmit = () => {
     auth.user.setUser(formValue, true).catch((err) => {

@@ -8,7 +8,7 @@ export interface IAuthForm {
 }
 
 class AuthStore {
-  user = new User();
+  user: User | undefined = undefined;
 
   error = <IAuthForm>{};
 
