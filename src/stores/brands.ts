@@ -1,15 +1,18 @@
+import { makeAutoObservable } from "mobx";
 import { Backend } from "./be";
 import Name from "./models/name";
 
 class BrandStore {
-  list: Name[];
+  list: Name[] = [];
+
+  constructor() {
+    makeAutoObservable(this);
+    this.load();
+  }
 
   load() {
-    Backend.getBrands().then((list: unknown[]) => {
-      this.list = list.map((item: { idcar_brand: number; name: string }) => ({
-        id: item.idcar_brand,
-        name: item.name,
-      }));
+    Backend.getBrands().then((list: Name[]) => {
+      this.list = list;
     });
   }
 }

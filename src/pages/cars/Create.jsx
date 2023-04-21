@@ -1,3 +1,4 @@
+import { Plus } from "@rsuite/icons/lib/icons";
 import useStore from "hooks/useStore";
 import { observer } from "mobx-react-lite";
 import React from "react";
@@ -19,7 +20,7 @@ function Create() {
 
   return (
     <FlexboxGrid.Item className={style.card} onClick={selectCar}>
-      <div className={style.plus}>+</div>
+      <Plus height="100%" width="100%" />
     </FlexboxGrid.Item>
   );
 }

@@ -22,7 +22,7 @@ module.exports = (env) => ({
   output: {
     path: path.join(__dirname, "/build"),
     filename: "index.[contenthash].js",
-    publicPath: "auto",
+    publicPath: "/",
   },
   resolve: {
     alias: {
@@ -45,6 +45,7 @@ module.exports = (env) => ({
       ".wasm",
       ".scss",
       ".css",
+      ".global.scss",
     ],
   },
   module: {
@@ -58,12 +59,21 @@ module.exports = (env) => ({
       },
       {
         test: /\.scss$/,
+        exclude: /global\.scss$/,
         use: [
           MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
             options: { modules: true },
           },
+          "sass-loader",
+        ],
+      },
+      {
+        test: /global\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          { loader: "css-loader" },
           "sass-loader",
         ],
       },
@@ -103,7 +113,7 @@ module.exports = (env) => ({
     new MiniCssExtractPlugin(),
     new ESLintPlugin({
       fix: true,
-      extensions: ["js", "jsx", "ts", "tsx", "css", "scss"],
+      extensions: ["js", "jsx", "ts", "tsx", "css", "scss", "global.scss"],
     }),
   ],
 });

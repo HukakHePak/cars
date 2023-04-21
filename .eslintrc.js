@@ -81,7 +81,8 @@ module.exports = {
         "ts": "never",
         "tsx": "never",
         "scss": "never",
-        "json": "never"
+        "json": "never",
+        "global.scss": "never"
     }],
     "import/prefer-default-export": "off",
   },
