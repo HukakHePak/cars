@@ -5,7 +5,6 @@ import Background from "components/Background/Background";
 import Sidebar from "components/Sidebar/Sidebar";
 import Img from "assets/img/backgrounds/sidebar_car.jpg";
 import clsx from "clsx";
-import ui from "scss/ui";
 import style from "./style";
 
 function Application() {
@@ -17,7 +16,7 @@ function Application() {
         overlayColor="rgba(255, 255, 255, 0.386)"
         blur={2}
       />
-      <Content className={clsx(style.wrap, ui.redScroll)}>
+      <Content className={clsx(style.wrap, "red-scroll")}>
         <div className={style.layout}>
           <div className={style.container}>
             <Outlet />

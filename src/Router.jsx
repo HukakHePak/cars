@@ -14,7 +14,7 @@ import Create from "pages/car/Create";
 const router = createBrowserRouter(
   [
     {
-      path: "/",
+      path: path.root,
       element: <Switcher />,
       errorElement: <Fallback />,
       children: [

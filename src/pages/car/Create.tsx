@@ -1,17 +1,17 @@
-import WithAdd from "components/WithAdd/WithAdd";
+import SelectAdd from "components/Input/SelectAdd";
 import useStore from "hooks/useStore";
+import { observer } from "mobx-react-lite";
 import React from "react";
-import { SelectPicker } from "rsuite";
 // import styles from "./style";
 
 function Create() {
   const { brands } = useStore();
 
   return (
-    <WithAdd>
-      <SelectPicker data={brands.list} />
-    </WithAdd>
+    <div>
+      <SelectAdd data={brands.list} />
+    </div>
   );
 }
 
-export default Create;
+export default observer(Create);
