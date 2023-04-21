@@ -9,7 +9,7 @@ function Create() {
 
   return (
     <div>
-      <SelectAdd data={brands.list} />
+      <SelectAdd data={brands.list} label="Брэнд" />
     </div>
   );
 }

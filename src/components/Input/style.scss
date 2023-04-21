@@ -1,0 +1,16 @@
+.wrap {
+    display: flex;
+    gap: 10px;
+    max-width: 250px;
+    height: 36px;
+}
+
+.select {
+    width: 100%;
+}
+
+.button {
+    display: flex;
+    height: 35px;
+    min-width: 35px;
+}
