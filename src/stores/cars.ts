@@ -10,6 +10,8 @@ class CarStore {
 
   constructor() {
     makeAutoObservable(this);
+
+    this.load();
   }
 
   load() {

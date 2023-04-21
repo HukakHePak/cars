@@ -1,3 +1,4 @@
+import { makeAutoObservable } from "mobx";
 import { Backend } from "stores/be";
 import CarView from "stores/view/car";
 import Complectation from "./complectation";
@@ -57,7 +58,18 @@ export class Car {
   distance: number;
 
   constructor(car: Car | null) {
+    makeAutoObservable(this);
+
+    if (!car) return;
+
     this.id = car.id;
+    this.engine = car.engine;
+    this.vin = car.vin;
+    this.complectation = car.complectation;
+    this.kpp = car.kpp;
+    this.drive = car.drive;
+    this.color = car.color;
+    this.price = car.price;
   }
 
   load() {

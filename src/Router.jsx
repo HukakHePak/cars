@@ -9,6 +9,7 @@ import Switcher from "components/Interface/Switcher";
 import routes from "utils/routes";
 import path from "utils/path";
 import Car from "pages/car/Car";
+import Create from "pages/car/Create";
 
 const router = createBrowserRouter(
   [
@@ -24,6 +25,10 @@ const router = createBrowserRouter(
         {
           path: `${path.cars}/:id`,
           element: <Car />,
+        },
+        {
+          path: `${path.cars}/create`,
+          element: <Create />,
         },
       ],
     },

@@ -10,6 +10,11 @@ import style from "./style";
 
 function Cars() {
   const { cars } = useStore();
+
+  // useEffect(() => {
+  //   cars.load();
+  // }, []);
+
   return (
     <FlexboxGrid
       justify={cars.list.length < 2 ? "start" : "center"}
