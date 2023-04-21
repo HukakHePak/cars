@@ -6,11 +6,10 @@ export const isAccessed = (roles: string[], user: User): boolean =>
   roles[0] === UserType.unauth;
 
 class Castion {
-  id: number;
   /* eslint-disable class-methods-use-this */
-  // cast() {}
+  cast() {}
 }
 
 export function castMap<T extends Castion, D>(list: T[]): D[] {
-  return list.map((item: T) => item.id as D);
+  return list.map((item: T) => item.cast() as D);
 }

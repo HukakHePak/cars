@@ -1,6 +1,5 @@
 import { makeObservable } from "mobx";
 import { pipi } from "utils/api";
-import { castMap } from "utils/helpers";
 import { Car, CarFilter } from "./models/car";
 import Engine from "./models/engine";
 import Option from "./models/option";
@@ -126,13 +125,15 @@ export class Backend {
   static async getCarComplectOptions(idComplect: number): Promise<Option[]> {
     return pipi
       .execute("get_car_complect_options", [idComplect])
-      .then(castMap<OptionView, Option>);
+      .then((list: OptionView[]) =>
+        list.map((item: OptionView) => Option.fromView(item))
+      );
   }
 
   static async getCarInfo(id: number): Promise<Car> {
     return pipi
       .execute("get_car_info", [id])
-      .then((list: CarView[]) => list[0].cast());
+      .then((list: CarView[]) => Car.fromView(list[0]));
   }
 
   static async getCarsByFilter(params: CarFilter = {}): Promise<Car[]> {
@@ -157,7 +158,9 @@ export class Backend {
         drive,
         complectation,
       ])
-      .then(castMap<CarView, Car>);
+      .then((list: CarView[]) =>
+        list.map((item: CarView) => Car.fromView(item))
+      );
   }
 
   // static getComplectationsByModel(idModel: number): Complectation[] {}
@@ -201,12 +204,12 @@ export class Backend {
 
   // static getOptionTypes(): OptionType[] {}
 
-  static getOptionsByFilter(): Promise<Option[]> {
-    return <Promise<OptionView[]>>(
-      pipi
-        .execute("get_options_by_filter", [false, null, null])
-        .then(castMap<OptionView, Option>)
-    );
+  static async getOptionsByFilter(): Promise<Option[]> {
+    return pipi
+      .execute("get_options_by_filter", [false, null, null])
+      .then((list: OptionView[]) =>
+        list.map((item: OptionView) => Option.fromView(item))
+      );
   }
 
   // static getOrderComplectation(id: number): Complectation {}

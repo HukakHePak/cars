@@ -21,6 +21,10 @@ class AuthStore {
     pipi.get("me").then((u: UserInfo<"iduser">) => this.createUser(u));
   }
 
+  get isLogged() {
+    return Boolean(this.user);
+  }
+
   login({ login, password }: { login: string; password: string }) {
     if (!login) {
       this.setLoginError("Поле не может быть пустым");
@@ -58,6 +62,7 @@ class AuthStore {
 
   logout() {
     this.user = null;
+    console.log(this.user);
     pipi.get("logout");
   }
 }

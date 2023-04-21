@@ -5,9 +5,9 @@ import Application from "./Application";
 import Landing from "./Landing";
 
 function Switcher() {
-  const store = useStore();
+  const { auth } = useStore();
 
-  return store.auth.user ? <Application /> : <Landing />;
+  return auth.isLogged ? <Application /> : <Landing />;
 }
 
 export default observer(Switcher);
