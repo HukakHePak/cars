@@ -7,6 +7,8 @@ class OptionsStore {
 
   constructor() {
     makeAutoObservable(this);
+
+    this.load();
   }
 
   async load() {

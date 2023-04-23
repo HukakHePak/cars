@@ -3,6 +3,7 @@ import { UserType } from "stores/models/user";
 import Cars from "pages/cars/Cars";
 import Profile from "pages/profile/Profile";
 import Logout from "pages/logout/Logout";
+import Options from "pages/options/Options";
 import path from "./path";
 
 const { director, admin, manager, stuff } = UserType;
@@ -24,7 +25,7 @@ const routes = [
     label: "Запчасти",
     path: path.details,
     access: [],
-    component: <Profile />,
+    component: <Options />,
   },
   {
     label: "История",
