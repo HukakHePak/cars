@@ -33,7 +33,7 @@ class Complectation {
   }
 
   load() {
-    Backend.getCarComplectOptions(this.id); // TODO: взять опции комплектации
+    // Backend.getCarComplectOptions(this.id); // TODO: взять опции комплектации
     Backend.getModelsByBrand(this.model.id);
   }
 

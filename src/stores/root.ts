@@ -17,6 +17,8 @@ export default class RootStoreModel {
 
   brands = new BrandStore();
 
+  options = new OptionsStore();
+
   cars = new CarStore();
 
   compresses = new CompressStore();
@@ -30,6 +32,4 @@ export default class RootStoreModel {
   kpps = new KppStore();
 
   models = new ModelStore();
-
-  options = new OptionsStore();
 }

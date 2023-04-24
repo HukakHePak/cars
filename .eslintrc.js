@@ -58,6 +58,7 @@ module.exports = {
     "react/jsx-props-no-spreading": "off",
     "react/display-name": "off",
     "no-console": "off",
+    "class-methods-use-this": "off",
     "css-modules/no-undef-class": "off",
     "css-modules/no-unused-class": "off",
     "jsx-a11y/click-events-have-key-events": "off",

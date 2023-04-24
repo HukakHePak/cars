@@ -1,55 +1,63 @@
 import { makeAutoObservable } from "mobx";
 import { Backend } from "stores/be";
-import OptionView from "stores/view/option";
+import OptionsStore from "stores/options";
+import { RootStore } from "contexts/RootStoreContext";
 import Name from "./name";
+
+export type OptionInfo = {
+  id: number;
+  name: string;
+  type: number;
+  code: string;
+  photo: string | null;
+  description: string;
+  price: number;
+  amount: number | null;
+};
 
 class Option {
   id: number;
 
-  type: Name;
-
   name: string;
 
-  description: string;
+  type: Name;
+
+  code: string;
 
   photo: string;
 
+  description: string;
+
   price: number;
 
-  count: number;
+  amount: number;
 
-  constructor(option: Option | null) {
+  constructor(option: OptionInfo | Option | null) {
     makeAutoObservable(this);
 
     if (!option) return;
 
-    const { id, type, name, description, photo, price, count } = option;
+    const { id, type, name, description, photo, price, amount } = option;
+
+    console.log("OPTION", option);
 
     this.id = id;
-    this.type = type;
+    this.type = this.options.typeList.find((typeObj) => typeObj.id === type);
     this.name = name;
     this.description = description;
     this.photo = photo;
     this.price = price;
-    this.count = count;
-  }
-
-  static fromView(view: OptionView) {
-    return new Option(<Option>{
-      id: view.id,
-      type: <Name>{ id: view.idtype, name: view.type_name },
-      name: view.name,
-      description: view.description,
-      photo: view.photo,
-      price: view.price,
-      count: view.count,
-    });
+    this.amount = amount;
   }
 
   arrive(amount: number) {
     Backend.createOptionArrive(this.id, amount).then(() => {
-      this.count += amount;
+      this.amount += amount;
     });
+  }
+
+  get options(): OptionsStore {
+    return RootStore.options;
   }
 }
 
