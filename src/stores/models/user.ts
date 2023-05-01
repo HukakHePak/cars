@@ -7,6 +7,7 @@ export enum UserType {
   manager = "M",
   stuff = "S",
   unauth = "U",
+  developer = "V",
 }
 
 export type UserInfo<PropName extends "id" | "iduser" = "id"> = {
