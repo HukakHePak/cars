@@ -30,9 +30,11 @@ function AuthForm() {
     >
       {auth.user && <Navigate to={path.root} />}
       <Form.Control name="login" placeholder="Логин" />
-      <div className={style.error}> {auth.error.login} </div>
+      <Form.HelpText className={style.error}>{auth.error.login}</Form.HelpText>
       <Form.Control name="password" type="password" placeholder="Пароль" />
-      <div className={style.error}> {auth.error.password} </div>
+      <Form.HelpText className={style.error}>
+        {auth.error.password}
+      </Form.HelpText>
 
       <Button type="submit" className={style.button}>
         Войти

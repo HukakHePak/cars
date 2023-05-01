@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import { Backend } from "./be";
+// import { Backend } from "./be";
 import { Car } from "./models/car";
 import Order from "./models/order";
 // import { Backend } from "./be";
@@ -17,9 +17,9 @@ class OrderStore {
     this.selected = car;
   }
 
-  create(car: Car) {
-    Backend.createCar(car);
-  }
+  // create(car: Car) {
+  //   Backend.createOrderOption(car);
+  // }
 
   //   load() {
   //     // Backend.

@@ -1,6 +1,7 @@
 import { makeAutoObservable } from "mobx";
 import { Backend } from "./be";
 import { Car } from "./models/car";
+import CarView from "./view/car";
 // import { Backend } from "./be";
 
 class CarStore {
@@ -10,14 +11,17 @@ class CarStore {
 
   constructor() {
     makeAutoObservable(this);
-
-    this.load();
   }
 
   load() {
     Backend.getCarsByFilter().then((list: Car[]) => {
       this.list = list;
-      // this.selected = null;
+    });
+  }
+
+  loadPublic() {
+    Backend.getPublicCars().then((list: Car[]) => {
+      this.list = list;
     });
   }
 
@@ -26,10 +30,8 @@ class CarStore {
     // car.load();
   }
 
-  create(car: Car) {
-    Backend.createCar(car).then(() => {
-      this.list.push(car);
-    });
+  static create(car: CarView) {
+    Backend.createCar(car);
   }
 
   //   load() {

@@ -1,9 +1,9 @@
-import Name from "./name";
-
-class Engine {
+type Engine = {
     id: number;
-    fuel: Name; 
-    compress: Name;
+    fuel: string; 
+    idfuel: number; 
+    compress: string;
+    idcompress: number;
     volume: number;
     perfomance: number;
 }

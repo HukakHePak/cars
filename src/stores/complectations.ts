@@ -12,6 +12,7 @@ class ComplectationStore {
 
   constructor() {
     makeAutoObservable(this);
+    this.loadNames();
   }
 
   loadNames() {
@@ -27,7 +28,7 @@ class ComplectationStore {
     });
   }
 
-  asOptions() {
+  get asOptions() {
     return this.list.map((item: Complectation) => ({
       id: item.id,
       name: item.name.name,

@@ -31,6 +31,7 @@ a:hover {
 }
 
 input.rs-input,
+.rs-input-group,
 div.rs-picker-toggle.rs-btn.rs-btn-default, 
 div.rs-picker-toggle-active.rs-btn.rs-btn-default,
 .rs-picker-menu div.rs-picker-search-bar input.rs-picker-search-bar-input {
@@ -59,7 +60,9 @@ div.rs-picker-select-menu {
 
 
 
-div.rs-picker-toggle-active.rs-btn.rs-btn-default {
+div.rs-picker-toggle-active.rs-btn.rs-btn-default,
+div.rs-input-group:focus-within, 
+div.rs-input-group:not(.rs-input-group-disabled).rs-input-group-focus {
   @include red-input;
 }
 
