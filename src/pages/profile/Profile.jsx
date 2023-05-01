@@ -18,11 +18,8 @@ function Profile() {
     });
   };
 
-  const handleFormValueChange = (newFormValue) => {
-    setFormValue({
-      ...formValue,
-      ...newFormValue,
-    });
+  const handleFormValueChange = (v) => {
+    setFormValue(v);
   };
 
   return (

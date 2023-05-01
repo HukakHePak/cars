@@ -83,8 +83,10 @@ export class Car {
       id: view.id,
       engine: <Engine>{
         id: view.idengine,
-        fuel: <Name>{ id: view.idfuel, name: view.fuel },
-        compress: <Name>{ id: view.idcompress, name: view.compress },
+        fuel: view.fuel,
+        idfuel: view.idfuel,
+        compress: view.compress,
+        idcompress: view.idcompress,
         perfomance: view.perfomance,
         volume: view.volume,
       },

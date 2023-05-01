@@ -4,6 +4,7 @@ import CarStore from "./cars";
 import ComplectationStore from "./complectations";
 import CompressStore from "./compress";
 import DriveStore from "./drives";
+import EngineStore from "./engines";
 import FuelStore from "./fuels";
 import KppStore from "./kpps";
 import ModelStore from "./models";
@@ -24,6 +25,8 @@ export default class RootStoreModel {
   complectations = new ComplectationStore();
 
   drives = new DriveStore();
+
+  engines = new EngineStore();
 
   fuels = new FuelStore();
 

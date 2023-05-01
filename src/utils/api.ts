@@ -17,4 +17,7 @@ export const pipi = {
   execute(name: string, args: unknown[]): Promise<unknown> {
     return api.post(`execute/${name}`, { json: args }).json();
   },
+  public(name: string, args: unknown[]): Promise<unknown> {
+    return api.post(`public/${name}`, { json: args }).json();
+  },
 };
