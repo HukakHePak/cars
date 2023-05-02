@@ -3,11 +3,12 @@ import { observer } from "mobx-react-lite";
 import React from "react";
 import { FlexboxGrid } from "rsuite";
 import OptionCard from "./OptionCard";
+import style from "./style";
 
 function Options() {
   const { options } = useStore();
   return (
-    <FlexboxGrid justify="center">
+    <FlexboxGrid justify="center" className={style.cars}>
       {/* {can(<Create />, [roles.manager, roles.admin])} */}
       {options.list?.map((option) => (
         <OptionCard key={option.id} option={option} />

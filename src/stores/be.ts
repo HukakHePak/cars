@@ -1,4 +1,3 @@
-import { makeObservable } from "mobx";
 import { pipi } from "utils/api";
 import { Car, CarFilter } from "./models/car";
 import Engine from "./models/engine";
@@ -12,10 +11,6 @@ import ComplectationView from "./view/complectation";
 import { OptionsFilter } from "./options";
 
 export class Backend {
-  constructor() {
-    makeObservable(this);
-  }
-
   static cancelPayment(id: number): void {
     pipi.execute("cancel_payment", [id]);
   }

@@ -2,6 +2,7 @@ import { observer } from "mobx-react-lite";
 import React from "react";
 import { FlexboxGrid } from "rsuite";
 import Option from "stores/models/option";
+import style from "./style.scss";
 
 type Props = {
   option: Option;
@@ -20,14 +21,15 @@ function OptionCard(props: Props) {
   console.log(option);
 
   return (
-    <FlexboxGrid.Item onClick={editOption}>
-      <div>
+    <FlexboxGrid.Item className={style.card} onClick={editOption}>
+      <div className={style.header}>
         {option.name} {option.type.name} {option.amount}{" "}
       </div>
       <FlexboxGrid justify="space-between">
         <img src={option.photo} alt={option.name} />
-        <ul>
+        <ul className={style.options}>
           <li> {option.price} </li>
+          <li> {option.description} </li>
         </ul>
       </FlexboxGrid>
     </FlexboxGrid.Item>

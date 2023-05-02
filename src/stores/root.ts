@@ -1,4 +1,5 @@
 import AuthStore from "./auth";
+import { Backend } from "./be";
 import BrandStore from "./brands";
 import CarStore from "./cars";
 import ComplectationStore from "./complectations";
@@ -11,6 +12,8 @@ import OptionsStore from "./options";
 import UIStore from "./ui/UIStore";
 
 export default class RootStoreModel {
+  be = Backend;
+
   ui = new UIStore();
 
   auth = new AuthStore();

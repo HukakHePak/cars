@@ -13,6 +13,10 @@ UIkit.use(Icons);
 
 const container = document.getElementById("root");
 const root = createRoot(container);
+
+// @ts-ignore
+window.store = RootStore;
+
 root.render(
   <StoreProvider store={RootStore}>
     <RouterProvider router={Router} />
