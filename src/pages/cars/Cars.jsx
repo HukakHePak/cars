@@ -1,7 +1,7 @@
 import { can } from "components/Can/Can";
 import useStore from "hooks/useStore";
 import { observer } from "mobx-react-lite";
-import React from "react";
+import React, { useEffect } from "react";
 import { FlexboxGrid } from "rsuite";
 import { UserType } from "stores/models/user";
 import CarD from "./CarD";
@@ -11,7 +11,15 @@ import style from "./style";
 const { manager, admin } = UserType;
 
 function Cars() {
-  const { cars } = useStore();
+  const { cars, auth } = useStore();
+
+  useEffect(() => {
+    if (auth.isLogged) {
+      cars.load();
+    } else {
+      cars.loadPublic();
+    }
+  }, [auth.isLogged]);
 
   return (
     <FlexboxGrid

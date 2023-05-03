@@ -11,3 +11,11 @@
 .wrap {
   gap: 20px;
 }
+
+.form {
+  width: fit-content;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

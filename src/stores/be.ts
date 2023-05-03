@@ -23,15 +23,23 @@ export class Backend {
     pipi.execute("create_brand", [name]);
   }
 
-  static createCar(car: Car): Promise<unknown> {
-    const { complectation, engine, kpp, drive, vin, price, color, prodDate } =
-      car;
+  static createCar(car: CarView): Promise<unknown> {
+    const {
+      idcomplectation,
+      idengine,
+      idkpp,
+      iddrive,
+      vin,
+      price,
+      color,
+      prod_date: prodDate,
+    } = car;
 
     return pipi.execute("create_car", [
-      complectation.id,
-      engine.id,
-      kpp.id,
-      drive.id,
+      idcomplectation,
+      idengine,
+      idkpp,
+      iddrive,
       vin,
       price,
       color,
@@ -150,6 +158,31 @@ export class Backend {
         kpp,
         drive,
         complectation,
+      ])
+      .then((list: CarView[]) =>
+        list.map((item: CarView) => Car.fromView(item))
+      );
+  }
+
+  static async getPublicCars(): Promise<Car[]> {
+    return pipi
+      .public("get_public_cars", [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+        ],
       ])
       .then((list: CarView[]) =>
         list.map((item: CarView) => Car.fromView(item))
