@@ -16,7 +16,7 @@ function Create() {
     engines.load()
     kpps.load()
     drives.load()
-  })
+  }, [])
 
   const [form, setForm] = useState({})
 

@@ -24,6 +24,7 @@ module.exports = {
       jsx: true,
     },
     tsconfigRootDir: __dirname,
+    project: "./tsconfig.json",
   },
   plugins: ["react", "@typescript-eslint", "mobx", "css-modules", "prettier"],
   settings: {
@@ -49,5 +50,6 @@ module.exports = {
     "import/no-extraneous-dependencies": "off",
     "import/prefer-default-export": "off",
     "no-console": "warn",
+    "react-hooks/exhaustive-deps": "warn",
   },
 };

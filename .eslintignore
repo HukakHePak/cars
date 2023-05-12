@@ -4,3 +4,5 @@ src/assets
 *.css
 *.scss
 *.map
+.eslintrc.js
+webpack.config.js

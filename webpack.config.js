@@ -104,6 +104,7 @@ module.exports = (env) => ({
     new ESLintPlugin({
       fix: true,
       extensions: ["js", "jsx", "ts", "tsx", "css", "scss"],
+      emitWarning: false,
     }),
   ],
 });
