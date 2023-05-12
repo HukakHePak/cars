@@ -60,7 +60,14 @@ export class Backend {
   // static createEngine(engine: Engine): void {}
 
   static async createOption(option: OptionInfo): Promise<unknown> {
-    return pipi.execute("create_option", [option.name]);
+    return pipi.execute("create_option", [
+      option.name,
+      option.type,
+      option.code,
+      option.price,
+      option.description,
+      option.photo,
+    ]);
   }
 
   static createOptionArrive(id: number, amount: number): Promise<unknown> {
