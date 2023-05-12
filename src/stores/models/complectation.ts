@@ -1,44 +1,44 @@
-import { makeAutoObservable } from "mobx";
-import { Backend } from "stores/be";
-import ComplectationView from "stores/view/complectation";
-import Model from "./model";
-import Name from "./name";
-import Option from "./option";
+import { makeAutoObservable } from "mobx"
+import { Backend } from "stores/be"
+import ComplectationView from "stores/view/complectation"
+import Model from "./model"
+import Name from "./name"
+import Option from "./option"
 
 class Complectation {
-  id: number;
+  id: number
 
-  name: Name;
+  name: Name
 
-  options: Option[] = []; // make options store
+  options: Option[] = [] // make options store
 
-  model: Model = <Model>{};
+  model: Model = <Model>{}
 
-  price: number;
+  price: number
 
   constructor(complectation: Complectation) {
-    makeAutoObservable(this);
+    makeAutoObservable(this)
 
     if (!complectation) {
-      return;
+      return
     }
 
-    const { id, name, model, price, options } = complectation;
+    const { id, name, model, price, options } = complectation
 
-    this.id = id;
-    this.name = name;
-    this.options = options;
-    this.model = model;
-    this.price = price;
+    this.id = id
+    this.name = name
+    this.options = options
+    this.model = model
+    this.price = price
   }
 
   load() {
-    Backend.getCarComplectOptions(this.id); // TODO: взять опции комплектации
-    Backend.getModelsByBrand(this.model.id);
+    Backend.getCarComplectOptions(this.id) // TODO: взять опции комплектации
+    Backend.getModelsByBrand(this.model.id)
   }
 
   delete(option: Option) {
-    this.options.filter((opt: Option) => option.id !== opt.id);
+    this.options.filter((opt: Option) => option.id !== opt.id)
   }
 
   static fromView(view: ComplectationView) {
@@ -47,9 +47,9 @@ class Complectation {
       name: <Name>{ id: view.idtype, name: view.type_name },
       options: [],
       model: <Model>{ id: view.idmodel },
-      price: view.price,
-    });
+      price: view.price
+    })
   }
 }
 
-export default Complectation;
+export default Complectation

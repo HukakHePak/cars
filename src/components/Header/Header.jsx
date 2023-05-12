@@ -1,10 +1,10 @@
-import Logo from "components/Logo/Logo";
-import React from "react";
-import { Link } from "react-router-dom";
-import { Button, Header as Wrap } from "rsuite";
-import path from "utils/path";
+import Logo from "components/Logo/Logo"
+import React from "react"
+import { Link } from "react-router-dom"
+import { Button, Header as Wrap } from "rsuite"
+import path from "utils/path"
 
-import style from "./style";
+import style from "./style"
 
 function Header() {
   return (
@@ -19,7 +19,7 @@ function Header() {
         </Button>
       </div>
     </Wrap>
-  );
+  )
 }
 
-export default Header;
+export default Header

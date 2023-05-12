@@ -1,37 +1,37 @@
-import { makeAutoObservable } from "mobx";
-import { Backend } from "stores/be";
-import OptionView from "stores/view/option";
-import Name from "./name";
+import { makeAutoObservable } from "mobx"
+import { Backend } from "stores/be"
+import OptionView from "stores/view/option"
+import Name from "./name"
 
 class Option {
-  id: number;
+  id: number
 
-  type: Name;
+  type: Name
 
-  name: string;
+  name: string
 
-  description: string;
+  description: string
 
-  photo: string;
+  photo: string
 
-  price: number;
+  price: number
 
-  count: number;
+  count: number
 
   constructor(option: Option | null) {
-    makeAutoObservable(this);
+    makeAutoObservable(this)
 
-    if (!option) return;
+    if (!option) return
 
-    const { id, type, name, description, photo, price, count } = option;
+    const { id, type, name, description, photo, price, count } = option
 
-    this.id = id;
-    this.type = type;
-    this.name = name;
-    this.description = description;
-    this.photo = photo;
-    this.price = price;
-    this.count = count;
+    this.id = id
+    this.type = type
+    this.name = name
+    this.description = description
+    this.photo = photo
+    this.price = price
+    this.count = count
   }
 
   static fromView(view: OptionView) {
@@ -42,15 +42,15 @@ class Option {
       description: view.description,
       photo: view.photo,
       price: view.price,
-      count: view.count,
-    });
+      count: view.count
+    })
   }
 
   arrive(amount: number) {
     Backend.createOptionArrive(this.id, amount).then(() => {
-      this.count += amount;
-    });
+      this.count += amount
+    })
   }
 }
 
-export default Option;
+export default Option

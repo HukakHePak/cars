@@ -1,27 +1,25 @@
-import { makeAutoObservable } from "mobx";
-import { Backend } from "./be";
-import Engine from "./models/engine";
+import { makeAutoObservable } from "mobx"
+import { Backend } from "./be"
+import Engine from "./models/engine"
 
 class EngineStore {
-  list: Engine[] = [];
+  list: Engine[] = []
 
   constructor() {
-    makeAutoObservable(this);
+    makeAutoObservable(this)
   }
 
   load() {
     Backend.getEnginesByFilter().then((list: Engine[]) => {
-      this.list = list;
-    });
+      this.list = list
+    })
   }
 
   get asOptions() {
     return this.list.map((item: Engine) => ({
       id: item.id,
-      name: `${item.volume / 1000} л, ${item.perfomance} л.с., ${item.fuel}, ${
-        item.compress
-      }`,
-    }));
+      name: `${item.volume / 1000} л, ${item.perfomance} л.с., ${item.fuel}, ${item.compress}`
+    }))
   }
 
   // create(engine: Engine) {}
@@ -29,4 +27,4 @@ class EngineStore {
   // delete(engine: Engine) {}
 }
 
-export default EngineStore;
+export default EngineStore

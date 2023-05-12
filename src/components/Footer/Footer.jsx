@@ -1,7 +1,7 @@
-import React from "react";
-import { Footer as Wrap } from "rsuite";
+import React from "react"
+import { Footer as Wrap } from "rsuite"
 
-import style from "./style";
+import style from "./style"
 
 function Footer() {
   return (
@@ -12,7 +12,7 @@ function Footer() {
       </div>
       <span> © Copyright, CarSetup Inc. 2023</span>
     </Wrap>
-  );
+  )
 }
 
-export default Footer;
+export default Footer

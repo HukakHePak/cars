@@ -1,31 +1,31 @@
-import { makeAutoObservable } from "mobx";
-import { Backend } from "./be";
-import Name from "./models/name";
+import { makeAutoObservable } from "mobx"
+import { Backend } from "./be"
+import Name from "./models/name"
 
 class BrandStore {
-  list: Name[] = [];
+  list: Name[] = []
 
-  selected: Name;
+  selected: Name
 
   constructor() {
-    makeAutoObservable(this);
-    this.load();
+    makeAutoObservable(this)
+    this.load()
   }
 
   load() {
     Backend.getBrands().then((list: Name[]) => {
-      this.list = list;
-      this.clear();
-    });
+      this.list = list
+      this.clear()
+    })
   }
 
   select(brand: Name) {
-    this.selected = brand;
+    this.selected = brand
   }
 
   clear() {
-    this.selected = null;
+    this.selected = null
   }
 }
 
-export default BrandStore;
+export default BrandStore

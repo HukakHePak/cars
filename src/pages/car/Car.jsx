@@ -1,6 +1,6 @@
-import React from "react";
-import { Container } from "rsuite";
-import styles from "./style";
+import React from "react"
+import { Container } from "rsuite"
+import styles from "./style"
 
 function Car() {
   return (
@@ -20,7 +20,7 @@ function Car() {
         </div>
       </div>
     </Container>
-  );
+  )
 }
 
-export default Car;
+export default Car

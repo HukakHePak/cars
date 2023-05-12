@@ -1,5 +1,5 @@
-import { RootStoreContext } from "contexts/RootStoreContext";
-import { useContext } from "react";
-import RootStoreModel from "stores/root";
+import { RootStoreContext } from "contexts/RootStoreContext"
+import { useContext } from "react"
+import RootStoreModel from "stores/root"
 
-export default () => useContext(RootStoreContext) as RootStoreModel;
+export default () => useContext(RootStoreContext) as RootStoreModel

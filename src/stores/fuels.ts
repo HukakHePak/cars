@@ -1,14 +1,20 @@
-import { Backend } from "./be";
-import Type from "./models/name";
+import { makeObservable, observable } from "mobx"
+import { Backend } from "./be"
+import Type from "./models/name"
 
 class FuelStore {
-  list: Type[];
+  constructor() {
+    makeObservable(this)
+  }
+
+  @observable
+  list: Type[]
 
   load() {
     Backend.getFuelTypes().then((list: Type[]) => {
-      this.list = list;
-    });
+      this.list = list
+    })
   }
 }
 
-export default FuelStore;
+export default FuelStore
