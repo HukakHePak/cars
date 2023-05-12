@@ -9,7 +9,7 @@ import style from "./style";
 function Landing() {
   return (
     <div className={clsx("red-scroll", style.containLand)}>
-      <Container className="uk-height-1-1">
+      <Container className={style.contLand}>
         <Header />
         <Content className={style.wrapLand}>
           <Outlet />

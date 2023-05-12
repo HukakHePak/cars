@@ -6,7 +6,7 @@ import style from "./style";
 function Footer() {
   return (
     <Wrap className={style.footer}>
-      <div className="uk-flex uk-flex-column">
+      <div className={style.contacts}>
         <a href="mailto:nikak_ne_rak@mail.ru">nikak_ne_rak@mail.ru</a>
         <a href="https://github.com/HukakHePak">github.com/HukakHePak</a>
       </div>

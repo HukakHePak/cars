@@ -40,7 +40,10 @@ function SelectColor(props) {
             onSelect={undefined}
           />
           <InputGroup.Addon
-            style={{ backgroundColor: color.hex, width: "50%" }}
+            style={{
+              backgroundColor: color.hex,
+              width: "50%",
+            }}
           />
         </InputGroup>
       </Whisper>

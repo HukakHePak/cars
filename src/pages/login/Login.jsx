@@ -9,7 +9,7 @@ function Login() {
     <div style={{ margin: "auto" }}>
       <Background
         url={Img}
-        className="uk-background-center-right"
+        className={style.background}
         overlayColor="rgba(255, 255, 255, 0.386)"
         blur="2"
       />
