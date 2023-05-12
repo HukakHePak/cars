@@ -26,7 +26,7 @@ module.exports = {
     tsconfigRootDir: __dirname,
     project: "./tsconfig.json",
   },
-  plugins: ["react", "@typescript-eslint", "mobx", "css-modules", "prettier"],
+  plugins: ["react", "@typescript-eslint", "mobx", "css-modules"],
   settings: {
     "react": {
       "version": "detect", 

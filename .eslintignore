@@ -6,3 +6,4 @@ src/assets
 *.map
 .eslintrc.js
 webpack.config.js
+package.json
