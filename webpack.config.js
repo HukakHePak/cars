@@ -1,110 +1,125 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const FileManagerPlugin = require("filemanager-webpack-plugin");
-const ESLintPlugin = require("eslint-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const webpack = require("webpack");
+const path = require("path")
+const HtmlWebpackPlugin = require("html-webpack-plugin")
+const FileManagerPlugin = require("filemanager-webpack-plugin")
+const ESLintPlugin = require("eslint-webpack-plugin")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+const webpack = require("webpack")
 
-module.exports = (env) => ({
-  entry: "./src/index.tsx",
-  devtool: 'source-map',
-  devServer: {
-    watchFiles: path.join(__dirname, "src"),
-    historyApiFallback: true,
-    port: 9090,
-    proxy: {
-      "/api": {
-        target: "http://localhost:9090",
-        withCredentials: true,
-      },
+const extensions = [".js", ".jsx", ".ts", ".tsx", ".css", ".scss"]
+
+module.exports = (env, argv) => {
+  const config = {
+    entry: "./src/index.tsx",
+    output: {
+      path: path.join(__dirname, "/build"),
+      filename: "[contenthash].js",
+      publicPath: "/"
     },
-  },
-  output: {
-    path: path.join(__dirname, "/build"),
-    filename: "index.[contenthash].js",
-    publicPath: "/",
-  },
-  resolve: {
-    alias: {
-      assets: path.resolve(__dirname, "src/assets/"),
-      components: path.resolve(__dirname, "src/components/"),
-      contexts: path.resolve(__dirname, "src/contexts/"),
-      hooks: path.resolve(__dirname, "src/hooks/"),
-      models: path.resolve(__dirname, "src/models/"),
-      pages: path.resolve(__dirname, "src/pages/"),
-      scss: path.resolve(__dirname, "src/scss/"),
-      stores: path.resolve(__dirname, "src/stores/"),
-      utils: path.resolve(__dirname, "src/utils"),
+    resolve: {
+      alias: ["assets", "components", "contexts", "hooks", "models", "pages", "scss", "stores", "utils"].reduce(
+        (alias, item) => {
+          alias[item] = path.resolve(__dirname, `src/${item}/`);
+          return alias;
+        }, {})
+      ,
+      extensions
     },
-    extensions: [
-      ".js",
-      ".jsx",
-      ".ts",
-      ".tsx",
-      ".json",
-      ".wasm",
-      ".scss",
-      ".css",
-    ],
-  },
-  module: {
-    rules: [
-      {
-        test: [/\.ts$/, /\.tsx$/, /\.js$/, /\.jsx$/],
-        exclude: /node_modules/,
-        use: {
-          loader: "ts-loader",
+    module: {
+      rules: [
+        {
+          test: [/\.ts$/, /\.tsx$/, /\.js$/, /\.jsx$/],
+          exclude: /node_modules/,
+          use: {
+            loader: "ts-loader"
+          }
         },
-      },
-      {
-        test: /\.scss$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: "css-loader",
-            options: { modules: true },
+        {
+          test: /\.scss$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            {
+              loader: "css-loader",
+              options: { modules: true }
+            },
+            "sass-loader"
+          ]
+        },
+        {
+          test: /\.css$/,
+          use: [MiniCssExtractPlugin.loader, "css-loader"]
+        },
+        {
+          test: /\.(png|svg|jpg|jpeg|gif)$/i,
+          type: "asset/resource"
+        }
+      ]
+    },
+
+    plugins: [
+      new HtmlWebpackPlugin({
+        title: "Cars",
+        template: "./src/index.html",
+        favicon: "./src/assets/img/logos/ico.png",
+      }),
+      new webpack.DefinePlugin({
+        process: {
+          env: {
+            mode: JSON.stringify(argv.mode),
+            api: JSON.stringify(env.api),
+            ws: JSON.stringify(env.ws)
+          }
+        }
+      }),
+      new MiniCssExtractPlugin({
+        filename: "[contenthash].css",
+      }), 
+    ]
+  }
+
+  if(argv.mode === "production") {
+    config.optimization = {
+      minimize: true,
+      minimizer: [
+        `...`,
+        new ImageMinimizerPlugin({
+          minimizer: {
+            implementation: ImageMinimizerPlugin.squooshMinify,
           },
-          "sass-loader",
-        ],
-      },
-      {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
-      },
-      {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: "asset/resource",
-      },
-    ],
-  },
+        }),
+      ],
+    }
+    config.plugins.push(
+      new FileManagerPlugin({
+        events: {
+          onStart: {
+            delete: ["build"]
+          }
+        }
+      }),
+    )
+  }
 
-  plugins: [
-    new FileManagerPlugin({
-      events: {
-        onStart: {
-          delete: ["build"],
-        },
-      },
-    }),
-    new HtmlWebpackPlugin({
-      template: "./src/index.html",
-    }),
-    new webpack.DefinePlugin({
-      "process": {
-        env: {
-          mode: JSON.stringify(env.NODE_ENV),
-          basename: JSON.stringify(env.basename),
-          home: JSON.stringify(env.home),
-          api: JSON.stringify(env.api),
-          ws: JSON.stringify(env.ws),
+  if (argv.mode === "development") {
+    config.devtool = "source-map"
+    config.devServer = {
+      watchFiles: path.join(__dirname, "src"),
+      historyApiFallback: true,
+      port: 9090,
+      proxy: {
+        "/api": {
+          target: "http://localhost:9090",
+          withCredentials: true
         }
       }
-    }),
-    new MiniCssExtractPlugin(),
-    new ESLintPlugin({
-      fix: true,
-      extensions: ["js", "jsx", "ts", "tsx", "css", "scss"],
-      emitWarning: false,
-    }),
-  ],
-});
+    }
+    config.plugins.push(
+      new ESLintPlugin({
+        fix: true,
+        emitWarning: false
+      })
+    )
+  }
+
+  return config
+}

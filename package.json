@@ -5,7 +5,7 @@
   "scripts": {
     "start": "webpack-dev-server --hot --mode development --env api=https://note-lawn.ru",
     "debug": "webpack-dev-server --hot --mode development --env api=http://localhost:5000",
-    "build": "webpack --mode production --env basename=/cars api=https://note-lawn.ru",
+    "build": "webpack --mode production --env api=https://note-lawn.ru",
     "format": "npx eslint src --fix"
   },
   "keywords": [
@@ -17,6 +17,7 @@
   "author": "HukakHePak",
   "license": "ISC",
   "devDependencies": {
+    "@squoosh/lib": "^0.5.3",
     "@types/react-dom": "^18.0.11",
     "@typescript-eslint/eslint-plugin": "^5.47.1",
     "@typescript-eslint/parser": "^5.47.1",
@@ -36,6 +37,7 @@
     "eslint-webpack-plugin": "^3.2.0",
     "filemanager-webpack-plugin": "^8.0.0",
     "html-webpack-plugin": "^5.5.0",
+    "image-minimizer-webpack-plugin": "^3.8.2",
     "mini-css-extract-plugin": "^2.7.2",
     "prettier": "^2.8.1",
     "sass": "^1.57.1",
