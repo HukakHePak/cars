@@ -11,8 +11,8 @@ const path = {
   profile: "profile",
   statistic: "statistic",
   params: {
-    id: "/:id",
-  },
-};
+    id: "/:id"
+  }
+}
 
-export default path;
+export default path

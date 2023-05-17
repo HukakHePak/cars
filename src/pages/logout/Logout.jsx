@@ -1,17 +1,17 @@
-import React, { useEffect } from "react";
-import { observer } from "mobx-react-lite";
-import useStore from "hooks/useStore";
-import { Navigate } from "react-router-dom";
-import path from "utils/path";
+import React, { useEffect } from "react"
+import { observer } from "mobx-react-lite"
+import useStore from "hooks/useStore"
+import { Navigate } from "react-router-dom"
+import path from "utils/path"
 
 function Logout() {
-  const { auth } = useStore();
+  const { auth } = useStore()
 
   useEffect(() => {
-    auth.logout();
-  }, []);
+    auth.logout()
+  })
 
-  return <Navigate to={`/${path.login}`} />;
+  return <Navigate to={`/${path.login}`} />
 }
 
-export default observer(Logout);
+export default observer(Logout)

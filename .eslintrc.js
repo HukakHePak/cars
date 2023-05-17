@@ -6,31 +6,15 @@ module.exports = {
   },
   extends: [
     "airbnb",
-    "prettier",
+    "airbnb/hooks",
+    "airbnb-typescript",
+    "eslint:recommended",
     "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:mobx/recommended",
     "plugin:css-modules/recommended",
     "plugin:import/typescript",
-    "plugin:@typescript-eslint/recommended"
-  ],
-  overrides: [
-    {
-      "files": ["**/*.ts", "**/*.tsx"],
-      "extends": [
-        "airbnb-typescript",
-        "plugin:@typescript-eslint/eslint-recommended",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking",
-        "plugin:import/typescript",
-        "plugin:@typescript-eslint/recommended",
-      ],
-      "rules": {
-        "@typescript-eslint/quotes": ["error", "double"],
-        "@typescript-eslint/comma-dangle": "off",
-        "@typescript-eslint/indent": "off",
-        "@typescript-eslint/no-floating-promises": "off",
-        "@typescript-eslint/ban-ts-comment": "off"
-      }
-    }
+    "plugin:prettier/recommended"
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -39,51 +23,33 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
-    project: "./tsconfig.json"
+    tsconfigRootDir: __dirname,
+    project: "./tsconfig.json",
   },
-  plugins: ["react", "mobx", "css-modules", "@typescript-eslint", "prettier"],
+  plugins: ["react", "@typescript-eslint", "mobx", "css-modules"],
   settings: {
+    "react": {
+      "version": "detect", 
+    },
     "import/resolver": {
       node: {
         paths: ["src"],
-        "extensions": [".js", ".jsx", ".ts", ".tsx", ".scss", ".json"]
+        "extensions": [".js", ".jsx", ".ts", ".tsx", ".scss"]
       },
     },
+
   },
   rules: {
-    "@typescript-eslint/no-empty-function": "off",
-    "mobx/missing-observer": "off",
-    "import/no-cycle": "off",
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "warn",
     "react/prop-types": "off",
-    "react/jsx-props-no-spreading": "off",
-    "react/display-name": "off",
-    "no-console": "off",
-    "css-modules/no-undef-class": "off",
-    "css-modules/no-unused-class": "off",
-    "jsx-a11y/click-events-have-key-events": "off",
-    "jsx-a11y/no-static-element-interactions": "off",
-    "import/no-cycle": "off",
-    "prettier/prettier": [
-      "error",
-      {
-        tabWidth: 2,
-        eol: "crlf"
-      },
-    ],
-    quotes: ["error", "double"],
-    indent: ["error", 2, { "SwitchCase": 2 }],
-    "import/extensions": [
-      "error",
-      "ignorePackages",
-      {
-        "js": "never",
-        "jsx": "never",
-        "ts": "never",
-        "tsx": "never",
-        "scss": "never",
-        "json": "never",
-        "global.scss": "never"
-    }],
-    "import/prefer-default-export": "off",
+    "@typescript-eslint/no-empty-function": "warn",
+    "mobx/missing-observer": "off",
+    "import/no-cycle": "warn",
+    "import/extensions": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/prefer-default-export": "warn",
+    "no-console": "warn",
+    "react-hooks/exhaustive-deps": "warn",
   },
 };

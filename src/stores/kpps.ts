@@ -1,14 +1,14 @@
-import { Backend } from "./be";
-import Type from "./models/name";
+import { Backend } from "./be"
+import Type from "./models/name"
 
 class KppStore {
-  list: Type[] = [];
+  list: Type[] = []
 
   load() {
     Backend.getKppTypes().then((list: Type[]) => {
-      this.list = list;
-    });
+      this.list = list
+    })
   }
 }
 
-export default KppStore;
+export default KppStore

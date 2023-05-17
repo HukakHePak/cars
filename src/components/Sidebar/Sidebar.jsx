@@ -1,15 +1,15 @@
-import Logo from "components/Logo/Logo";
-import useStore from "hooks/useStore";
-import { observer } from "mobx-react-lite";
-import React from "react";
-import { Nav } from "rsuite";
-import { isAccessed } from "utils/helpers";
-import routes from "utils/routes";
-import Side from "./Side";
-import style from "./style";
+import Logo from "components/Logo/Logo"
+import useStore from "hooks/useStore"
+import { observer } from "mobx-react-lite"
+import React from "react"
+import { Nav } from "rsuite"
+import { isAccessed } from "utils/helpers"
+import routes from "utils/routes"
+import Side from "./Side"
+import style from "./style"
 
 function Sidebar() {
-  const { auth } = useStore();
+  const { auth } = useStore()
 
   return (
     <aside className={style.sidebar}>
@@ -27,7 +27,7 @@ function Sidebar() {
         )}
       </Nav>
     </aside>
-  );
+  )
 }
 
-export default observer(Sidebar);
+export default observer(Sidebar)
