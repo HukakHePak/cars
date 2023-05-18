@@ -28,10 +28,10 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       
       - uses: actions/checkout@master
-      - name: Build Image
-        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}:${{secrets.IMG_NAME}} .
-      - name: Push image to docker.io
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}:${{secrets.IMG_NAME}}
+      - name: Build and push compose
+        run: | 
+          docker-compose up -d --build
+          docker-compose push
         
       - uses: appleboy/ssh-action@master
         with:
