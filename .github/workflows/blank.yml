@@ -29,10 +29,11 @@ jobs:
       
       - uses: actions/checkout@master
       
-      - name: Build and push Compose
-        run: |
-          docker-compose up -d --build
-          docker-сompose push        
+      - name: Build compose
+        run: docker-compose up -d --build
+        
+      - name: Push compose
+        run: docker-сompose push        
         
       - uses: appleboy/ssh-action@master
         with:
