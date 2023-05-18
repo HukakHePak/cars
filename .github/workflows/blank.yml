@@ -33,7 +33,7 @@ jobs:
         run: docker-compose up -d --build
         
       - name: Push compose
-        run: docker-сompose push        
+        run: docker сompose push        
         
       - uses: appleboy/ssh-action@master
         with:
