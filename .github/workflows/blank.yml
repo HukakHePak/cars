@@ -30,8 +30,8 @@ jobs:
       - uses: actions/checkout@master
       - name: Build and push compose
         run: | 
-          docker-compose up -d --build
-          docker-compose push
+          docker compose up -d --build
+          docker compose push
         
       - uses: appleboy/ssh-action@master
         with:
