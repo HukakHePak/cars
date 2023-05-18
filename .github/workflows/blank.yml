@@ -1,0 +1,44 @@
+name: CI
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch:
+jobs:
+  check: 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      
+      - name: Can Build
+        run: docker-compose up -d --build
+
+      - name: Built
+        run: curl http://localhost:9090
+          
+  build:
+    needs: [check]
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Login to DockerHub
+        run:  echo ${{ secrets.DOCKER_PWD }} | docker login -u ${{ secrets.DOCKER_LOGIN }} --password-stdin
+      
+      - uses: actions/checkout@master
+      - name: Build Image
+        run: docker build -t ${{secrets.IMG_NAME}} .
+      - name: Push image to docker.io
+        run: docker push ${{secrets.IMG_NAME}}
+        
+      - uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          port: ${{ secrets.SERVER_PORT }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          
+          script: |
+            docker pull $LOGIN/$NAME:cars
+            docker run -d -p 3101:80 ${{secrets.IMG_NAME}}
+      
+      
+
