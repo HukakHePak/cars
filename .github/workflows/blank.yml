@@ -39,5 +39,5 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }} 
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            docker-compose -f docker-compose.yml pull
-            docker-compose -f docker-compose.yml up -d --build
+            docker compose -f docker-compose.yml pull
+            docker compose -f docker-compose.yml up -d --build
