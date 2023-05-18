@@ -3,6 +3,5 @@ services:
   static:
     build:
       context: .
-      dockerfile: DockerFile
     ports:
-      - "3101:80"
+      - "9090:80"

@@ -4,7 +4,7 @@
   "description": "amazing and powerful app for best car showroom practises",
   "scripts": {
     "start": "webpack-dev-server --hot --mode development --env api=https://note-lawn.ru",
-    "debug": "webpack-dev-server --hot --mode development --env api=http://localhost:5000",
+    "debug": "webpack-dev-server --hot --mode development --env api=https://localhost:5000",
     "build": "webpack --mode production --env api=https://note-lawn.ru",
     "format": "npx eslint src --fix"
   },
