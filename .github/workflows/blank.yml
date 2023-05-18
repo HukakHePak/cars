@@ -1,4 +1,4 @@
-name: Deploy
+name: CI
 on:
   push:
     branches: [ "master" ]
@@ -20,12 +20,11 @@ jobs:
         run: |
           docker-compose up -d --build
           docker-compose push     
+          
       - name: Check Nginx
-        run: curl http://localhost:${{ secrets.PORT }}
-        
+        run: curl http://localhost:${{ secrets.PORT }}   
           
       - uses: appleboy/ssh-action@master
-      - name: Run server scripts  
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USERNAME }} 
