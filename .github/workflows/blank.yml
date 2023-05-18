@@ -6,19 +6,19 @@ on:
     branches: [ "master" ]
   workflow_dispatch:
 jobs:
-#   check: 
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@master
+  check: 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
       
-#       - name: Can Build
-#         run: docker-compose up -d --build
+      - name: Can Build
+        run: docker-compose up -d --build
 
-#       - name: Built
-#         run: curl http://localhost:9090
+      - name: Built
+        run: curl http://localhost:9090
           
   build:
-#     needs: [check]
+    needs: [check]
     runs-on: ubuntu-latest
     steps: 
       - name: Login to Docker Hub
@@ -28,12 +28,10 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       
       - uses: actions/checkout@master
-      
-      - name: Build compose
-        run: docker-compose up -d --build
-        
-      - name: Push compose
-        run: docker сompose push        
+      - name: Build and push Compose
+        run: |
+          docker-compose up -d --build
+          docker-compose push        
         
       - uses: appleboy/ssh-action@master
         with:
@@ -41,7 +39,5 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }} 
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            docker compose -f docker-compose.yml pull
-            docker compose -f docker-compose.yml up -d --build
-      
-
+            docker-compose -f docker-compose.yml pull
+            docker-compose -f docker-compose.yml up -d --build
