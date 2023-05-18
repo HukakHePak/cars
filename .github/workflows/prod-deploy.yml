@@ -1,24 +1,12 @@
-name: CI
+name: Deploy
 on:
   push:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
   workflow_dispatch:
-jobs:
-  check: 
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      
-      - name: Can Build
-        run: docker-compose up -d --build
-        
-      - name: Built
-        run: curl http://localhost:${{ secrets.PORT }}
-          
+jobs:     
   build:
-    needs: [check]
     runs-on: ubuntu-latest
     steps: 
       - name: Login to Docker Hub
@@ -31,8 +19,11 @@ jobs:
       - name: Build and push Compose
         run: |
           docker-compose up -d --build
-          docker-compose push        
+          docker-compose push     
+      - name: Check Nginx
+        run: curl http://localhost:${{ secrets.PORT }}
         
+      - name: Run server scripts
       - uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SERVER_HOST }}
