@@ -12,15 +12,10 @@ jobs:
       - uses: actions/checkout@master
       
       - name: Can Build
-        run: docker build -d -p ${{ secrets.PORT }}:80 --name test
+        run: docker-compose up -d --build
         
       - name: Built
         run: curl http://localhost:${{ secrets.PORT }}
-        
-      - name: Build works
-        run: |
-          docker stop test
-          docker rm test
           
   build:
     needs: [check]
