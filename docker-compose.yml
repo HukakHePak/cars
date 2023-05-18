@@ -3,6 +3,6 @@ services:
   static:
     build:
       context: .
-      image: hukakhepak/cars
     ports:
       - "9090:80"
+    image: hukakhepak/cars
