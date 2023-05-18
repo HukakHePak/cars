@@ -31,8 +31,8 @@ jobs:
       
       - name: Build and push Compose
         run: |
-          docker-compose up -d --build
-          docker-compose push        
+          docker compose up -d --build
+          docker сompose push        
         
       - uses: appleboy/ssh-action@master
         with:
@@ -40,7 +40,7 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }} 
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            docker-compose -f docker-compose.yml pull
-            docker-compose -f docker-compose.yml up -d --build
+            docker compose -f docker-compose.yml pull
+            docker compose -f docker-compose.yml up -d --build
       
 
