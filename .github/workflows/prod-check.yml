@@ -4,13 +4,30 @@ on:
     branches: [ "master", "develop" ]
   workflow_dispatch:
 jobs:     
-  check:
-    runs-on: ubuntu-latest
-    steps: 
+#   check:
+#     runs-on: ubuntu-latest
+#     steps: 
+#       - uses: actions/checkout@master
+#       - name: Build image and run container
+#         run: docker-compose up -d --build
+        
+#       - name: Check container
+#         run: curl http://localhost:${{ vars.PORT }} 
+        
+  test: 
+    runs-on: ubuntu-latest  
+    steps:
       - uses: actions/checkout@master
-      - name: Build image and run container
-        run: docker-compose up -d --build
+      
+        env:
+          FILE: docker-compose.yml
         
-      - name: Check container
-        run: curl http://localhost:${{ vars.PORT }} 
-        
+      - name: Try send file 
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ vars.SERVER_IP }} 
+          username: ${{ vars.SERVER_USER }} 
+          password: ${{ secrets.SERVER_PASSWORD }}
+          script: |
+            touch ${{ vars.CONTAINER_NAME }}.yml
+            echo "${{ env.FILE }}" > .env
