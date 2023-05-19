@@ -30,4 +30,4 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
             touch ${{ vars.CONTAINER_NAME }}.yml
-            echo "${{ env.FILE }}" > .env
+            echo "$FILE" > .env
