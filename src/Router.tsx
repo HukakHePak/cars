@@ -8,6 +8,7 @@ import routes from "utils/routes"
 import path from "utils/path"
 import Car from "pages/car/Car"
 import Create from "pages/car/Create"
+import CreateOption from "pages/options/CreateOption"
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,11 @@ const router = createBrowserRouter([
       {
         path: `${path.cars}/create`,
         element: <Create />
-      }
+      },
+      {
+        path: `${path.details}/create`,
+        element: <CreateOption />,
+      },
     ]
   },
   {

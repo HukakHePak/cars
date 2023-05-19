@@ -1,55 +1,66 @@
-import { makeAutoObservable } from "mobx"
-import { Backend } from "stores/be"
-import OptionView from "stores/view/option"
-import Name from "./name"
+import { action, makeAutoObservable, observable, runInAction } from "mobx";
+import { Backend } from "stores/be";
+import OptionsStore from "stores/options";
+import { RootStore } from "contexts/RootStoreContext";
+import Name from "./name";
+
+export type OptionInfo = {
+  id: number;
+  name: string;
+  type: number;
+  code: string;
+  photo: string | null;
+  description: string;
+  price: number;
+  amount: number | null;
+};
 
 class Option {
-  id: number
+  constructor(option: OptionInfo | Option | null) {
+    if (!option) return;
 
-  type: Name
+    const { id, type, name, description, photo, price, amount } = option;
 
-  name: string
+    this.id = id;
+    this.type = this.options.typeList.find((typeObj) => typeObj.id === type);
+    this.name = name;
+    this.description = description;
+    this.photo = photo;
+    this.price = price;
+    this.amount = amount;
 
-  description: string
-
-  photo: string
-
-  price: number
-
-  count: number
-
-  constructor(option: Option | null) {
-    makeAutoObservable(this)
-
-    if (!option) return
-
-    const { id, type, name, description, photo, price, count } = option
-
-    this.id = id
-    this.type = type
-    this.name = name
-    this.description = description
-    this.photo = photo
-    this.price = price
-    this.count = count
+    makeAutoObservable(this, {
+      amount: observable,
+      arrive: action,
+    });
   }
 
-  static fromView(view: OptionView) {
-    return new Option(<Option>{
-      id: view.id,
-      type: <Name>{ id: view.idtype, name: view.type_name },
-      name: view.name,
-      description: view.description,
-      photo: view.photo,
-      price: view.price,
-      count: view.count
-    })
-  }
+  id: number;
+
+  name: string;
+
+  type: Name;
+
+  code: string;
+
+  photo: string;
+
+  description: string;
+
+  price: number;
+
+  amount: number;
 
   arrive(amount: number) {
-    Backend.createOptionArrive(this.id, amount).then(() => {
-      this.count += amount
-    })
+    Backend.createOptionArrive(this.id, amount).then(() =>
+      runInAction(() => {
+        this.amount += amount;
+      })
+    );
+  }
+
+  get options(): OptionsStore {
+    return RootStore.options;
   }
 }
 
