@@ -8,10 +8,7 @@ import style from "./style";
 
 function CreateOption() {
   const { auth, options } = useStore();
-  const user = auth.user ?? new User();
-  const { name, patronymic, phone, email, login } = user;
 
-  const [formValue, setFormValue] = useState(user.info);
   const [error, setError] = useState();
   const handleFormSubmit = () => {
     auth.user.setUser(formValue, true).catch((err) => {
@@ -39,7 +36,7 @@ function CreateOption() {
     >
       <Form.Group controlId="name-1">
         <Form.ControlLabel>Name</Form.ControlLabel>
-        <Form.Control name="name" defaultValue={name} maxLength={45} />
+        <Form.Control name="name" maxLength={45} />
       </Form.Group>
       <Form.Group controlId="type-id-1">
         <Form.ControlLabel>Type</Form.ControlLabel>
@@ -63,7 +60,7 @@ function CreateOption() {
       </Form.Group>
       <Form.Group controlId="photo-1">
         <Form.ControlLabel>Photo</Form.ControlLabel>
-        <Form.Control name="login" defaultValue={login} maxLength={8} />
+        <Form.Control name="photo" maxLength={8} />
       </Form.Group>
       <Form.Group>
         <ButtonToolbar>
