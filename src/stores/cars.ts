@@ -4,13 +4,25 @@ import { Car } from "./models/car"
 import CarView from "./view/car"
 // import { Backend } from "./be";
 
+type CarFilter = {
+  bottomPrice?: number;
+  topPrice?: number;
+  search?: string;
+}
+
 class CarStore {
   list: Car[] = []
 
   selected: Car
 
+  filter: CarFilter = {}
+
   constructor() {
     makeAutoObservable(this)
+  }
+
+  setFilter(value: CarFilter) {
+    this.filter = value
   }
 
   load() {
@@ -34,9 +46,28 @@ class CarStore {
     Backend.createCar(car)
   }
 
-  //   load() {
-  //     // Backend.
-  //   }
+  get filteredList(): Car[] {
+    const { bottomPrice, topPrice, search } = this.filter
+    let carsList = this.list
+
+    if (bottomPrice !== undefined) {
+      carsList = carsList.filter((car) => car.price >= bottomPrice)
+    }
+
+    if (topPrice !== undefined) {
+      carsList = carsList.filter((car) => car.price <= topPrice)
+    }
+
+    if (search !== undefined) {
+      carsList = carsList.filter((car) => {
+        const searchString = (`${car.complectation.name.name} ${car.drive.name} ${car.kpp.name}`
+          + `${car.engine.fuel} ${car.engine.perfomance} ${car.engine.volume} ${car.complectation.model.name} ${car.complectation.model.brand.name}`).toLowerCase()
+        return search.split(" ").some((part) => searchString.includes(part.toLowerCase()))
+      })
+    }
+
+    return carsList
+  }
 }
 
 export default CarStore

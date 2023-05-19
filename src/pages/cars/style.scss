@@ -1,6 +1,21 @@
 @import "scss/colors";
 @import "scss/ui";
 
+.carsFilter {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 10px auto;
+
+  .searchInput {
+    min-width: 400px;
+  }
+
+  .priceInput {
+    max-width: 200px;
+  }
+}
+
 .cars {
   gap: 20px;
 }
@@ -16,7 +31,7 @@
   cursor: pointer;
   @include bordering;
   @include bordertoping;
-  
+
   &:hover {
     transform: scale(1.01);
     box-shadow: 0 0 5px 0 $gray6;
@@ -26,7 +41,7 @@
 .header {
   font-size: 30px;
   height: 40px;
-  color: $white
+  color: $white;
 }
 
 .img {
@@ -38,7 +53,3 @@
 .options {
   width: 50%;
 }
-
-// .plus {
-  
-// }
