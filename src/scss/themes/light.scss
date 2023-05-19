@@ -1,0 +1,24 @@
+@import 'scss/colors';
+
+:global(.rs-theme-light),
+:root {
+    --rs-btn-primary-bg: #{$red8};
+    --rs-btn-primary-hover-bg: #{$red5};
+    --rs-btn-primary-active-bg: #{$red5};
+
+    --rs-input-focus-border: #{$red5};
+    --rs-state-focus-shadow: 0 0 0 3px #{$red5};
+
+    --rs-bg-active: #{$red8};
+    
+    --rs-color-focus-ring: #{$red2};
+
+    --input-autofill-bg: rgb(255 237 237);
+
+    --rs-picker-value: #{$red8};
+
+    --rs-listbox-option-hover-bg: #{$red2};
+    --rs-listbox-option-hover-text: #{$red8};
+    --rs-listbox-option-selected-bg: #{$red2};
+    --rs-listbox-option-selected-text: #{$red8};
+}

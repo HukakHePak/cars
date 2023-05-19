@@ -11,7 +11,7 @@ export type OptionsFilter = {
 };
 
 class OptionsStore {
-  list: Option[] = [];
+  list: Option[] = []
 
   typeList: Name[] = [];
 
@@ -35,10 +35,8 @@ class OptionsStore {
   }
 
   delete(option: Option) {
-    Backend.deleteOption(option.id).then(() =>
-      this.list.filter((opt: Option) => opt.id !== option.id)
-    );
+    Backend.deleteOption(option.id).then(() => this.list.filter((opt: Option) => opt.id !== option.id))
   }
 }
 
-export default OptionsStore;
+export default OptionsStore

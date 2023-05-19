@@ -4,8 +4,8 @@
   "description": "amazing and powerful app for best car showroom practises",
   "scripts": {
     "start": "webpack-dev-server --hot --mode development --env api=https://note-lawn.ru",
-    "debug": "webpack-dev-server --hot --mode development --env api=http://localhost:5000",
-    "build": "webpack --mode production --env basename=/cars api=https://note-lawn.ru",
+    "debug": "webpack-dev-server --hot --mode development --env api=https://localhost:5000",
+    "build": "webpack --mode production --env api=https://note-lawn.ru",
     "format": "npx eslint src --fix"
   },
   "keywords": [
@@ -17,8 +17,8 @@
   "author": "HukakHePak",
   "license": "ISC",
   "devDependencies": {
+    "@squoosh/lib": "^0.5.3",
     "@types/react-dom": "^18.0.11",
-    "@types/uikit": "^3.14.0",
     "@typescript-eslint/eslint-plugin": "^5.47.1",
     "@typescript-eslint/parser": "^5.47.1",
     "css-loader": "^6.7.3",
@@ -32,12 +32,12 @@
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-mobx": "^0.0.9",
     "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.31.11",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-webpack-plugin": "^3.2.0",
     "filemanager-webpack-plugin": "^8.0.0",
     "html-webpack-plugin": "^5.5.0",
+    "image-minimizer-webpack-plugin": "^3.8.2",
     "mini-css-extract-plugin": "^2.7.2",
     "prettier": "^2.8.1",
     "sass": "^1.57.1",
@@ -59,7 +59,6 @@
     "react-color-palette": "^6.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.6.1",
-    "rsuite": "^5.23.3",
-    "uikit": "^3.15.19"
+    "rsuite": "^5.23.3"
   }
 }

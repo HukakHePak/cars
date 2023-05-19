@@ -1,14 +1,14 @@
-import { Backend } from "./be";
-import Type from "./models/name";
+import { Backend } from "./be"
+import Type from "./models/name"
 
 class CompressStore {
-  list: Type[];
+  list: Type[]
 
   load() {
     Backend.getCompressTypes().then((list: Type[]) => {
-      this.list = list;
-    });
+      this.list = list
+    })
   }
 }
 
-export default CompressStore;
+export default CompressStore

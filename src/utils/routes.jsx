@@ -6,20 +6,20 @@ import Logout from "pages/logout/Logout";
 import Options from "pages/options/Options";
 import path from "./path";
 
-const { director, admin, manager, stuff } = UserType;
+const { director, admin, manager, stuff } = UserType
 
 const routes = [
   {
     label: "Автомобили",
     path: path.root,
     access: [],
-    component: <Cars />,
+    component: <Cars />
   },
   {
     label: "Комплекты",
     path: path.complects,
     access: [director, admin, manager, stuff],
-    component: <Profile />,
+    component: <Profile />
   },
   {
     label: "Запчасти",
@@ -31,26 +31,26 @@ const routes = [
     label: "История",
     path: path.history,
     access: [],
-    component: <Profile />,
+    component: <Profile />
   },
   {
     label: "Управление",
     path: path.statistic,
     access: [],
-    component: <Profile />,
+    component: <Profile />
   },
   {
     label: "Профиль",
     path: path.profile,
     access: [],
-    component: <Profile />,
+    component: <Profile />
   },
   {
     label: "Выход",
     path: path.logout,
     access: [],
-    component: <Logout />,
-  },
-];
+    component: <Logout />
+  }
+]
 
-export default routes;
+export default routes

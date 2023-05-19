@@ -2,7 +2,7 @@ import { observer } from "mobx-react-lite";
 import React from "react";
 import { FlexboxGrid } from "rsuite";
 import Option from "stores/models/option";
-import style from "./style.scss";
+import style from "./style";
 
 type Props = {
   option: Option;

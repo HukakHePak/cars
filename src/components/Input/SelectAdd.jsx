@@ -1,10 +1,12 @@
-import AddButton from "components/Button/AddButton";
-import React from "react";
-import { Popover, SelectPicker, Whisper } from "rsuite";
-import style from "./style";
+import AddButton from "components/Button/AddButton"
+import React from "react"
+import { Popover, SelectPicker, Whisper } from "rsuite"
+import style from "./style"
+
+/* eslint-disable react/jsx-props-no-spreading */
 
 function SelectAdd(props) {
-  const { addForm, onAdd } = props;
+  const { addForm, onAdd } = props
   return (
     <div className={style.wrap}>
       <SelectPicker
@@ -14,20 +16,17 @@ function SelectAdd(props) {
         locale={{
           noResultsText: "Ничего не найдено",
           placeholder: "Выбрать",
-          searchPlaceholder: "Искать",
+          searchPlaceholder: "Искать"
         }}
         {...props}
       />
-      <Whisper
-        trigger="click"
-        speaker={addForm ? <Popover arrow>{addForm}</Popover> : <div />}
-      >
+      <Whisper trigger="click" speaker={addForm ? <Popover arrow>{addForm}</Popover> : <div />}>
         <div className={style.button}>
           <AddButton onClick={onAdd} />
         </div>
       </Whisper>
     </div>
-  );
+  )
 }
 
-export default SelectAdd;
+export default SelectAdd

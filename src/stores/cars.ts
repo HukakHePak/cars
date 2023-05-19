@@ -1,37 +1,37 @@
-import { makeAutoObservable } from "mobx";
-import { Backend } from "./be";
-import { Car } from "./models/car";
-import CarView from "./view/car";
+import { makeAutoObservable } from "mobx"
+import { Backend } from "./be"
+import { Car } from "./models/car"
+import CarView from "./view/car"
 // import { Backend } from "./be";
 
 class CarStore {
-  list: Car[] = [];
+  list: Car[] = []
 
-  selected: Car;
+  selected: Car
 
   constructor() {
-    makeAutoObservable(this);
+    makeAutoObservable(this)
   }
 
   load() {
     Backend.getCarsByFilter().then((list: Car[]) => {
-      this.list = list;
-    });
+      this.list = list
+    })
   }
 
   loadPublic() {
     Backend.getPublicCars().then((list: Car[]) => {
-      this.list = list;
-    });
+      this.list = list
+    })
   }
 
   select(car: Car = null) {
-    this.selected = car;
+    this.selected = car
     // car.load();
   }
 
   static create(car: CarView) {
-    Backend.createCar(car);
+    Backend.createCar(car)
   }
 
   //   load() {
@@ -39,4 +39,4 @@ class CarStore {
   //   }
 }
 
-export default CarStore;
+export default CarStore

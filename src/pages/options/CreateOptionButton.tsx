@@ -4,7 +4,7 @@ import React from "react";
 import { FlexboxGrid } from "rsuite";
 import path from "utils/path";
 import { useNavigate } from "react-router-dom";
-import style from "./style.scss";
+import style from "./style";
 
 function CreateOptionButton() {
   const nav = useNavigate();
