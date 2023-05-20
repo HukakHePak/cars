@@ -1,14 +1,10 @@
 FROM node:16-slim AS build
-COPY . .
+WORKDIR /app
+COPY package*.json ./
 RUN npm i
+COPY . .
 RUN npm run build
 
-FROM alpine as server
-RUN apk add wget
-RUN wget https://github.com/nemasu/asmttpd/releases/download/0.4.5/asmttpd
-RUN chmod 755 ./asmttpd
- 
-FROM scratch
-COPY --from=server /asmttpd .
-COPY --from=build /build /build
-CMD ["/asmttpd", "./build", "80"]
+FROM nginx:alpine-slim
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /app/build /app
