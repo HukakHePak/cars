@@ -1,0 +1,43 @@
+name: Deploy
+on:
+  push:
+    branches: [ "master" ]
+  workflow_dispatch:
+jobs:     
+  build:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ vars.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+      
+      - uses: actions/checkout@v3
+      - name: Build image and run container
+        run: docker-compose up -d --build
+        
+      - name: Check container
+        run: curl http://localhost:${{ vars.PORT }} 
+        
+      - name: Push image
+        run: docker-compose push
+          
+  deploy:
+    needs: [build]
+    runs-on: ubuntu-latest  
+    steps:
+      - name: Ssh known-host
+        uses: kielabokkie/ssh-key-and-known-hosts-action@v1
+        with:
+          ssh-private-key: ${{ secrets.SERVER_KEY }}
+          ssh-host: ${{ vars.SERVER_IP }}
+          
+      - uses: actions/checkout@v3
+      - name: Build and restart container
+        run: |
+          docker context create remote --docker "host=ssh://${{ vars.SERVER_USER }}@${{ vars.SERVER_IP }}"
+          docker context use remote
+          docker-compose pull
+          docker-compose up -d --force-recreate
+        

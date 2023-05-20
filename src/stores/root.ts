@@ -1,24 +1,29 @@
-import AuthStore from "./auth"
-import BrandStore from "./brands"
-import CarStore from "./cars"
-import ComplectationStore from "./complectations"
-import CompressStore from "./compress"
-import DriveStore from "./drives"
-import EngineStore from "./engines"
-import FuelStore from "./fuels"
-import KppStore from "./kpps"
-import ModelStore from "./models"
-import OptionsStore from "./options"
-import UIStore from "./ui/UIStore"
+import AuthStore from "./auth";
+import { Backend } from "./be";
+import BrandStore from "./brands";
+import CarStore from "./cars";
+import ComplectationStore from "./complectations";
+import CompressStore from "./compress";
+import DriveStore from "./drives";
+import EngineStore from "./engines";
+import FuelStore from "./fuels";
+import KppStore from "./kpps";
+import ModelStore from "./models";
+import OptionsStore from "./options";
+import UIStore from "./ui/UIStore";
 
 export default class RootStoreModel {
-  ui = new UIStore()
+  be = Backend;
+
+  ui = new UIStore();
 
   auth = new AuthStore()
 
   brands = new BrandStore()
 
-  cars = new CarStore()
+  options = new OptionsStore();
+
+  cars = new CarStore();
 
   compresses = new CompressStore()
 
@@ -33,6 +38,4 @@ export default class RootStoreModel {
   kpps = new KppStore()
 
   models = new ModelStore()
-
-  options = new OptionsStore()
 }
