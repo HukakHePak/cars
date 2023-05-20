@@ -36,10 +36,10 @@ jobs:
           ssh-host: ${{ vars.SERVER_IP }}
           
       - uses: actions/checkout@v3
-      
       - name: Build and restart container
         run: |
           docker context create remote --docker "host=ssh://${{ vars.SERVER_USER }}@${{ vars.SERVER_IP }}"
-          docker-compose --context remote pull
-          docker-compose --context remote up -d --force-recreate
+          docker context user remote
+          docker-compose pull
+          docker-compose up -d --force-recreate
         
