@@ -2,12 +2,16 @@ import { makeAutoObservable } from "mobx"
 import { Backend } from "./be"
 import { Car } from "./models/car"
 import CarView from "./view/car"
+import Name from "./models/name"
+import Model from "./models/model"
 // import { Backend } from "./be";
 
 type CarFilter = {
   bottomPrice?: number;
   topPrice?: number;
   search?: string;
+  brandId?: Name["id"];
+  modelId?: Model["id"];
 }
 
 class CarStore {
@@ -47,7 +51,7 @@ class CarStore {
   }
 
   get filteredList(): Car[] {
-    const { bottomPrice, topPrice, search } = this.filter
+    const { bottomPrice, topPrice, search, modelId, brandId } = this.filter
     let carsList = this.list
 
     if (bottomPrice !== undefined) {
@@ -64,6 +68,14 @@ class CarStore {
           + `${car.engine.fuel} ${car.engine.perfomance} ${car.engine.volume} ${car.complectation.model.name} ${car.complectation.model.brand.name}`).toLowerCase()
         return search.split(" ").some((part) => searchString.includes(part.toLowerCase()))
       })
+    }
+
+    if (modelId !== undefined && modelId !== null) {
+      carsList = carsList.filter((car) => car.complectation.model.id === modelId)
+    }
+
+    if (brandId !== undefined && brandId !== null) {
+      carsList = carsList.filter((car) => car.complectation.model.brand.id === brandId)
     }
 
     return carsList

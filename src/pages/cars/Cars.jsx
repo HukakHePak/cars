@@ -2,13 +2,14 @@ import { can } from "components/Can/Can"
 import useStore from "hooks/useStore"
 import { observer } from "mobx-react-lite"
 import React, { useEffect, useState } from "react"
-import { Button, ButtonToolbar, FlexboxGrid, Form, Input, InputGroup, InputNumber } from "rsuite"
+import { Button, ButtonToolbar, FlexboxGrid, Form, Input, InputGroup, InputNumber, SelectPicker } from "rsuite"
 import SearchIcon from '@rsuite/icons/Search';
 import { UserType } from "stores/models/user"
 import CarD from "./CarD"
 import Create from "./Create"
 import style from "./style"
 import FormGroup from "rsuite/esm/FormGroup"
+import SelectAdd from "components/Input/SelectAdd"
 
 const { manager, admin } = UserType
 
@@ -29,8 +30,23 @@ const TopPrice = React.forwardRef((props, ref) => (
   <InputNumber value={props.value} placeholder="до" min={0} className={style.priceInput} step={100000} postfix="₽" ref={ref} {...props} />
 ));
 
+
+const locale = {
+  noResultsText: "Ничего не найдено",
+  placeholder: "Выбрать",
+  searchPlaceholder: "Искать"
+}
+
+const Brand = React.forwardRef((props, ref) => (
+  <SelectPicker value={props.value} labelKey="name" valueKey="id" label="Брэнд" locale={locale} ref={ref} {...props} />
+));
+
+const Model = React.forwardRef((props, ref) => (
+  <SelectPicker value={props.value} labelKey="name" valueKey="id" label="Модель" locale={locale} ref={ref} {...props} />
+));
+
 function Cars() {
-  const { cars, auth } = useStore()
+  const { cars, auth, brands, models } = useStore()
 
   useEffect(() => {
     if (auth.isLogged) {
@@ -41,6 +57,7 @@ function Cars() {
   }, [auth.isLogged, cars])
 
   const handeFormValueChange = (filter) => {
+    console.log(filter)
     cars.setFilter(filter)
   }
 
@@ -56,6 +73,10 @@ function Cars() {
             <Form.Control value={cars.filter.bottomPrice} accepter={BottomPrice} name="bottomPrice" />
             <Form.Control value={cars.filter.topPrice} accepter={TopPrice} name="topPrice" />
           </Form.Group>
+          <FormGroup>
+            <Form.Control value={cars.filter.brandId} data={brands.list ?? []} accepter={Brand} name="brand" />
+            <Form.Control value={cars.filter.modelId} data={models.list ?? []} accepter={Model} name="model" />
+          </FormGroup>
           <FormGroup>
             <ButtonToolbar>
               <Button appearance="default" type="reset" onClick={() => location.reload()}>
