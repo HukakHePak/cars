@@ -39,7 +39,7 @@ jobs:
       - name: Build and restart container
         run: |
           docker context create remote --docker "host=ssh://${{ vars.SERVER_USER }}@${{ vars.SERVER_IP }}"
-          docker context user remote
+          docker context use remote
           docker-compose pull
           docker-compose up -d --force-recreate
         
