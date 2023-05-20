@@ -2,6 +2,8 @@ name: Deploy
 on:
   push:
     branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
   workflow_dispatch:
 jobs:     
   build:
@@ -13,7 +15,7 @@ jobs:
           username: ${{ vars.DOCKER_USER }}
           password: ${{ secrets.DOCKER_TOKEN }}
       
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
       - name: Build image and run container
         run: docker-compose up -d --build
         
@@ -27,14 +29,17 @@ jobs:
     needs: [build]
     runs-on: ubuntu-latest  
     steps:
-      - name: Server container update
-        uses: appleboy/ssh-action@master
+      - name: Ssh known-host
+        uses: kielabokkie/ssh-key-and-known-hosts-action@v1
         with:
-          host: ${{ vars.SERVER_IP }} 
-          username: ${{ vars.SERVER_USER }} 
-          password: ${{ secrets.SERVER_PASSWORD }}
-          script: |
-            docker pull ${{ vars.IMAGE_NAME }} 
-            docker stop ${{ vars.CONTAINER_NAME }} 
-            docker rm ${{ vars.CONTAINER_NAME }} 
-            docker run -d -p ${{ vars.PORT }}:80 --name ${{ vars.CONTAINER_NAME }}  ${{ vars.IMAGE_NAME }} 
+          ssh-private-key: ${{ secrets.SERVER_KEY }}
+          ssh-host: ${{ vars.SERVER_IP }}
+          
+      - uses: actions/checkout@v3
+      
+      - name: Build and restart container
+        run: |
+          docker context create remote --docker "host=ssh://${{ vars.SERVER_USER }}@${{ vars.SERVER_IP }}"
+          docker-compose --context remote pull
+          docker-compose --context remote up -d --force-recreate
+        
