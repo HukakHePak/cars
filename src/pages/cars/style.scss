@@ -21,10 +21,11 @@
 }
 
 .card {
+  font-size: 24px;
   display: flex;
-  flex-direction: column;
-  width: 400px;
-  height: 250px;
+  gap: 20px;
+  width: 600px;
+  height: 300px;
   padding: 20px;
   background: $red8;
   color: $white;
@@ -45,11 +46,16 @@
 }
 
 .img {
-  height: 170px;
-  width: 170px;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
   background-color: $white;
 }
 
 .options {
-  width: 50%;
+  width: 250px;
+}
+
+.badge {
+  padding-right: 20px;
 }

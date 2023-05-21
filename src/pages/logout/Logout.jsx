@@ -11,7 +11,7 @@ function Logout() {
     auth.logout()
   })
 
-  return <Navigate to={`/${path.login}`} />
+  return <Navigate to={`/${path.root}`} />
 }
 
 export default observer(Logout)

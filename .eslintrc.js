@@ -51,5 +51,8 @@ module.exports = {
     "import/prefer-default-export": "warn",
     "no-console": "warn",
     "react-hooks/exhaustive-deps": "warn",
+    "react/jsx-props-no-spreading": "warn",
+    "import/order": "warn",
+    "react/display-name": "warn",
   },
 };
