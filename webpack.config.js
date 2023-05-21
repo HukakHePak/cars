@@ -58,7 +58,6 @@ module.exports = (env, argv) => {
 
     plugins: [
       new HtmlWebpackPlugin({
-        title: "Cars",
         template: "./src/index.html",
         favicon: "./src/assets/img/logos/ico.png",
       }),

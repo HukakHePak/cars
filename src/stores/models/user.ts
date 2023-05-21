@@ -73,7 +73,7 @@ export class User {
 
   setUser(user: UserInfo<"iduser"> | UserInfo): void
   setUser(user: UserInfo<"iduser"> | UserInfo, shouldUpdate: true): Promise<void>
-  setUser(user: UserInfo<"iduser"> | UserInfo, shouldUpdate = false): void | Promise<void> {
+  async setUser(user: UserInfo<"iduser"> | UserInfo, shouldUpdate = false): Promise<void> {
     this.id = user.id ?? user.iduser // eslint-disable-line @typescript-eslint/no-unsafe-assignment
     this.name = user.name
     this.surname = user.surname
@@ -86,7 +86,7 @@ export class User {
     this.type = user.type
 
     if (shouldUpdate) {
-      this.save()
+      return this.save()
     }
   }
 

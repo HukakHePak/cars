@@ -27,7 +27,6 @@ class OptionsStore {
 
   async load() {
     this.list = await Backend.getOptionsByFilter();
-    console.log(this.list);
   }
 
   save(option: OptionInfo) {

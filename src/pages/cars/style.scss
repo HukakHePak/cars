@@ -1,22 +1,43 @@
 @import "scss/colors";
 @import "scss/ui";
 
+.carsFilter {
+  display: flex;
+  justify-content: left;
+  gap: 5px;
+
+  .searchInput {
+    min-width: 270px;
+  }
+
+  .priceInput {
+    max-width: 180px;
+  }
+}
+
+.carsSorter {
+  display: flex;
+  justify-content: left;
+  gap: 15px;
+}
+
 .cars {
   gap: 20px;
 }
 
 .card {
+  font-size: 24px;
   display: flex;
-  flex-direction: column;
-  width: 400px;
-  height: 250px;
+  gap: 20px;
+  width: 600px;
+  height: 300px;
   padding: 20px;
   background: $red8;
   color: $white;
   cursor: pointer;
   @include bordering;
   @include bordertoping;
-  
+
   &:hover {
     transform: scale(1.01);
     box-shadow: 0 0 5px 0 $gray6;
@@ -26,19 +47,20 @@
 .header {
   font-size: 30px;
   height: 40px;
-  color: $white
+  color: $white;
 }
 
 .img {
-  height: 170px;
-  width: 170px;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
   background-color: $white;
 }
 
 .options {
-  width: 50%;
+  width: 250px;
 }
 
-// .plus {
-  
-// }
+.badge {
+  padding-right: 20px;
+}

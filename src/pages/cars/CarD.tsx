@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom"
 import { FlexboxGrid } from "rsuite"
 import { Car } from "stores/models/car"
 import path from "utils/path"
+import { apiUrl } from "utils/api"
 import style from "./style"
 
 function CarD(props: { car: Car }) {
@@ -20,20 +21,29 @@ function CarD(props: { car: Car }) {
     nav(`${path.cars}/${car.id}`)
   }
 
+  const { complectation, engine, kpp, price, drive } = car || {}
+  const { model } = complectation || {}
+
   return (
     <FlexboxGrid.Item className={style.card} onClick={selectCar}>
-      <div className={style.header}>
-        {car?.complectation?.model?.brand?.name} {car?.complectation?.model?.name}
-      </div>
-      <FlexboxGrid justify="space-between">
-        <img className={style.img} src={car.complectation?.model?.photo} alt="" />
-
+      <img className={style.img} src={`${apiUrl}${model?.photo}`} alt="" />
+      <FlexboxGrid>
+        <div className={style.header}>
+          {model?.brand?.name} {model?.name} {((engine?.volume || 0) / 1000).toFixed(1)}
+        </div>
         <ul className={style.options}>
-          <li> {car?.complectation?.name?.name} </li>
-          <li>{car?.engine?.perfomance}</li>
-          <li>{car?.kpp?.name}</li>
-          <li> {car?.price} </li>
+          {[
+            ["Комплектация", complectation?.name?.name],
+            ["КПП", kpp?.name],
+            ["Привод", drive?.name],
+            ["Мощность двигателя", `${engine?.perfomance} л.с.`]
+          ].map(([name, value]) => (
+            <li key={name}>
+              - <span className={style.badge}>{value}</span>
+            </li>
+          ))}
         </ul>
+        <div>от {price} р.</div>
       </FlexboxGrid>
     </FlexboxGrid.Item>
   )
