@@ -7,17 +7,17 @@ import Model from "./models/model"
 // import { Backend } from "./be";
 
 type CarFilter = {
-  bottomPrice?: number;
-  topPrice?: number;
-  search?: string;
-  brandId?: Name["id"];
-  modelId?: Model["id"];
+  bottomPrice?: number
+  topPrice?: number
+  search?: string
+  brandId?: Name["id"]
+  modelId?: Model["id"]
 }
 
 class CarStore {
   list: Car[] = []
 
-  selected: Car
+  selected: Car = null
 
   filter: CarFilter = {}
 
@@ -35,8 +35,8 @@ class CarStore {
     })
   }
 
-  loadPublic() {
-    Backend.getPublicCars().then((list: Car[]) => {
+  async loadPublic() {
+    return Backend.getPublicCars().then((list: Car[]) => {
       this.list = list
     })
   }
@@ -64,8 +64,10 @@ class CarStore {
 
     if (search !== undefined) {
       carsList = carsList.filter((car) => {
-        const searchString = (`${car.complectation.name.name} ${car.drive.name} ${car.kpp.name}`
-          + `${car.engine.fuel} ${car.engine.perfomance} ${car.engine.volume} ${car.complectation.model.name} ${car.complectation.model.brand.name}`).toLowerCase()
+        const searchString = (
+          `${car.complectation.name.name} ${car.drive.name} ${car.kpp.name}` +
+          `${car.engine.fuel} ${car.engine.perfomance} ${car.engine.volume} ${car.complectation.model.name} ${car.complectation.model.brand.name}`
+        ).toLowerCase()
         return search.split(" ").some((part) => searchString.includes(part.toLowerCase()))
       })
     }

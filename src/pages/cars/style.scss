@@ -32,11 +32,7 @@
   cursor: pointer;
   @include bordering;
   @include bordertoping;
-
-  &:hover {
-    transform: scale(1.01);
-    box-shadow: 0 0 5px 0 $gray6;
-  }
+  @include hoverscale;
 }
 
 .header {
@@ -46,8 +42,8 @@
 }
 
 .img {
-  height: 100%;
-  width: 100%;
+  min-height: 100%;
+  max-width: 300px;
   object-fit: contain;
   background-color: $white;
 }

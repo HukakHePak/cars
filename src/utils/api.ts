@@ -4,6 +4,8 @@ const url = process.env.api || ""
 
 export const apiUrl = `${url}/api/cars`
 
+export const publicUrl = `${url}/public`
+
 export const api = ky.create({
   prefixUrl: apiUrl,
   credentials: "include"
