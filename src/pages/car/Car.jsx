@@ -1,15 +1,17 @@
-import React, { useEffect } from "react"
-import { Button, Container, FlexboxGrid } from "rsuite"
+import React, { useEffect, useState } from "react"
+import { Button, Container, FlexboxGrid, Input, Modal } from "rsuite"
 import { useParams } from "react-router-dom"
 import useStore from "hooks/useStore"
 import { publicUrl } from "utils/api"
 import style from "./style"
 import { observer } from "mobx-react-lite"
 import SelectAdd from "components/Input/SelectAdd"
+import CheckIcon from "@rsuite/icons/Check"
 
 function Car() {
   const { id } = useParams()
   const { cars, complectations } = useStore()
+  const [modal, setModal] = useState()
 
   useEffect(() => {
     if (!cars.selected) {
@@ -27,6 +29,28 @@ function Car() {
 
   return (
     <Container className={style.container}>
+      <Modal open={modal} onClose={() => setModal()}>
+        <div className={style.modal}>
+          {modal === "phone" && (
+            <>
+              <p>Пожалуйста, укажите ваш номер телефона или почту</p>
+              <Input placeholder="Email, телефон..." />
+              <Button appearance="primary" onClick={() => setModal("confirm")}>
+                Отправить
+              </Button>
+            </>
+          )}
+          {modal === "confirm" && (
+            <>
+              <CheckIcon className={style.icon}/>
+              Ваш автомобиль забронирован. Мы перезвоним в ближайшее время, чтобы обсудить детали заказа!{" "}
+              <Button appearance="primary" onClick={() => setModal()}>
+                Хорошо
+              </Button>
+            </>
+          )}
+        </div>
+      </Modal>
       <FlexboxGrid className={style.infoBlock}>
         <img className={style.img} src={`${publicUrl}/${model?.photo}`} alt="" />
         <FlexboxGrid className={style.info}>
@@ -51,7 +75,7 @@ function Car() {
             ))}
           </ul>
           <div>от {price} р.</div>
-          <Button appearance="secondary" className={style.bindBtn}>
+          <Button appearance="secondary" className={style.bindBtn} onClick={() => setModal("phone")}>
             Забронировать
           </Button>
         </FlexboxGrid>
