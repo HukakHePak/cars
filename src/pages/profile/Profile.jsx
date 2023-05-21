@@ -19,7 +19,10 @@ function Profile() {
   }
 
   const handleFormValueChange = (v) => {
-    setFormValue(v)
+    setFormValue({
+      ...formValue,
+      ...v
+    })
   }
 
   return (
