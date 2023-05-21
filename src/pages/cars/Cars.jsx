@@ -57,7 +57,6 @@ function Cars() {
   }, [auth.isLogged, cars])
 
   const handeFormValueChange = (filter) => {
-    console.log(filter)
     cars.setFilter(filter)
   }
 
@@ -87,9 +86,9 @@ function Cars() {
         </Form>
       </div >
 
-      <FlexboxGrid justify={cars.filteredList.length < 2 ? "start" : "center"} className={style.cars}>
+      <FlexboxGrid justify={cars.sortedAndFilteredList.length < 2 ? "start" : "center"} className={style.cars}>
         {can(<Create />, [manager, admin])}
-        {cars.filteredList.map((car) => (
+        {cars.sortedAndFilteredList.map((car) => (
           <CarD key={car.id} car={car} />
         ))}
       </FlexboxGrid>

@@ -18,8 +18,6 @@ function OptionCard(props: Props) {
     // nav(`${path.cars}/${car.id}`);
   };
 
-  console.log(option);
-
   return (
     <FlexboxGrid.Item className={style.card} onClick={editOption}>
       <div className={style.header}>

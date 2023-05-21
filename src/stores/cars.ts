@@ -14,6 +14,8 @@ type CarFilter = {
   modelId?: Model["id"];
 }
 
+type CarSorter = "price asc" | "price desc" | undefined
+
 class CarStore {
   list: Car[] = []
 
@@ -21,12 +23,18 @@ class CarStore {
 
   filter: CarFilter = {}
 
+  sorter: CarSorter
+
   constructor() {
     makeAutoObservable(this)
   }
 
   setFilter(value: CarFilter) {
     this.filter = value
+  }
+
+  setSorter(value: CarSorter) {
+    this.sorter = value
   }
 
   load() {
@@ -80,6 +88,15 @@ class CarStore {
     }
 
     return carsList
+  }
+
+  get sortedAndFilteredList(): Car[] {
+    const list = this.filteredList
+
+    if (this.sorter === "price asc") return list.sort((c1, c2) => c1.price - c2.price)
+    if (this.sorter === "price desc") return list.sort((c1, c2) => c2.price - c1.price)
+
+    return list
   }
 }
 
