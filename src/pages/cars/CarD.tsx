@@ -7,6 +7,7 @@ import { Car } from "stores/models/car"
 import path from "utils/path"
 import { publicUrl } from "utils/api"
 import style from "./style"
+import { parsePrice } from "utils/helpers"
 
 function CarD(props: { car: Car }) {
   const { car } = props
@@ -43,7 +44,7 @@ function CarD(props: { car: Car }) {
             </li>
           ))}
         </ul>
-        <div>от {price} р.</div>
+        <div>от {parsePrice(price)} р.</div>
       </FlexboxGrid>
     </FlexboxGrid>
   )

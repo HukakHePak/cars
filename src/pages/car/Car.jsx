@@ -6,6 +6,7 @@ import { publicUrl } from "utils/api"
 import style from "./style"
 import { observer } from "mobx-react-lite"
 import CheckIcon from "@rsuite/icons/Check"
+import { parsePrice } from "utils/helpers"
 
 function Car() {
   const { id } = useParams()
@@ -78,7 +79,7 @@ function Car() {
               </li>
             ))}
           </ul>
-          <div>от {price} р.</div>
+          <div>от {parsePrice(price)} р.</div>
           <Button appearance="secondary" className={style.bindBtn} onClick={() => setModal("phone")}>
             Забронировать
           </Button>
