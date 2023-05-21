@@ -22,7 +22,7 @@ function Cars() {
   }, [auth.isLogged, cars])
 
   return (
-    <FlexboxGrid justify={cars.list.length < 2 ? "start" : "center"} className={style.cars}>
+    <FlexboxGrid className={style.cars}>
       {can(<Create />, [manager, admin])}
       {cars.list?.map((car) => (
         <CarD key={car.id} car={car} />
