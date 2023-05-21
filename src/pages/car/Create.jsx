@@ -3,13 +3,16 @@ import SelectColor from "components/Input/SelectColor"
 import useStore from "hooks/useStore"
 import { observer } from "mobx-react-lite"
 import React, { useEffect, useState } from "react"
-import { Button, DatePicker, FlexboxGrid, Input } from "rsuite"
+import { Button, DatePicker, FlexboxGrid, Input, Uploader } from "rsuite"
+import CameraRetroIcon from '@rsuite/icons/legacy/CameraRetro';
 import CarStore from "stores/cars"
 import moment from "moment"
 import style from "./style"
+import { toJS } from "mobx"
 
 function Create() {
   const { brands, models, complectations, engines, kpps, drives } = useStore()
+  const [image, setImage] = useState([])
 
   useEffect(() => {
     brands.load()
@@ -27,6 +30,15 @@ function Create() {
     CarStore.create(form)
   }
 
+  const handleImageUpload = (v) => {
+    setImage(v)
+    const reader = new FileReader()
+    reader.onloadend = () => {
+      console.log(reader.result)
+    }
+    reader.readAsDataURL(v[0].blobFile)
+  }
+
   return (
     <FlexboxGrid className={style.wrap}>
       <form className={style.form} onSubmit={handleSubmit}>
@@ -40,6 +52,11 @@ function Create() {
         <Input value={form.price} placeholder="Стоимость: Ввести" onChange={handleSelect("price")} />
         <SelectColor defaultColor="#ad0303" onSelect={(v) => handleSelect("color")(v?.slice(1))} />
         <DatePicker onSelect={(v) => handleSelect("prod_date")(moment(v).format("YYYY-MM-DD"))} />
+        <Uploader listType="picture" disabled={image.length > 0} fileList={image} value={toJS(image)} onChange={handleImageUpload} action="" autoUpload={false}>
+          <button disabled={image.length > 0} type="button">
+            <CameraRetroIcon />
+          </button>
+        </Uploader>
         <Button type="submit" appearance="primary">
           Создать
         </Button>
