@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 import { FlexboxGrid } from "rsuite"
 import { Car } from "stores/models/car"
 import path from "utils/path"
-import { apiUrl } from "utils/api"
+import { publicUrl } from "utils/api"
 import style from "./style"
 
 function CarD(props: { car: Car }) {
@@ -26,7 +26,7 @@ function CarD(props: { car: Car }) {
 
   return (
     <FlexboxGrid.Item className={style.card} onClick={selectCar}>
-      <img className={style.img} src={`${apiUrl}${model?.photo}`} alt="" />
+      <img className={style.img} src={`${publicUrl}/${model?.photo}`} alt="" />
       <FlexboxGrid>
         <div className={style.header}>
           {model?.brand?.name} {model?.name} {((engine?.volume || 0) / 1000).toFixed(1)}

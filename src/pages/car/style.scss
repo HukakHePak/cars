@@ -1,11 +1,15 @@
 @import "scss/colors";
+@import "scss/ui.scss";
+@import "scss/responsive.scss";
 
 .container {
-  // width: 400px;
-  // height: 250px;
-  // margin-top: 10px;
+  @include bordering;
+  @include bordertoping;
   height: 100%;
-  background: $red;
+  background: $red8;
+  padding: 20px;
+  font-size: 24px;
+  color: $white;
 }
 
 .wrap {
@@ -18,4 +22,80 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+.img {
+  @include bordering;
+  @include bordertoping;
+  width: 60%;
+  background-color: $white;
+  height: 100%;
+  object-fit: contain;
+  
+  @include for-tablet-landscape {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  @include for-tablet-landscape-up {
+    max-height: 300px;
+  }
+}
+
+.header {
+  font-size: 30px;
+  height: 40px;
+  color: $white;
+}
+
+.options {
+  width: 100%;
+}
+
+.infoBlock {
+  flex-wrap: nowrap;
+
+  @include for-tablet-landscape {
+    flex-direction: column;
+  }
+}
+
+.info {
+  flex-direction: column;
+  padding-left: 40px;
+  height: 100%;
+  justify-content: unset;
+  // gap: 20px;
+  justify-content: space-between;
+}
+
+.bindBtn {
+  font-size: 24px;
+  line-height: 32px;
+  margin-top: 20px;
+  padding: 15px;
+  background: linear-gradient(166deg, white, #ffffff);
+  transition: all linear 0.2s;
+    
+  &:hover, &:focus {
+    color: var(--rs-btn-default-text);
+    background: linear-gradient(166deg, white, #ffd066);
+  }
+
+  @include hoverscale;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  max-width: 260px;
+  gap: 20px;
+  font-size: 18px;
+  margin: auto;
+}
+
+.icon {
+  align-self: center;
+  height: 40px;
+  width: 40px;
+  fill: green;
 }

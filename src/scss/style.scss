@@ -41,3 +41,10 @@ ul {
   border-radius: 10px;
 }
 
+:global(.rs-modal-wrapper) {
+  display: flex;
+}
+
+:global(.rs-modal) {
+  margin: auto;
+}
