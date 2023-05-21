@@ -2,8 +2,10 @@ import ky from "ky"
 
 const url = process.env.api || ""
 
+export const apiUrl = `${url}/api/cars`
+
 export const api = ky.create({
-  prefixUrl: `${url}/api/cars`,
+  prefixUrl: apiUrl,
   credentials: "include"
 })
 

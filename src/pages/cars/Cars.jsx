@@ -5,15 +5,13 @@ import React, { useEffect, useState } from "react"
 import { Button, ButtonToolbar, FlexboxGrid, Form, Input, InputGroup, InputNumber, Radio, RadioGroup, SelectPicker } from "rsuite"
 import SearchIcon from '@rsuite/icons/Search';
 import { UserType } from "stores/models/user"
+import FormGroup from "rsuite/esm/FormGroup"
 import CarD from "./CarD"
 import Create from "./Create"
 import style from "./style"
-import FormGroup from "rsuite/esm/FormGroup"
 import SelectAdd from "components/Input/SelectAdd"
 
 const { manager, admin } = UserType
-
-
 
 const Search = React.forwardRef((props, ref) => (
   <InputGroup className={style.searchInput}>
@@ -22,14 +20,32 @@ const Search = React.forwardRef((props, ref) => (
       <SearchIcon />
     </InputGroup.Addon>
   </InputGroup>
-));
+))
 const BottomPrice = React.forwardRef((props, ref) => (
-  <InputNumber value={props.value} placeholder="от" min={0} className={style.priceInput} step={100000} postfix="₽" ref={ref} {...props} />
-));
+  <InputNumber
+    value={props.value}
+    placeholder="от"
+    min={0}
+    className={style.priceInput}
+    step={100000}
+    postfix="₽"
+    ref={ref}
+    {...props}
+  />
+))
 const TopPrice = React.forwardRef((props, ref) => (
-  <InputNumber value={props.value} placeholder="до" min={0} className={style.priceInput} step={100000} postfix="₽" ref={ref} {...props} />
-));
-
+  <InputNumber
+    name={props.name}
+    value={props.value}
+    placeholder="до"
+    min={0}
+    className={style.priceInput}
+    step={100000}
+    postfix="₽"
+    ref={ref}
+    {...props}
+  />
+))
 
 const locale = {
   noResultsText: "Ничего не найдено",
@@ -39,11 +55,11 @@ const locale = {
 
 const Brand = React.forwardRef((props, ref) => (
   <SelectPicker value={props.value} labelKey="name" valueKey="id" label="Брэнд" locale={locale} ref={ref} {...props} />
-));
+))
 
 const Model = React.forwardRef((props, ref) => (
   <SelectPicker value={props.value} labelKey="name" valueKey="id" label="Модель" locale={locale} ref={ref} {...props} />
-));
+))
 
 const SortPrice = React.forwardRef((props, ref) => (
   <RadioGroup {...props} ref={ref} appearance="picker" inline>
@@ -95,7 +111,7 @@ function Cars() {
           </FormGroup>
           <FormGroup>
             <ButtonToolbar>
-              <Button appearance="default" type="reset" onClick={() => location.reload()}>
+              <Button appearance="default" type="reset" onClick={() => window.location.reload()}>
                 Очистить
               </Button>
             </ButtonToolbar>
