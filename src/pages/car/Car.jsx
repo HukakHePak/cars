@@ -42,7 +42,7 @@ function Car() {
           )}
           {modal === "confirm" && (
             <>
-              <CheckIcon className={style.icon}/>
+              <CheckIcon className={style.icon} />
               Ваш автомобиль забронирован. Мы перезвоним в ближайшее время, чтобы обсудить детали заказа!{" "}
               <Button appearance="primary" onClick={() => setModal()}>
                 Хорошо
@@ -52,7 +52,7 @@ function Car() {
         </div>
       </Modal>
       <FlexboxGrid className={style.infoBlock}>
-        <img className={style.img} src={`${publicUrl}/${model?.photo}`} alt="" />
+        <img className={style.img} src={model?.photo} alt="" />
         <FlexboxGrid className={style.info}>
           <div className={style.header}>
             {model?.brand?.name} {model?.name} {((engine?.volume || 0) / 1000).toFixed(1)}
