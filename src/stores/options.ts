@@ -1,36 +1,36 @@
-import { makeAutoObservable } from "mobx";
-import { Backend } from "./be";
-import Option, { OptionInfo } from "./models/option";
-import Name from "./models/name";
+import { makeAutoObservable } from "mobx"
+import { Backend } from "./be"
+import Option, { OptionInfo } from "./models/option"
+import Name from "./models/name"
 
 export type OptionsFilter = {
-  available: boolean;
-  id: number | null;
-  code: string | null;
-  name: string | null;
-};
+  available: boolean
+  id: number | null
+  code: string | null
+  name: string | null
+}
 
 class OptionsStore {
   list: Option[] = []
 
-  typeList: Name[] = [];
+  typeList: Name[] = []
 
   constructor() {
-    makeAutoObservable(this);
+    makeAutoObservable(this)
 
-    this.loadTypes().then(() => this.load());
+    this.loadTypes().then(() => this.load())
   }
 
   async loadTypes() {
-    this.typeList = await Backend.getOptionTypes();
+    this.typeList = await Backend.getOptionTypes()
   }
 
   async load() {
-    this.list = await Backend.getOptionsByFilter();
+    this.list = await Backend.getOptionsByFilter()
   }
 
   save(option: OptionInfo) {
-    Backend.createOption(option).then(() => this.list.push(new Option(option)));
+    Backend.createOption(option).then(() => this.list.push(new Option(option)))
   }
 
   delete(option: Option) {
