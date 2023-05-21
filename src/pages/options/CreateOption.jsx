@@ -17,14 +17,7 @@ function CreateOption() {
   };
 
   const handleFormValueChange = (v) => {
-    console.log("V", v);
     setFormValue(v);
-  };
-
-  const handleTypeSelect = (value, item, event) => {
-    console.log("VALUE", value);
-    console.log(item);
-    console.log(event);
   };
 
   return (
@@ -43,7 +36,6 @@ function CreateOption() {
         <SelectAdd
           data={options.typeList}
           label="Комплектация"
-          onSelect={handleTypeSelect}
         />
       </Form.Group>
       <Form.Group controlId="patronymic-1">

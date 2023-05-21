@@ -5,7 +5,7 @@ import Name from "./models/name"
 class BrandStore {
   list: Name[] = []
 
-  selected: Name
+  selected: Name | null = null
 
   constructor() {
     makeAutoObservable(this)
@@ -19,12 +19,18 @@ class BrandStore {
     })
   }
 
-  select(brand: Name) {
-    this.selected = brand
+  select(idBrand: Name["id"]) {
+    this.selected = this.list.find((item) => item.id === idBrand)
   }
 
   clear() {
     this.selected = null
+  }  
+
+  create(name: string): Promise<void> {
+    return Backend.createBrand(name).then(() => {
+      this.load()
+    })
   }
 }
 
