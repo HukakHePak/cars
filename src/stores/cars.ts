@@ -31,6 +31,7 @@ class CarStore {
   }
 
   static create(car: CarView) {
+    car.photo
     Backend.createCar(car)
   }
 
