@@ -5,10 +5,10 @@ import React, { useEffect, useState } from "react"
 import { Button, ButtonToolbar, FlexboxGrid, Form, Input, InputGroup, InputNumber, SelectPicker } from "rsuite"
 import SearchIcon from "@rsuite/icons/Search"
 import { UserType } from "stores/models/user"
+import FormGroup from "rsuite/esm/FormGroup"
 import CarD from "./CarD"
 import Create from "./Create"
 import style from "./style"
-import FormGroup from "rsuite/esm/FormGroup"
 import SelectAdd from "components/Input/SelectAdd"
 
 const { manager, admin } = UserType
@@ -35,6 +35,7 @@ const BottomPrice = React.forwardRef((props, ref) => (
 ))
 const TopPrice = React.forwardRef((props, ref) => (
   <InputNumber
+    name={props.name}
     value={props.value}
     placeholder="до"
     min={0}
@@ -94,7 +95,7 @@ function Cars() {
           </FormGroup>
           <FormGroup>
             <ButtonToolbar>
-              <Button appearance="default" type="reset" onClick={() => location.reload()}>
+              <Button appearance="default" type="reset" onClick={() => window.location.reload()}>
                 Очистить
               </Button>
             </ButtonToolbar>
