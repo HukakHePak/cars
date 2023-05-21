@@ -18,7 +18,9 @@ jobs:
         run: docker-compose up -d --build
         
       - name: Check container
-        run: curl http://localhost:${{ vars.PORT }} 
+        run: |
+          sleep 1
+          curl http://localhost:${{ vars.PORT }} 
         
       - name: Push image
         run: docker-compose push
