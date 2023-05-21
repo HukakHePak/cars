@@ -25,9 +25,9 @@ function CarD(props: { car: Car }) {
   const { model } = complectation || {}
 
   return (
-    <FlexboxGrid.Item className={style.card} onClick={selectCar}>
+    <FlexboxGrid className={style.card} onClick={selectCar}>
       <img className={style.img} src={`${publicUrl}/${model?.photo}`} alt="" />
-      <FlexboxGrid>
+      <FlexboxGrid className={style.options}>
         <div className={style.header}>
           {model?.brand?.name} {model?.name} {((engine?.volume || 0) / 1000).toFixed(1)}
         </div>
@@ -45,7 +45,7 @@ function CarD(props: { car: Car }) {
         </ul>
         <div>от {price} р.</div>
       </FlexboxGrid>
-    </FlexboxGrid.Item>
+    </FlexboxGrid>
   )
 }
 

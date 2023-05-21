@@ -10,6 +10,7 @@
   padding: 20px;
   font-size: 24px;
   color: $white;
+  gap: 40px;
 }
 
 .wrap {
@@ -78,7 +79,7 @@
     
   &:hover, &:focus {
     color: var(--rs-btn-default-text);
-    background: linear-gradient(166deg, white, #ffd066);
+    background: linear-gradient(-13deg, #ffcc00, white);  
   }
 
   @include hoverscale;
@@ -98,4 +99,23 @@
   height: 40px;
   width: 40px;
   fill: green;
+}
+
+.description {
+  padding-right: 20px;
+}
+
+.tagPicker {
+  flex-wrap: wrap;
+  display: flex;
+  gap: 10px;
+}
+
+.tag {
+  font-size: 18px;
+  line-height: 20px;
+  padding: 10px;
+  background-color: $white;
+  color: var(--rs-btn-default-text);
+  border-radius: 7px;
 }
