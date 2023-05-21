@@ -1,14 +1,14 @@
-import { pipi } from "utils/api";
-import { Car, CarFilter } from "./models/car";
-import Engine from "./models/engine";
-import Option, { OptionInfo } from "./models/option";
-import Model from "./models/model";
-import Name from "./models/name";
-import CarView from "./view/car";
-import { UserInfo } from "./models/user";
-import Complectation from "./models/complectation";
-import ComplectationView from "./view/complectation";
-import { OptionsFilter } from "./options";
+import { pipi } from "utils/api"
+import { Car, CarFilter } from "./models/car"
+import Engine from "./models/engine"
+import Option, { OptionInfo } from "./models/option"
+import Model from "./models/model"
+import Name from "./models/name"
+import CarView from "./view/car"
+import { UserInfo } from "./models/user"
+import Complectation from "./models/complectation"
+import ComplectationView from "./view/complectation"
+import { OptionsFilter } from "./options"
 
 export class Backend {
   static cancelPayment(id: number): void {
@@ -49,8 +49,8 @@ export class Backend {
       option.code,
       option.price,
       option.description,
-      option.photo,
-    ]);
+      option.photo
+    ])
   }
 
   static createOptionArrive(id: number, amount: number): Promise<unknown> {
@@ -186,21 +186,19 @@ export class Backend {
   }
 
   static getOptionTypes(): Promise<Name[]> {
-    return pipi.execute("get_option_types", []) as Promise<Name[]>;
+    return pipi.execute("get_option_types", []) as Promise<Name[]>
   }
 
   static async getOptionsByFilter(
     filter: Partial<OptionsFilter> = {
       id: null,
       code: null,
-      name: null,
+      name: null
     }
   ): Promise<Option[]> {
     return pipi
-      .execute("get_options_by_filter", [filter.id, filter.code, filter.name])
-      .then((list: OptionInfo[]) =>
-        list.map((item: OptionInfo) => new Option(item))
-      );
+      .public("get_options_by_filter", [filter.id, filter.code, filter.name])
+      .then((list: OptionInfo[]) => list.map((item: OptionInfo) => new Option(item)))
   }
 
   // static getOrderComplectation(id: number): Complectation {}

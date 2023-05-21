@@ -5,26 +5,35 @@ import useStore from "hooks/useStore"
 import { publicUrl } from "utils/api"
 import style from "./style"
 import { observer } from "mobx-react-lite"
-import SelectAdd from "components/Input/SelectAdd"
 import CheckIcon from "@rsuite/icons/Check"
 
 function Car() {
   const { id } = useParams()
-  const { cars, complectations } = useStore()
+  const { cars, options } = useStore()
   const [modal, setModal] = useState()
 
+  const car = cars.selected
+
   useEffect(() => {
-    if (!cars.selected) {
+    if (!car) {
       cars.loadPublic().then(() => {
         cars.select(cars.list.find((item) => item.id === +id))
       })
     }
   })
 
+  useEffect(() => {
+    if (car) {
+      options.load().then(() => {
+        options.list = options.list.filter(() => Math.random() > 0.5).reverse(() => Math.random > 5)
+      })
+    }
+  }, [car])
+
   // const [ form, setForm ] = useSate()
   // const handleSelect = (name) => (value) => setForm({ ...form, [name]: value })
 
-  const { complectation, engine, kpp, price, drive } = cars.selected || {}
+  const { complectation, engine, kpp, price, drive } = car || {}
   const { model } = complectation || {}
 
   return (
@@ -57,11 +66,6 @@ function Car() {
           <div className={style.header}>
             {model?.brand?.name} {model?.name} {((engine?.volume || 0) / 1000).toFixed(1)}
           </div>
-          {/* <SelectAdd
-            data={complectations.asOptions}
-            label="Комплектация"
-            // onSelect={handleSelect("idcomplectation")}
-          /> */}
           <ul className={style.options}>
             {[
               ["Комплектация", complectation?.name?.name],
@@ -80,6 +84,14 @@ function Car() {
           </Button>
         </FlexboxGrid>
       </FlexboxGrid>
+      <div className={style.description}> {model?.description} </div>
+      <div className={style.tagPicker}>
+        {options.list?.map((item) => (
+          <div key={item.id} className={style.tag}>
+            {item.name}
+          </div>
+        ))}
+      </div>
     </Container>
   )
 }

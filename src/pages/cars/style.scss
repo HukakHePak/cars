@@ -49,12 +49,13 @@
 .img {
   min-height: 100%;
   max-width: 300px;
+  width: 100%;
   object-fit: contain;
   background-color: $white;
 }
 
 .options {
-  width: 250px;
+  width: 240px;
 }
 
 .badge {
