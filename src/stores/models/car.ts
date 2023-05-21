@@ -106,7 +106,8 @@ export class Car {
       vin: view.vin,
       prodDate: view.prod_date,
       arrivalDate: view.arrival_date,
-      distance: view.distance
+      distance: view.distance,
+      price: view.price
     })
   }
 }
