@@ -19,8 +19,13 @@ export class Backend {
     pipi.execute("change_password", [staffLogin, newPassword])
   }
 
-  static createBrand(name: string): void {
-    pipi.execute("create_brand", [name])
+  static async createBrand(name: string): Promise<void> {
+    await pipi.execute("create_brand", [name])
+  }
+
+  static async createModel(model: Model): Promise<void> {
+    const { brand: { id }, name, description, photo } = model
+    await pipi.execute("create_model", [id, name, description, photo])
   }
 
   static createCar(car: CarView): Promise<unknown> {
@@ -29,8 +34,8 @@ export class Backend {
     return pipi.execute("create_car", [idcomplectation, idengine, idkpp, iddrive, vin, price, color, prodDate])
   }
 
-  static createComplectation(idName: number, idModel: number, price: number): void {
-    pipi.execute("create_complectation", [idName, price, idModel])
+  static async createComplectation(complectation: {complectationNameId: number, modelId: number, price: number}): Promise<void> {
+    await pipi.execute("create_complectation", [complectation.complectationNameId, complectation.price, complectation.modelId])
   }
 
   // static createCustomer(customer: Customer): void {}

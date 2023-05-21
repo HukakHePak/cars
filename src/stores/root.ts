@@ -19,23 +19,24 @@ export default class RootStoreModel {
 
   auth = new AuthStore()
 
-  brands = new BrandStore()
-
+  
   options = new OptionsStore();
-
+  
   cars = new CarStore();
-
+  
   compresses = new CompressStore()
+  
+  drives = new DriveStore()
+  
+  engines = new EngineStore()
+  
+  fuels = new FuelStore()
+  
+  kpps = new KppStore()
+  
+  brands = new BrandStore()
+  
+  models = new ModelStore()
 
   complectations = new ComplectationStore()
-
-  drives = new DriveStore()
-
-  engines = new EngineStore()
-
-  fuels = new FuelStore()
-
-  kpps = new KppStore()
-
-  models = new ModelStore()
 }

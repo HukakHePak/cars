@@ -2,6 +2,7 @@ import { makeAutoObservable } from "mobx"
 import { Backend } from "./be"
 import Complectation from "./models/complectation"
 import Name from "./models/name"
+import { RootStore } from "contexts/RootStoreContext"
 
 class ComplectationStore {
   list: Complectation[] = []
@@ -13,6 +14,7 @@ class ComplectationStore {
   constructor() {
     makeAutoObservable(this)
     this.loadNames()
+    this.load()
   }
 
   loadNames() {
@@ -21,17 +23,26 @@ class ComplectationStore {
     })
   }
 
-  load(idModel: number) {
+  load(idModel: number = null) {
     Backend.getComplectationsByModel(idModel).then((list: Complectation[]) => {
       this.list = list
     })
   }
 
   get asOptions() {
-    return this.list.map((item: Complectation) => ({
-      id: item.id,
-      name: item.name.name
-    }))
+    const selectedModel = RootStore.models.selected
+
+    if (selectedModel) {
+      return this.list
+        .filter((item) => item.model.id === selectedModel.id)
+        .map((item: Complectation) => ({
+        id: item.id,
+        name: item.name.name,
+        model: item.model.name
+      }))
+    }
+
+    return []
   }
 
   select(complectation: Complectation) {
@@ -40,6 +51,12 @@ class ComplectationStore {
 
   clear() {
     this.selected = null
+  }
+
+  create(complectation: { complectationNameId: number, price: number, modelId: number }): Promise<void> {
+    return Backend.createComplectation(complectation).then(() => {
+      this.load()
+    })
   }
 }
 

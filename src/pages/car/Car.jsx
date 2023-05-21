@@ -61,7 +61,7 @@ function Car() {
         </div>
       </Modal>
       <FlexboxGrid className={style.infoBlock}>
-        <img className={style.img} src={`${publicUrl}/${model?.photo}`} alt="" />
+        <img className={style.img} src={model?.photo} alt="" />
         <FlexboxGrid className={style.info}>
           <div className={style.header}>
             {model?.brand?.name} {model?.name} {((engine?.volume || 0) / 1000).toFixed(1)}
