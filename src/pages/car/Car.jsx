@@ -84,8 +84,13 @@ function Car() {
           </Button>
         </FlexboxGrid>
       </FlexboxGrid>
-      <div className={style.description}> {model?.description} </div>
+      <div className={style.description}>
+        {/* <div> Установлено: </div>  */}
+        {model?.description}
+      </div>
+
       <div className={style.tagPicker}>
+        {/* <div> Установлено: </div> */}
         {options.list?.map((item) => (
           <div key={item.id} className={style.tag}>
             {item.name}

@@ -27,11 +27,11 @@ function CarD(props: { car: Car }) {
   return (
     <FlexboxGrid className={style.card} onClick={selectCar}>
       <img className={style.img} src={model?.photo} alt="" />
-      <FlexboxGrid>
+      <FlexboxGrid className={style.options}>
         <div className={style.header}>
           {model?.brand?.name} {model?.name} {((engine?.volume || 0) / 1000).toFixed(1)}
         </div>
-        <ul className={style.options}>
+        <ul>
           {[
             ["Комплектация", complectation?.name?.name],
             ["КПП", kpp?.name],
