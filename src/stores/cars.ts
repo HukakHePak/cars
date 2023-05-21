@@ -2,6 +2,8 @@ import { makeAutoObservable } from "mobx"
 import { Backend } from "./be"
 import { Car } from "./models/car"
 import CarView from "./view/car"
+import { RootStore } from "contexts/RootStoreContext"
+import Model from "./models/model"
 // import { Backend } from "./be";
 
 class CarStore {
@@ -34,10 +36,6 @@ class CarStore {
     car.photo
     Backend.createCar(car)
   }
-
-  //   load() {
-  //     // Backend.
-  //   }
 }
 
 export default CarStore

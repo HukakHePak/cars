@@ -6,6 +6,7 @@ type Model = {
     description: string;
     photo: string;
     brand: Name;
+    idBrand: Name["id"]
 }
 
 export default Model;
