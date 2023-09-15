@@ -7,6 +7,7 @@ import { Car } from "stores/models/car"
 import path from "utils/path"
 import { publicUrl } from "utils/api"
 import style from "./style"
+import { parsePrice } from "utils/helpers"
 
 function CarD(props: { car: Car }) {
   const { car } = props
@@ -27,11 +28,11 @@ function CarD(props: { car: Car }) {
   return (
     <FlexboxGrid className={style.card} onClick={selectCar}>
       <img className={style.img} src={model?.photo} alt="" />
-      <FlexboxGrid>
+      <FlexboxGrid className={style.options}>
         <div className={style.header}>
           {model?.brand?.name} {model?.name} {((engine?.volume || 0) / 1000).toFixed(1)}
         </div>
-        <ul className={style.options}>
+        <ul>
           {[
             ["Комплектация", complectation?.name?.name],
             ["КПП", kpp?.name],
@@ -43,7 +44,7 @@ function CarD(props: { car: Car }) {
             </li>
           ))}
         </ul>
-        <div>от {price} р.</div>
+        <div>от {parsePrice(price)} р.</div>
       </FlexboxGrid>
     </FlexboxGrid>
   )

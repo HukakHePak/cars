@@ -6,6 +6,7 @@ import { publicUrl } from "utils/api"
 import style from "./style"
 import { observer } from "mobx-react-lite"
 import CheckIcon from "@rsuite/icons/Check"
+import { parsePrice } from "utils/helpers"
 
 function Car() {
   const { id } = useParams()
@@ -78,14 +79,19 @@ function Car() {
               </li>
             ))}
           </ul>
-          <div>от {price} р.</div>
+          <div>от {parsePrice(price)} р.</div>
           <Button appearance="secondary" className={style.bindBtn} onClick={() => setModal("phone")}>
             Забронировать
           </Button>
         </FlexboxGrid>
       </FlexboxGrid>
-      <div className={style.description}> {model?.description} </div>
+      <div className={style.description}>
+        {/* <div> Установлено: </div>  */}
+        {model?.description}
+      </div>
+
       <div className={style.tagPicker}>
+        {/* <div> Установлено: </div> */}
         {options.list?.map((item) => (
           <div key={item.id} className={style.tag}>
             {item.name}
